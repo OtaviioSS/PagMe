@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">pagme</string>
+    <string name="novo_cart_o">Novo Cartão</string>
+    <string name="nome_do_cart_o">Nome do Cartão</string>
+    <string name="fechamento">Fechamento</string>
+    <string name="data_de_vencimento">Vencimento</string>
+    <string name="salvar">Salvar</string>
+    <string name="nova_divida">Nova Divida</string>
 </resources>
