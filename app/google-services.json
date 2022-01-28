@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "439560545515",
+    "project_id": "pagme-39104",
+    "storage_bucket": "pagme-39104.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439560545515:android:99c8d0329f3f7934210aae",
+        "android_client_info": {
+          "package_name": "com.imcub.pagme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439560545515-q3q7c0j6kc13g3252m9b5usv4g63c419.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxMHj7pZs5EXzWn5s1BR_h1UkYXL5BBP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439560545515-q3q7c0j6kc13g3252m9b5usv4g63c419.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
