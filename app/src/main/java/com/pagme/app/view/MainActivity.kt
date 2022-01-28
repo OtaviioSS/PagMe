@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     fun mudarTela(){
         val btn = findViewById<Button>(R.id.btnMudar)
         btn.setOnClickListener(){
-            val intent = Intent(this, Activity_AddCard::class.java)
+            val intent = Intent(this, Activity_New_Debit::class.java)
             startActivity(intent)
         }
     }

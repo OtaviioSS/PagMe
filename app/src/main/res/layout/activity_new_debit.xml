@@ -4,6 +4,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#222831"
     tools:context="com.pagme.app.view.Activity_New_Debit">
 
+    <TextView
+        android:id="@+id/titleNewDebitView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nova_divida"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/spinnerCardNewDebitView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cart_o"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/spinnerCardNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/spinnerCardNewDebitView" />
+
+    <Spinner
+        android:id="@+id/spinnerCardNewDebitView"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:background="@drawable/edittext_background"
+        app:layout_constraintBottom_toTopOf="@id/valueBuyNewDebitView"
+        app:layout_constraintEnd_toStartOf="@id/btnOpenViewNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/valueBuyNewDebitView"
+        app:layout_constraintTop_toBottomOf="@id/titleNewDebitView"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_total_da_compra"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/valueBuyNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/valueBuyNewDebitView" />
+
+    <EditText
+        android:id="@+id/valueBuyNewDebitView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textColor="@color/innerText"
+        android:background="@drawable/edittext_background"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@id/installmentsNewDebitView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCardNewDebitView"
+        android:autofillHints="valor de cada parcelas comprada" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parcelas"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/installmentsNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/installmentsNewDebitView" />
+
+    <EditText
+        android:id="@+id/installmentsNewDebitView"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:textColor="@color/innerText"
+        android:background="@drawable/edittext_background"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/valueBuyNewDebitView"
+        app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebitView"
+        android:autofillHints="Quantidade de parcelas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/valor_parcelas"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/valueInstallmentsNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/valueInstallmentsNewDebitView" />
+
+    <EditText
+        android:id="@+id/valueInstallmentsNewDebitView"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:textColor="@color/innerText"
+        android:background="@drawable/edittext_background"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebitView"
+        app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebitView"
+        app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebitView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nome_do_comprador"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/nameBuyerNewDebitView" />
+
+    <EditText
+        android:id="@+id/nameBuyerNewDebitView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textColor="@color/innerText"
+        android:background="@drawable/edittext_background"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@id/whatsappNewDebitView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsNewDebitView" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/whatsapp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/whatsappNewDebitView"
+        app:layout_constraintStart_toStartOf="@id/whatsappNewDebitView" />
+
+    <EditText
+        android:id="@+id/whatsappNewDebitView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textColor="@color/innerText"
+        android:autofillHints="campo para inserir whatsapp"
+        android:background="@drawable/edittext_background"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@id/buttonSaveNewDebitView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsNewDebitView" />
+
+    <Button
+        android:id="@+id/buttonSaveNewDebitView"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_green"
+        android:text="@string/salvar"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/whatsappNewDebitView" />
+
+    <Button
+        android:id="@+id/btnOpenViewNewDebitView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebitView"
+        android:padding="0dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardNewDebitView"
+        app:layout_constraintStart_toEndOf="@+id/spinnerCardNewDebitView"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCardNewDebitView"
+        android:background="@drawable/button_green"
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

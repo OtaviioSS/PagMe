@@ -6,4 +6,19 @@
     <string name="data_de_vencimento">Vencimento</string>
     <string name="salvar">Salvar</string>
     <string name="nova_divida">Nova Divida</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="cart_o">Cartão</string>
+    <string name="valor_total_da_compra">Valor total da compra</string>
+    <string name="parcelas">Parcelas</string>
+    <string name="valor_parcelas">Valor Parcelas</string>
+    <string name="nome_do_comprador">Nome do Comprador</string>
+
+    <string-array name="Languages">
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>Swift</item>
+        <item>Python</item>
+        <item>Scala</item>
+        <item>Perl</item>
+    </string-array>
 </resources>

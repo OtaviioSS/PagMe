@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <color name="innerText">#393E46</color>
+    <color name="externalText">#EEEEEE</color>
+    <color name="primaryButtons">#7BC74D</color>
+</resources>
