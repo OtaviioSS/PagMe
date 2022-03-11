@@ -1,15 +1,13 @@
-package com.pagme.app.view
+package com.pagme.app.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
-import com.pagme.app.model.Card
+import com.pagme.app.entity.Card
 import kotlinx.android.synthetic.main.activity_add_card.*
 import java.util.*
 
@@ -36,6 +34,7 @@ class Activity_AddCard : AppCompatActivity() {
             dueDateNewCardView.text.toString()
         )
         /*DAO*/
+        //        ALTERAR O USEROTAVIO PARA O EMAIL DO USUARIO LOGADO
         database.child("userOtavio").child("cards").child(card.cardID.toString()).setValue(card)
             .addOnSuccessListener {
                 Toast.makeText(this, "Cartão adicionado", Toast.LENGTH_SHORT).show()

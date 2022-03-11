@@ -1,4 +1,4 @@
-package com.pagme.app.model
+package com.pagme.app.entity
 
 import com.google.firebase.database.IgnoreExtraProperties
 

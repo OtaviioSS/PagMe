@@ -4,15 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pagme.app.view.MainActivity">
+    android:background="#222831"
+    tools:context="com.pagme.app.ui.MainActivity">
 
-    <Button
-        android:id="@+id/btnMudar"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDebits"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/nova_divida"
-        android:background="@drawable/button_green"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        tools:listitem="@layout/item_debit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:background="#7BC74D"
+        android:backgroundTint="#7BC74D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

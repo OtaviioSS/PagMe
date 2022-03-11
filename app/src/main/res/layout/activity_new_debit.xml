@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#222831"
-    tools:context="com.pagme.app.view.Activity_New_Debit">
+    tools:context="com.pagme.app.ui.Activity_New_Debit">
 
     <TextView
         android:id="@+id/titleNewDebitView"
@@ -33,10 +33,12 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:background="@drawable/edittext_background"
+        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/valueBuyNewDebitView"
         app:layout_constraintEnd_toStartOf="@id/btnOpenViewNewDebitView"
         app:layout_constraintStart_toStartOf="@id/valueBuyNewDebitView"
         app:layout_constraintTop_toBottomOf="@id/titleNewDebitView"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"
 
         />
 
@@ -53,14 +55,15 @@
         android:id="@+id/valueBuyNewDebitView"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:textColor="@color/innerText"
+
+        android:autofillHints="valor de cada parcelas comprada"
         android:background="@drawable/edittext_background"
         android:inputType="numberDecimal"
+        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/installmentsNewDebitView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCardNewDebitView"
-        android:autofillHints="valor de cada parcelas comprada" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerCardNewDebitView" />
 
 
     <TextView
@@ -76,13 +79,13 @@
         android:id="@+id/installmentsNewDebitView"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:textColor="@color/innerText"
+        android:autofillHints="Quantidade de parcelas"
         android:background="@drawable/edittext_background"
         android:inputType="number"
+        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebitView"
         app:layout_constraintStart_toStartOf="@id/valueBuyNewDebitView"
-        app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebitView"
-        android:autofillHints="Quantidade de parcelas" />
+        app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebitView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -98,9 +101,9 @@
         android:id="@+id/valueInstallmentsNewDebitView"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:textColor="@color/innerText"
         android:background="@drawable/edittext_background"
         android:inputType="numberDecimal"
+        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebitView"
         app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebitView"
         app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebitView" />
@@ -118,9 +121,9 @@
         android:id="@+id/nameBuyerNewDebitView"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:textColor="@color/innerText"
         android:background="@drawable/edittext_background"
         android:inputType="textPersonName"
+        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/whatsappNewDebitView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,10 +143,10 @@
         android:id="@+id/whatsappNewDebitView"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:textColor="@color/innerText"
         android:autofillHints="campo para inserir whatsapp"
         android:background="@drawable/edittext_background"
         android:inputType="textPersonName"
+        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/buttonSaveNewDebitView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,13 +169,12 @@
         android:id="@+id/btnOpenViewNewDebitView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="+"
-        app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebitView"
-        android:padding="0dp"
         android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardNewDebitView"
-        app:layout_constraintStart_toEndOf="@+id/spinnerCardNewDebitView"
-        app:layout_constraintTop_toTopOf="@+id/spinnerCardNewDebitView"
         android:background="@drawable/button_green"
-         />
+        android:padding="0dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardNewDebitView"
+        app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebitView"
+        app:layout_constraintStart_toEndOf="@+id/spinnerCardNewDebitView"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCardNewDebitView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
