@@ -14,14 +14,14 @@ import java.util.ArrayList
 
 class DebtRepository(private val database: DatabaseReference) {
     val mListDebt: MutableList<Debt> = ArrayList()
+    val user:String = "userOtavio"
+
     fun getList(): List<Debt> {
         return mListDebt
     }
 
-
-    fun readCardsFromSppiner(context: Context, spinner: Spinner) {
-//        ALTERAR O USEROTAVIO PARA O EMAIL DO USUARIO LOGADO
-        database.child("userOtavio").child("cards").addValueEventListener(object :
+    fun readCardsFromSppiner(): MutableList<String?> {
+        database.child(user).child("cards").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 cards.clear()
@@ -29,16 +29,16 @@ class DebtRepository(private val database: DatabaseReference) {
                     val cardName = cardSnapshot.child("cardName").getValue(String::class.java)
                     cards.add(cardName)
 
-                    val cardsAdapter = ArrayAdapter(context, R.layout.simple_spinner_item, cards)
-                    cardsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    spinner.adapter = cardsAdapter
+
                 }
 
             }
             override fun onCancelled(databaseError: DatabaseError) {}
         })
+
+        return cards
     }
-    fun newDebit(debt: Debt, database: DatabaseReference) {
+    fun createDebit(debt: Debt, database: DatabaseReference) {
         //        ALTERAR O USEROTAVIO PARA O EMAIL DO USUARIO LOGADO
         database.child("userOtavio").child("debts").child(debt.id.toString()).setValue(debt)
 

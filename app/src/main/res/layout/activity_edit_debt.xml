@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#222831"
-    tools:context="com.pagme.app.ui.Activity_New_Debit">
+    tools:context=".ui.Activity_Edit_Debt">
+
 
     <TextView
         android:id="@+id/titleNewDebitView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nova_divida"
+        android:text="@string/editar_divida"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/spinnerCardNewDebtView"
+        app:layout_constraintBottom_toTopOf="@id/spinnerCardEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,18 +25,18 @@
         android:text="@string/cart_o"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/spinnerCardNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/spinnerCardNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/spinnerCardEditDebt"
+        app:layout_constraintStart_toStartOf="@id/spinnerCardEditDebt" />
 
     <Spinner
-        android:id="@+id/spinnerCardNewDebtView"
+        android:id="@+id/spinnerCardEditDebt"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:background="@drawable/edittext_background"
         android:textColor="@color/innerText"
-        app:layout_constraintBottom_toTopOf="@id/valueBuyNewDebtView"
-        app:layout_constraintEnd_toStartOf="@id/btnOpenViewNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueBuyNewDebtView"
+        app:layout_constraintBottom_toTopOf="@id/valueBuyEditDebt"
+        app:layout_constraintEnd_toStartOf="@id/btnOpenViewEditDebt"
+        app:layout_constraintStart_toStartOf="@id/valueBuyEditDebt"
         app:layout_constraintTop_toBottomOf="@id/titleNewDebitView"
         tools:listitem="@layout/support_simple_spinner_dropdown_item"
 
@@ -48,22 +48,21 @@
         android:text="@string/valor_total_da_compra"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/valueBuyNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueBuyNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/valueBuyEditDebt"
+        app:layout_constraintStart_toStartOf="@id/valueBuyEditDebt" />
 
     <EditText
-        android:id="@+id/valueBuyNewDebtView"
+        android:id="@+id/valueBuyEditDebt"
         android:layout_width="300dp"
         android:layout_height="40dp"
-
         android:autofillHints="valor de cada parcelas comprada"
         android:background="@drawable/edittext_background"
         android:inputType="numberDecimal"
         android:textColor="@color/innerText"
-        app:layout_constraintBottom_toTopOf="@id/installmentsNewDebtView"
+        app:layout_constraintBottom_toTopOf="@id/installmentsEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCardNewDebtView" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerCardEditDebt" />
 
 
     <TextView
@@ -72,20 +71,20 @@
         android:text="@string/parcelas"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/installmentsNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/installmentsNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/installmentsEditDebt"
+        app:layout_constraintStart_toStartOf="@id/installmentsEditDebt" />
 
     <EditText
-        android:id="@+id/installmentsNewDebtView"
+        android:id="@+id/installmentsEditDebt"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:autofillHints="Quantidade de parcelas"
         android:background="@drawable/edittext_background"
         android:inputType="number"
         android:textColor="@color/innerText"
-        app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueBuyNewDebtView"
-        app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/nameBuyerEditDebt"
+        app:layout_constraintStart_toStartOf="@id/valueBuyEditDebt"
+        app:layout_constraintTop_toBottomOf="@id/valueBuyEditDebt" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,19 +93,19 @@
         android:text="@string/valor_parcelas"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/valueInstallmentsNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueInstallmentsNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/valueInstallmentsEditDebt"
+        app:layout_constraintStart_toStartOf="@id/valueInstallmentsEditDebt" />
 
     <EditText
-        android:id="@+id/valueInstallmentsNewDebtView"
+        android:id="@+id/valueInstallmentsEditDebt"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:background="@drawable/edittext_background"
         android:inputType="numberDecimal"
         android:textColor="@color/innerText"
-        app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebtView"
-        app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebtView"
-        app:layout_constraintTop_toBottomOf="@id/valueBuyNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/nameBuyerEditDebt"
+        app:layout_constraintEnd_toEndOf="@id/valueBuyEditDebt"
+        app:layout_constraintTop_toBottomOf="@id/valueBuyEditDebt" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -114,20 +113,20 @@
         android:text="@string/nome_do_comprador"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/nameBuyerNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/nameBuyerNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/nameBuyerEditDebt"
+        app:layout_constraintStart_toStartOf="@id/nameBuyerEditDebt" />
 
     <EditText
-        android:id="@+id/nameBuyerNewDebtView"
+        android:id="@+id/nameBuyerEditDebt"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:background="@drawable/edittext_background"
         android:inputType="textPersonName"
         android:textColor="@color/innerText"
-        app:layout_constraintBottom_toTopOf="@id/whatsappNewDebtView"
+        app:layout_constraintBottom_toTopOf="@id/whatsappEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsNewDebtView" />
+        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsEditDebt" />
 
 
     <TextView
@@ -136,24 +135,24 @@
         android:text="@string/whatsapp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/whatsappNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/whatsappNewDebtView" />
+        app:layout_constraintBottom_toTopOf="@id/whatsappEditDebt"
+        app:layout_constraintStart_toStartOf="@id/whatsappEditDebt" />
 
     <EditText
-        android:id="@+id/whatsappNewDebtView"
+        android:id="@+id/whatsappEditDebt"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:autofillHints="campo para inserir whatsapp"
         android:background="@drawable/edittext_background"
         android:inputType="textPersonName"
         android:textColor="@color/innerText"
-        app:layout_constraintBottom_toTopOf="@id/buttonSaveNewDebtView"
+        app:layout_constraintBottom_toTopOf="@id/buttonSaveEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsNewDebtView" />
+        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsEditDebt" />
 
     <Button
-        android:id="@+id/buttonSaveNewDebtView"
+        android:id="@+id/buttonSaveEditDebt"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/button_green"
@@ -163,18 +162,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/whatsappNewDebtView" />
+        app:layout_constraintTop_toBottomOf="@id/whatsappEditDebt" />
 
     <Button
-        android:id="@+id/btnOpenViewNewDebtView"
+        android:id="@+id/btnOpenViewEditDebt"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:background="@drawable/button_green"
         android:padding="0dp"
         android:text="+"
-        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardNewDebtView"
-        app:layout_constraintEnd_toEndOf="@id/valueBuyNewDebtView"
-        app:layout_constraintStart_toEndOf="@+id/spinnerCardNewDebtView"
-        app:layout_constraintTop_toTopOf="@+id/spinnerCardNewDebtView" />
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCardEditDebt"
+        app:layout_constraintEnd_toEndOf="@id/valueBuyEditDebt"
+        app:layout_constraintStart_toEndOf="@+id/spinnerCardEditDebt"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCardEditDebt" />
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

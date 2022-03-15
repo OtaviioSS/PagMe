@@ -12,6 +12,9 @@
     <string name="parcelas">Parcelas</string>
     <string name="valor_parcelas">Valor Parcelas</string>
     <string name="nome_do_comprador">Nome do Comprador</string>
+    <string name="editar_divida">Editar Divida</string>
+    <string name="cartao_inserido">Cartão Inserido</string>
+    <string name="erro_inserir_cartao">Erro ao Inserir Cartão</string>
 
     <string-array name="Languages">
         <item>Java</item>

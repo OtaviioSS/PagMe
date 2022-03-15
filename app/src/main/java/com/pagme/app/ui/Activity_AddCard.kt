@@ -7,11 +7,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
+import com.pagme.app.business.CardBussines
 import com.pagme.app.entity.Card
+import com.pagme.app.repository.CardRepository
 import kotlinx.android.synthetic.main.activity_add_card.*
 import java.util.*
 
 private lateinit var database: DatabaseReference
+private var cardBussines = CardBussines()
+
 
 
 class Activity_AddCard : AppCompatActivity() {
@@ -24,7 +28,6 @@ class Activity_AddCard : AppCompatActivity() {
         buttonSaveNewCardView.setOnClickListener() { newCard() }
     }
 
-    /*Controller*/
     fun newCard() {
         val date = Calendar.getInstance().time
         val card = Card(
@@ -33,15 +36,13 @@ class Activity_AddCard : AppCompatActivity() {
             closingNewCardView.text.toString(),
             dueDateNewCardView.text.toString()
         )
-        /*DAO*/
-        //        ALTERAR O USEROTAVIO PARA O EMAIL DO USUARIO LOGADO
-        database.child("userOtavio").child("cards").child(card.cardID.toString()).setValue(card)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Cartão adicionado", Toast.LENGTH_SHORT).show()
-                nameNewCardView.setText("")
-                closingNewCardView.setText("")
-                dueDateNewCardView.setText("")
-            }
+        val resultBussines = cardBussines.createCard(card)
+        if (resultBussines){
+            Toast.makeText(this,R.string.cartao_inserido,Toast.LENGTH_LONG).show()
+        }
+        Toast.makeText(this,R.string.erro_inserir_cartao,Toast.LENGTH_LONG).show()
+
+
 
     }
 

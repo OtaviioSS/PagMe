@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pagme.app">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name="com.pagme.app.ui.Activity_New_Debit"
+            android:name=".ui.Activity_Edit_Debt"
             android:exported="false" />
         <activity
-            android:name="com.pagme.app.ui.Activity_AddCard"
+            android:name=".ui.Activity_New_Debit"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Activity_AddCard"
             android:exported="true" />
         <activity
-            android:name="com.pagme.app.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
