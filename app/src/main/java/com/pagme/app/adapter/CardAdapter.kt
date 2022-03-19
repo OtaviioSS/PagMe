@@ -1,26 +1,19 @@
 package com.pagme.app.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.R
 import com.pagme.app.business.CardBussines
 import com.pagme.app.entity.Card
-import com.pagme.app.entity.Debt
-import com.pagme.app.ui.Activity_Edit_Debt
-import kotlinx.android.synthetic.main.activity_add_card.*
 import kotlinx.android.synthetic.main.item_card.view.*
-import kotlinx.android.synthetic.main.item_debit.view.*
 
 class CardAdapter(private val cardtList: ArrayList<Card>) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
-    var card = Card()
+    private var card = Card()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -34,6 +27,10 @@ class CardAdapter(private val cardtList: ArrayList<Card>) :
         holder.nameCard.setText(card.cardName)
         holder.closignCard.setText(card.closingDate)
         holder.dueDateCard.setText(card.dueDate)
+        holder.btnDelete.setOnClickListener(){
+            holder.cardBussines.removeCard(card.cardID.toString())
+
+        }
         holder.btnEdit.setOnClickListener(){
             if (holder.btnEdit.text.equals("Editar")) {
                 holder.nameCard.isEnabled = true
@@ -52,7 +49,7 @@ class CardAdapter(private val cardtList: ArrayList<Card>) :
                     holder.closignCard.text.toString(),
                     holder.dueDateCard.text.toString()
                 )
-                holder.cardBussines.attCard(cardAlter)
+                holder.cardBussines.updateCard(cardAlter)
 
 
 

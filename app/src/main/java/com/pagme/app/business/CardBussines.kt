@@ -18,10 +18,15 @@ class CardBussines {
 
     }
 
-    fun attCard(card: Card){
+    fun updateCard(card: Card){
         cardRepository.updateCard(card)
     }
     fun readCards(): ArrayList<Card> {
         return cardRepository.readCards()
+    }
+
+    fun removeCard(cardId:String){
+        return cardRepository.deleteCard(cardId)
+
     }
 }

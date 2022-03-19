@@ -36,6 +36,7 @@ class CardRepository() {
         database.child("userOtavio").child("cards")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    cardArrayList.clear()
                     for (debtSnapshot in snapshot.children) {
                         val card = debtSnapshot.getValue(Card::class.java)
                         cardArrayList.add(card!!)
@@ -62,6 +63,12 @@ class CardRepository() {
         } catch (e: Exception) {
             false
         }
+    }
+
+    fun deleteCard(cardId: String){
+        database.child("userOtavio").child("cards").child(cardId).setValue(null)
+            .addOnSuccessListener {
+            }
     }
 
 }

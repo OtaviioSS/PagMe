@@ -27,11 +27,18 @@ class Activity_Edit_Card : AppCompatActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        getCard()
+    }
+
     private fun getCard() {
         val cardsList = cardBussines.readCards()
         cardRecyclerView.adapter = CardAdapter(cardsList)
 
     }
+
+
 
 
 }
