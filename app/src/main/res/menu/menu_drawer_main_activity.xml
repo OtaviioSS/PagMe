@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group>
+    <item android:id="@+id/myCardsMenuDrawaerMain" android:title="@string/meus_cart_es"/>
+    <item android:id="@+id/myAccountMenuDrawaerMain" android:title="@string/minha_conta"/>
+
+</group>
+</menu>

@@ -2,16 +2,23 @@ package com.pagme.app.business
 
 import com.pagme.app.entity.Card
 import com.pagme.app.repository.CardRepository
+import java.util.ArrayList
 
 private val cardRepository = CardRepository()
 
 class CardBussines {
     fun createCard(card: Card): Boolean {
-        val resultRepository = cardRepository.createCard(card)
-        if (resultRepository) {
-            return true
+        if (card.cardName == "" || card.closingDate == "" || card.dueDate == "") {
+            return false
         }
-        return false
+            cardRepository.createCard(card)
+            return true
 
+
+
+    }
+
+    fun readCards(): ArrayList<Card> {
+        return cardRepository.readCards()
     }
 }

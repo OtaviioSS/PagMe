@@ -1,14 +1,9 @@
 package com.pagme.app.entity
 
-import com.google.firebase.database.IgnoreExtraProperties
 
-@IgnoreExtraProperties
 data class Card(
-    val cardID: String? = null,
-    val cardName: String? = null,
-    val closingDate: String? = null,
-    val dueDate: String? = null
-) {
-
-
-}
+    var cardID: String? = null,
+    var cardName: String? = null,
+    var closingDate: String? = null,
+    var dueDate: String? = null
+)

@@ -2,7 +2,9 @@ package com.pagme.app.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,30 +17,57 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
-    private lateinit var debtArrayList : ArrayList<Debt>
+    private lateinit var debtArrayList: ArrayList<Debt>
     private lateinit var debtRecyclerView: RecyclerView
+    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        toggle = ActionBarDrawerToggle(this, main, R.string.open, R.string.close)
+        main.addDrawerListener(toggle)
+        toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+        navigationViewMainView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.myCardsMenuDrawaerMain ->
+                    startActivity(Intent(applicationContext, Activity_Edit_Card::class.java))
+
+            }
+            true
+        }
+
+
+
         debtRecyclerView = recyclerDebits
         debtRecyclerView.layoutManager = LinearLayoutManager(this)
         debtRecyclerView.setHasFixedSize(true)
         debtArrayList = arrayListOf<Debt>()
-        getUserData()
+        getDabts()
 
         mudarTela()
     }
-    private fun getUserData() {
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun getDabts() {
         database = FirebaseDatabase.getInstance().getReference("userOtavio")
-        database.child("debts").addValueEventListener(object : ValueEventListener{
+        database.child("debts").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                    for (debtSnapshot in snapshot.children){
-                        val debt = debtSnapshot.getValue(Debt::class.java)
-                        debtArrayList.add(debt!!)
-                    }
-                    debtRecyclerView.adapter = DebtAdapter(debtArrayList)
+                for (debtSnapshot in snapshot.children) {
+                    val debt = debtSnapshot.getValue(Debt::class.java)
+                    debtArrayList.add(debt!!)
+                }
+                debtRecyclerView.adapter = DebtAdapter(debtArrayList)
 
 
             }
@@ -51,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
     fun mudarTela() {
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {

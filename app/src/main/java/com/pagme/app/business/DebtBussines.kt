@@ -8,7 +8,7 @@ import com.pagme.app.repository.DebtRepository
 
 //CALSSE PARA IMPLEMENTAR REGRAS DE NEGOCIOS
 class DebtBussines(private val database: DatabaseReference) {
-    val debtRepository = DebtRepository(database)
+    private val debtRepository = DebtRepository(database)
 
 
     fun readCardsFromSppiner(): MutableList<String?> {
