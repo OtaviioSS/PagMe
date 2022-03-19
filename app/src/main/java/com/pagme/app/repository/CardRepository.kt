@@ -1,6 +1,8 @@
 package com.pagme.app.repository
 
+import android.content.Context
 import android.widget.Toast
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,7 +16,7 @@ import java.util.ArrayList
 val database = DatabaseRef().initializeDatabaseRefrence()
 
 class CardRepository() {
-    private  var cardArrayList = ArrayList<Card>()
+    private var cardArrayList = ArrayList<Card>()
 
 
     fun createCard(card: Card): Boolean {
@@ -49,6 +51,17 @@ class CardRepository() {
 
             })
         return cardArrayList
+    }
+
+    fun updateCard(card: Card): Boolean {
+        return try {
+            database.child("userOtavio").child("cards").child(card.cardID.toString()).setValue(card)
+                .addOnSuccessListener {
+                }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
 }

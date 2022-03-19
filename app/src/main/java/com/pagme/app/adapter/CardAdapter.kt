@@ -10,14 +10,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.R
+import com.pagme.app.business.CardBussines
 import com.pagme.app.entity.Card
 import com.pagme.app.entity.Debt
 import com.pagme.app.ui.Activity_Edit_Debt
+import kotlinx.android.synthetic.main.activity_add_card.*
 import kotlinx.android.synthetic.main.item_card.view.*
 import kotlinx.android.synthetic.main.item_debit.view.*
 
 class CardAdapter(private val cardtList: ArrayList<Card>) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+    var card = Card()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -26,11 +29,35 @@ class CardAdapter(private val cardtList: ArrayList<Card>) :
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val card = cardtList[position]
+        card = cardtList[position]
         holder.idCard = card.cardID.toString()
         holder.nameCard.setText(card.cardName)
         holder.closignCard.setText(card.closingDate)
         holder.dueDateCard.setText(card.dueDate)
+        holder.btnEdit.setOnClickListener(){
+            if (holder.btnEdit.text.equals("Editar")) {
+                holder.nameCard.isEnabled = true
+                holder.closignCard.isEnabled = true
+                holder.dueDateCard.isEnabled = true
+                holder.btnEdit.text = "Salvar"
+
+            } else if (holder.btnEdit.text.equals("Salvar")) {
+                holder.nameCard.isEnabled = false
+                holder.closignCard.isEnabled = false
+                holder.dueDateCard.isEnabled = false
+                holder.btnEdit.text = "Editar"
+                val cardAlter = Card(
+                    card.cardID.toString(),
+                    holder.nameCard.text.toString(),
+                    holder.closignCard.text.toString(),
+                    holder.dueDateCard.text.toString()
+                )
+                holder.cardBussines.attCard(cardAlter)
+
+
+
+            }
+        }
 
     }
 
@@ -46,27 +73,11 @@ class CardAdapter(private val cardtList: ArrayList<Card>) :
         val dueDateCard: EditText = itemView.dueDateCardItem
         val btnEdit: Button = itemView.btnEditCardItem
         val btnDelete: Button = itemView.btnDeleteCardItem
-
-        init {
-            when (btnEdit.text) {
-                "Editar" -> btnEdit.setOnClickListener {
-                    nameCard.isEnabled = true
-                    closignCard.isEnabled = true
-                    dueDateCard.isEnabled = true
-                    btnEdit.text = "Salvar"
-                }
-                "Salvar" -> btnEdit.setOnClickListener {
-                    nameCard.isEnabled = false
-                    closignCard.isEnabled = false
-                    dueDateCard.isEnabled = false
-                    btnEdit.text = "Editar"
-                }
-
-            }
+        val cardBussines = CardBussines()
 
 
-        }
     }
+
 
 
 }

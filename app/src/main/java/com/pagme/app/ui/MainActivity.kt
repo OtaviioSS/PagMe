@@ -40,14 +40,11 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-
-
         debtRecyclerView = recyclerDebits
         debtRecyclerView.layoutManager = LinearLayoutManager(this)
         debtRecyclerView.setHasFixedSize(true)
         debtArrayList = arrayListOf<Debt>()
         getDabts()
-
         mudarTela()
     }
 
@@ -73,12 +70,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
-
-
         })
-
     }
 
     fun mudarTela() {

@@ -18,6 +18,9 @@ class CardBussines {
 
     }
 
+    fun attCard(card: Card){
+        cardRepository.updateCard(card)
+    }
     fun readCards(): ArrayList<Card> {
         return cardRepository.readCards()
     }

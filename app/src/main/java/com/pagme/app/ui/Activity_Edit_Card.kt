@@ -1,7 +1,7 @@
 package com.pagme.app.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -12,7 +12,6 @@ import com.pagme.app.entity.Card
 import kotlinx.android.synthetic.main.activity_edit_card.*
 
 class Activity_Edit_Card : AppCompatActivity() {
-    private lateinit var database: DatabaseReference
     private lateinit var cardArrayList: ArrayList<Card>
     private lateinit var cardRecyclerView: RecyclerView
     private var cardBussines = CardBussines()
@@ -20,12 +19,12 @@ class Activity_Edit_Card : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_card)
-
         cardRecyclerView = recyclerCards
         cardRecyclerView.layoutManager = LinearLayoutManager(this)
         cardRecyclerView.setHasFixedSize(true)
         cardArrayList = arrayListOf<Card>()
         getCard()
+
     }
 
     private fun getCard() {
@@ -33,4 +32,6 @@ class Activity_Edit_Card : AppCompatActivity() {
         cardRecyclerView.adapter = CardAdapter(cardsList)
 
     }
+
+
 }
