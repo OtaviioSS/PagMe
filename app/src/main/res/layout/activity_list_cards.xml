@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#222831"
-    android:background="#222831"
-    tools:context=".ui.Activity_Edit_Card">
+    android:background="#292929"
+    tools:context=".ui.Activity_List_Cards">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCards"

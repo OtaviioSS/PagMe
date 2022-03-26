@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="175dp"
     android:layout_margin="8dp"
-    android:elevation="20dp"
-
+    android:elevation="10dp"
     android:background="@drawable/backgrounditemdebit">
 
     <TextView
@@ -16,6 +15,7 @@
         android:text="Nome do devedor"
         android:textSize="24sp"
         android:textStyle="normal"
+
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,8 +123,8 @@
         android:layout_height="wrap_content"
         android:text="A pagar"
         android:textSize="14sp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/unpaidItemDebit"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintTop_toTopOf="@id/unpaidItemDebit"
         app:layout_constraintEnd_toStartOf="@id/unpaidItemDebit" />
 
     <TextView

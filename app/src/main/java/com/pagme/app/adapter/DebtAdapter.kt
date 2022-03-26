@@ -1,6 +1,5 @@
 package com.pagme.app.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,7 @@ class DebtAdapter(private val debtList: ArrayList<Debt>) :
 
     override fun onBindViewHolder(holder: DebtViewHolder, position: Int) {
         val debt = debtList[position]
-        holder.idDebt = debt.id.toString()
+        holder.idDebt = debt.idDebt.toString()
         holder.nameBuyer.text = debt.nameBuyer
         holder.paidInstallments.text = debt.paidInstallments.toString()
         holder.remainingPlots.text = (debt.installments - debt.paidInstallments).toString()

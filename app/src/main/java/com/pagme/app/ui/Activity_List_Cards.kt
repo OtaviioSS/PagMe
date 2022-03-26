@@ -9,16 +9,16 @@ import com.pagme.app.R
 import com.pagme.app.adapter.CardAdapter
 import com.pagme.app.business.CardBussines
 import com.pagme.app.entity.Card
-import kotlinx.android.synthetic.main.activity_edit_card.*
+import kotlinx.android.synthetic.main.activity_list_cards.*
 
-class Activity_Edit_Card : AppCompatActivity() {
+class Activity_List_Cards : AppCompatActivity() {
     private lateinit var cardArrayList: ArrayList<Card>
     private lateinit var cardRecyclerView: RecyclerView
     private var cardBussines = CardBussines()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_card)
+        setContentView(R.layout.activity_list_cards)
         cardRecyclerView = recyclerCards
         cardRecyclerView.layoutManager = LinearLayoutManager(this)
         cardRecyclerView.setHasFixedSize(true)

@@ -10,13 +10,13 @@ import com.google.firebase.database.ValueEventListener
 import com.pagme.app.adapter.CardAdapter
 import com.pagme.app.database.DatabaseRef
 import com.pagme.app.entity.Card
-import kotlinx.android.synthetic.main.activity_add_card.*
 import java.util.ArrayList
 
-val database = DatabaseRef().initializeDatabaseRefrence()
 
 class CardRepository() {
     private var cardArrayList = ArrayList<Card>()
+    private val database = DatabaseRef().initializeDatabaseRefrence()
+
 
 
     fun createCard(card: Card): Boolean {

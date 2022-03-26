@@ -3,5 +3,13 @@
 
     <color name="innerText">#393E46</color>
     <color name="externalText">#EEEEEE</color>
-    <color name="primaryButtons">#7BC74D</color>
+    <color name="primaryButtons">#64dd17</color>
+    <color name="sButtons">#64dd17</color>
+    <color name="colorAccent">#292929</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">#64dd17</color>
+
+    <color name="readButton">#FF575F</color>
+    <color name="backgroundStacked">#00ff00</color>
+    <color name="backgroundSplit">#0000ff</color>color
 </resources>

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.R
 import com.pagme.app.business.CardBussines
@@ -69,7 +70,7 @@ class CardAdapter(private val cardtList: ArrayList<Card>) :
         val closignCard: EditText = itemView.closingCardItem
         val dueDateCard: EditText = itemView.dueDateCardItem
         val btnEdit: Button = itemView.btnEditCardItem
-        val btnDelete: Button = itemView.btnDeleteCardItem
+        val btnDelete: ImageButton = itemView.btnDeleteCardItem
         val cardBussines = CardBussines()
 
 

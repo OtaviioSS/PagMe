@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        fab.setBackgroundResource(R.drawable.fab_background)
+
+
         toggle = ActionBarDrawerToggle(this, main, R.string.open, R.string.close)
         main.addDrawerListener(toggle)
         toggle.syncState()
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         navigationViewMainView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.myCardsMenuDrawaerMain ->
-                    startActivity(Intent(applicationContext, Activity_Edit_Card::class.java))
+                    startActivity(Intent(applicationContext, Activity_List_Cards::class.java))
 
             }
             true
@@ -77,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     fun mudarTela() {
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
+
             val intent = Intent(this, Activity_New_Debit::class.java)
             startActivity(intent)
         }

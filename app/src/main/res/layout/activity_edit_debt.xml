@@ -31,9 +31,8 @@
     <Spinner
         android:id="@+id/spinnerCardEditDebt"
         android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="@drawable/edittext_background"
-        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/valueBuyEditDebt"
         app:layout_constraintEnd_toStartOf="@id/btnOpenViewEditDebt"
         app:layout_constraintStart_toStartOf="@id/valueBuyEditDebt"
@@ -53,17 +52,16 @@
 
     <EditText
         android:id="@+id/valueBuyEditDebt"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:autofillHints="valor de cada parcelas comprada"
         android:background="@drawable/edittext_background"
         android:inputType="numberDecimal"
-        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/installmentsEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerCardEditDebt" />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,12 +74,12 @@
 
     <EditText
         android:id="@+id/installmentsEditDebt"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:autofillHints="Quantidade de parcelas"
         android:background="@drawable/edittext_background"
         android:inputType="number"
-        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/nameBuyerEditDebt"
         app:layout_constraintStart_toStartOf="@id/valueBuyEditDebt"
         app:layout_constraintTop_toBottomOf="@id/valueBuyEditDebt" />
@@ -98,11 +96,11 @@
 
     <EditText
         android:id="@+id/valueInstallmentsEditDebt"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="@drawable/edittext_background"
         android:inputType="numberDecimal"
-        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/nameBuyerEditDebt"
         app:layout_constraintEnd_toEndOf="@id/valueBuyEditDebt"
         app:layout_constraintTop_toBottomOf="@id/valueBuyEditDebt" />
@@ -118,16 +116,15 @@
 
     <EditText
         android:id="@+id/nameBuyerEditDebt"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="@drawable/edittext_background"
         android:inputType="textPersonName"
-        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/whatsappEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/valueInstallmentsEditDebt" />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -140,24 +137,25 @@
 
     <EditText
         android:id="@+id/whatsappEditDebt"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:autofillHints="campo para inserir whatsapp"
         android:background="@drawable/edittext_background"
         android:inputType="textPersonName"
-        android:textColor="@color/innerText"
         app:layout_constraintBottom_toTopOf="@id/buttonSaveEditDebt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/valueInstallmentsEditDebt" />
+        app:layout_constraintTop_toBottomOf="@id/nameBuyerEditDebt" />
 
     <Button
         android:id="@+id/buttonSaveEditDebt"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:background="@drawable/button_green"
         android:text="@string/salvar"
-        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -166,19 +164,16 @@
 
     <Button
         android:id="@+id/btnOpenViewEditDebt"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:background="@drawable/button_green"
         android:padding="0dp"
         android:text="+"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerCardEditDebt"
         app:layout_constraintEnd_toEndOf="@id/valueBuyEditDebt"
         app:layout_constraintStart_toEndOf="@+id/spinnerCardEditDebt"
         app:layout_constraintTop_toTopOf="@+id/spinnerCardEditDebt" />
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

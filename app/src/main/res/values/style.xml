@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+
+    <style name="Theme.Dark2" parent="Theme.Material3.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="buttonStyle">@style/butonnRed</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="actionBarStyle">@style/Solid</item>
+
+    </style>
+
+    <style name="Solid">
+        <item name="background">@color/colorAccent</item>
+    </style>
+    <style name="butonnRed">
+        <item name="background">@color/readButton</item>
+        <item name="android:backgroundTint">@color/readButton</item>
+        <item name="cornerRadius">4dp</item>
+
+
+    </style>
+    <style name="butonnGreen">
+        <item name="background">@color/readButton</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="height">48dp</item>
+
+    </style>
+
+
+
+
+
+
+
+</resources>

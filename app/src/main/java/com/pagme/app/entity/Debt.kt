@@ -2,7 +2,7 @@ package com.pagme.app.entity
 
 
 data class Debt(
-    var id: String?=null,
+    var idDebt: String?=null,
     var nameCard: String?=null,
     var nameBuyer: String?=null,
     var valueBuy: Double=0.0,

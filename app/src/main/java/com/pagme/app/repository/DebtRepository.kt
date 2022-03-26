@@ -1,20 +1,17 @@
 package com.pagme.app.repository
 
-import android.R
-import android.content.Context
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+import com.pagme.app.database.DatabaseRef
 import com.pagme.app.entity.Debt
 import com.pagme.app.ui.cards
+import kotlinx.android.synthetic.main.activity_edit_debt.*
 import java.util.ArrayList
 
-class DebtRepository(private val database: DatabaseReference) {
+class DebtRepository() {
     val mListDebt: MutableList<Debt> = ArrayList()
-    val user:String = "userOtavio"
+    val user: String = "userOtavio"
+    private val database = DatabaseRef().initializeDatabaseRefrence()
+
 
     fun getList(): List<Debt> {
         return mListDebt
@@ -33,15 +30,45 @@ class DebtRepository(private val database: DatabaseReference) {
                 }
 
             }
+
             override fun onCancelled(databaseError: DatabaseError) {}
         })
 
         return cards
     }
-    fun createDebit(debt: Debt, database: DatabaseReference) {
+
+    fun createDebit(debt: Debt) {
         //        ALTERAR O USEROTAVIO PARA O EMAIL DO USUARIO LOGADO
-        database.child("userOtavio").child("debts").child(debt.id.toString()).setValue(debt)
+        database.child("userOtavio").child("debts").child(debt.idDebt.toString()).setValue(debt)
 
 
+    }
+
+    fun updateDebit(debt: Debt): Boolean {
+        try {
+            database.child("userOtavio").child("cards").child(debt.idDebt.toString()).setValue(debt)
+                .addOnSuccessListener {
+                }
+        }catch (exception:Exception){
+            return false
+        }
+        return false
+
+    }
+
+    fun getOneDebt(debtID:String){
+        val debt = Debt()
+        database.child(user).child("debts").child(debtID).addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val debtSnep = snapshot.getValue(Debt::class.java)!!
+                debt.valueBuy = debtSnep.valueBuy.toDouble()
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 }
