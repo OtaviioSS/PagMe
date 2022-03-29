@@ -6,16 +6,20 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.pagme.app.R
 import com.pagme.app.adapter.DebtAdapter
+import com.pagme.app.adapter.SwipeToDeleteDebt
 import com.pagme.app.entity.Debt
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var layoutManager: LinearLayoutManager
     private lateinit var database: DatabaseReference
     private lateinit var debtArrayList: ArrayList<Debt>
     private lateinit var debtRecyclerView: RecyclerView
@@ -42,13 +46,16 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
 
         debtRecyclerView = recyclerDebits
-        debtRecyclerView.layoutManager = LinearLayoutManager(this)
+        debtRecyclerView.layoutManager = layoutManager
         debtRecyclerView.setHasFixedSize(true)
         debtArrayList = arrayListOf<Debt>()
+
         getDabts()
         mudarTela()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -60,6 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDabts() {
+        var adapter = DebtAdapter(debtArrayList)
         database = FirebaseDatabase.getInstance().getReference("userOtavio")
         database.child("debts").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -68,13 +76,16 @@ class MainActivity : AppCompatActivity() {
                     debtArrayList.add(debt!!)
                 }
                 debtRecyclerView.adapter = DebtAdapter(debtArrayList)
-
+                adapter = DebtAdapter(debtArrayList)
 
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
         })
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteDebt(adapter))
+        itemTouchHelper.attachToRecyclerView(recyclerDebits)
+
     }
 
     fun mudarTela() {

@@ -67,7 +67,7 @@ class Activity_New_Debit : AppCompatActivity() {
             Double.parseDouble(valueBuyNewDebtView.text.toString()),
             Integer.parseInt(installmentsNewDebtView.text.toString()),
             0,
-            Integer.parseInt(whatsappNewDebtView.text.toString()),
+            whatsappNewDebtView.text.toString(),
             Double.parseDouble(valueInstallmentsNewDebtView.text.toString())
         )
         debtBussines.newDebt(debt)

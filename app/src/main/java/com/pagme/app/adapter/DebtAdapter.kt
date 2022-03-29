@@ -23,7 +23,7 @@ class DebtAdapter(private val debtList: ArrayList<Debt>) :
     override fun onBindViewHolder(holder: DebtViewHolder, position: Int) {
         val debt = debtList[position]
         holder.idDebt = debt.idDebt.toString()
-        holder.nameBuyer.text = debt.nameBuyer
+        holder.nameBuyer.text = debt.idDebt
         holder.paidInstallments.text = debt.paidInstallments.toString()
         holder.remainingPlots.text = (debt.installments - debt.paidInstallments).toString()
         holder.valueInstallments.text = debt.valueInstallments.toString()
@@ -47,15 +47,17 @@ class DebtAdapter(private val debtList: ArrayList<Debt>) :
 
         init {
             itemView.setOnClickListener {
-                val context = itemView.context
-                val intent = Intent(context, Activity_Edit_Debt::class.java)
+                val intent = Intent(itemView.context, Activity_Edit_Debt::class.java)
                 intent.putExtra("idDebt", idDebt)
-
-                context.startActivity(intent)
+                itemView.context.startActivity(intent)
             }
 
         }
     }
 
+    fun deleteItem(pos:Int){
+        debtList.removeAt(pos)
+        notifyItemRemoved(pos)
+    }
 }
 

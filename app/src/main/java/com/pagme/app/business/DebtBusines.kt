@@ -26,4 +26,12 @@ class DebtBusines() {
 
     }
 
+    fun readOneDebt(debtID: String): Debt{
+        return debtRepository.getOneDebt(debtID)
+    }
+
+    fun removeDebt(debtID: String){
+        return debtRepository.deleteDebt(debtID)
+    }
+
 }

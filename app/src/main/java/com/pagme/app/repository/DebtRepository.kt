@@ -8,8 +8,8 @@ import kotlinx.android.synthetic.main.activity_edit_debt.*
 import java.util.ArrayList
 
 class DebtRepository() {
-    val mListDebt: MutableList<Debt> = ArrayList()
-    val user: String = "userOtavio"
+    private val mListDebt: MutableList<Debt> = ArrayList()
+    private val user: String = "userOtavio"
     private val database = DatabaseRef().initializeDatabaseRefrence()
 
 
@@ -46,23 +46,22 @@ class DebtRepository() {
 
     fun updateDebit(debt: Debt): Boolean {
         try {
-            database.child("userOtavio").child("cards").child(debt.idDebt.toString()).setValue(debt)
+            database.child("userOtavio").child("debts").child(debt.idDebt.toString()).setValue(debt)
                 .addOnSuccessListener {
                 }
-        }catch (exception:Exception){
+        } catch (exception: Exception) {
             return false
         }
         return false
 
     }
 
-    fun getOneDebt(debtID:String){
-        val debt = Debt()
+    fun getOneDebt(debtID: String): Debt {
+        var debt = Debt()
         database.child(user).child("debts").child(debtID).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val debtSnep = snapshot.getValue(Debt::class.java)!!
-                debt.valueBuy = debtSnep.valueBuy.toDouble()
+                debt = snapshot.getValue(Debt::class.java)!!
 
 
             }
@@ -70,5 +69,10 @@ class DebtRepository() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+        return debt
+    }
+
+    fun deleteDebt(debtID: String){
+        database.child("userOtavio").child("debts").child(debtID).setValue(null)
     }
 }

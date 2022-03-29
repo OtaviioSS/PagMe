@@ -8,7 +8,7 @@ data class Debt(
     var valueBuy: Double=0.0,
     var installments: Int=0,
     var paidInstallments: Int=0,
-    var whatsapp: Int=0,
+    var whatsapp: String?=null,
     var valueInstallments: Double=0.0
 )
 
