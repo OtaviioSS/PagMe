@@ -35,8 +35,7 @@
         android:inputType="none"
         android:background="@drawable/edittext_background"
         tools:listitem="@layout/support_simple_spinner_dropdown_item"
-
-        />
+        tools:ignore="LabelFor" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +100,7 @@
             android:layout_height="50dp"
             android:inputType="numberDecimal"
             android:padding="8dp"
-            android:textColor="@color/innerText" />
+         />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -141,10 +140,10 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:autofillHints="campo para inserir whatsapp"
-            android:hint="Whatsapp"
+            android:hint="@string/whatsapp"
             android:inputType="textPersonName"
             android:padding="8dp"
-            android:textColor="@color/innerText" />
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -160,14 +159,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textFieldWhatsappNewDebtView" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnOpenViewNewDebtView"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:background="@drawable/button_green"
         android:padding="0dp"
-        android:text="+"
+        android:src="@drawable/ic_baseline_add_24"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/textFieldSpinnerCardNewDebtView"
         app:layout_constraintEnd_toEndOf="@id/textFieldValueBuyNewDebtView"

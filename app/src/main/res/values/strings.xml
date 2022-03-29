@@ -24,6 +24,7 @@
     <string name="excluir">Excluir</string>
     <string name="editar">Editar</string>
     <string name="adicionar_novo_debito">Adicionar novo debito</string>
+    <string name="bot_o_de_excluir_divida">Botão de excluir divida</string>
 
     <string-array name="Languages">
         <item>Java</item>

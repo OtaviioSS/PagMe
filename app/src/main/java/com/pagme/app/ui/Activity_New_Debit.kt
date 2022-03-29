@@ -15,6 +15,7 @@ import com.pagme.app.business.DebtBusines
 import com.pagme.app.entity.Card
 import com.pagme.app.entity.Debt
 import com.pagme.app.repository.DebtRepository
+import kotlinx.android.synthetic.main.activity_edit_debt.*
 import kotlinx.android.synthetic.main.activity_new_debit.*
 import kotlinx.android.synthetic.main.dialog_create_new_card.view.*
 import java.lang.Double

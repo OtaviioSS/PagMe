@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("userOtavio")
         database.child("debts").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                debtArrayList.clear()
                 for (debtSnapshot in snapshot.children) {
                     val debt = debtSnapshot.getValue(Debt::class.java)
                     debtArrayList.add(debt!!)
@@ -83,8 +84,8 @@ class MainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteDebt(adapter))
-        itemTouchHelper.attachToRecyclerView(recyclerDebits)
+    /*    val itemTouchHelper = ItemTouchHelper(SwipeToDeleteDebt(adapter))
+        itemTouchHelper.attachToRecyclerView(recyclerDebits)*/
 
     }
 

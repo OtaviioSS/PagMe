@@ -73,6 +73,6 @@ class DebtRepository() {
     }
 
     fun deleteDebt(debtID: String){
-        database.child("userOtavio").child("debts").child(debtID).setValue(null)
+        database.child(user).child("debts").child(debtID).removeValue()
     }
 }
