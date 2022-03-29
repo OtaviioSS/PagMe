@@ -3,6 +3,7 @@ package com.pagme.app.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,6 @@ import com.pagme.app.business.DebtBusines
 import com.pagme.app.entity.Card
 import com.pagme.app.entity.Debt
 import com.pagme.app.repository.DebtRepository
-import kotlinx.android.synthetic.main.activity_edit_debt.*
 import kotlinx.android.synthetic.main.activity_new_debit.*
 import kotlinx.android.synthetic.main.dialog_create_new_card.view.*
 import java.lang.Double
@@ -32,7 +32,8 @@ val cards: MutableList<String?> = ArrayList()
 
 class Activity_New_Debit : AppCompatActivity() {
 
-    private var nameCard= ""
+    private var nameCard = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +41,32 @@ class Activity_New_Debit : AppCompatActivity() {
         openActivityAddNewCard()
         createSppiner()
         buttonSaveNewDebtView.setOnClickListener {
-            createNewDabit()
+            createNewDebit()
 
         }
+        validateFields()
 
 
+    }
+
+    private fun validateFields() {
+        validateEditText(valueBuyNewDebtView)
+        validateEditText(nameBuyerNewDebtView)
+        validateEditText(installmentsNewDebtView)
+        validateEditText(whatsappNewDebtView)
+        spinnerCardNewDebtView.setOnFocusChangeListener { v, hasFocus ->
+            if (!spinnerCardNewDebtView.isSelected) {
+                spinnerCardNewDebtView.error = "Campo obrigatorio"
+            }
+        }
+    }
+
+    private fun validateEditText(editText: EditText) {
+        editText.setOnFocusChangeListener { v, hasFocus ->
+            if (editText.text.toString().isEmpty() && !hasFocus) {
+                editText.error = "Campo Obrigatorio"
+            }
+        }
     }
 
     private fun createSppiner() {
@@ -59,26 +81,31 @@ class Activity_New_Debit : AppCompatActivity() {
 
     }
 
-    private fun createNewDabit() {
-        val debt = Debt(
-            nameBuyerNewDebtView.text.toString() + nameCard +
-                    valueBuyNewDebtView.text.toString(),
-            nameCard,
-            nameBuyerNewDebtView.text.toString(),
-            Double.parseDouble(valueBuyNewDebtView.text.toString()),
-            Integer.parseInt(installmentsNewDebtView.text.toString()),
-            0,
-            whatsappNewDebtView.text.toString(),
-            Double.parseDouble(valueInstallmentsNewDebtView.text.toString())
-        )
+    private fun createNewDebit() {
+        try {
+
+        } catch (ex: Exception) {
+
+        }
+        val debt = Debt()
+        debt.idDebt =
+            nameBuyerNewDebtView.text.toString() + nameCard + valueBuyNewDebtView.text.toString()
+        debt.nameCard = nameCard
+        debt.nameBuyer = nameBuyerNewDebtView.text.toString()
+        debt.valueBuy = Double.parseDouble(valueBuyNewDebtView.text.toString())
+        debt.installments = Integer.parseInt(installmentsNewDebtView.text.toString())
+        debt.paidInstallments = 0
+        debt.whatsapp = whatsappNewDebtView.text.toString()
+        debt.valueInstallments = Double.parseDouble(valueInstallmentsNewDebtView.text.toString())
         debtBussines.newDebt(debt)
 
     }
 
 
     private fun openActivityAddNewCard() {
-        btnOpenViewNewDebtView.setOnClickListener() {
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_create_new_card, null)
+        btnOpenViewNewDebtView.setOnClickListener {
+            val mDialogView =
+                LayoutInflater.from(this).inflate(R.layout.dialog_create_new_card, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(mDialogView)
                 .setTitle("Novo Cartão")
@@ -94,13 +121,10 @@ class Activity_New_Debit : AppCompatActivity() {
                     mDialogView.dialogDueDateNewCardView.text.toString()
                 )
                 val resultBussines = cardBussines.createCard(card)
-                if (resultBussines){
-                    Toast.makeText(this,R.string.cartao_inserido, Toast.LENGTH_LONG).show()
+                if (resultBussines) {
+                    Toast.makeText(this, R.string.cartao_inserido, Toast.LENGTH_LONG).show()
                 }
-                Toast.makeText(this,R.string.erro_inserir_cartao, Toast.LENGTH_LONG).show()
-
-
-
+                Toast.makeText(this, R.string.erro_inserir_cartao, Toast.LENGTH_LONG).show()
 
 
             }

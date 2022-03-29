@@ -98,6 +98,7 @@
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:enabled="false"
             android:inputType="numberDecimal"
             android:padding="8dp"
          />

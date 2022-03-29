@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_edit_debt.*
 import kotlinx.android.synthetic.main.activity_new_debit.*
 
 class Activity_Edit_Debt : AppCompatActivity() {
-    private  var idDebt =""
+    private var idDebt = ""
     private var debtBusines = DebtBusines()
     private val database = DatabaseRef().initializeDatabaseRefrence()
     var debt = Debt()
@@ -43,17 +43,16 @@ class Activity_Edit_Debt : AppCompatActivity() {
         database.child("userOtavio").child("debts").child(idDebt).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (debtSnapshot in snapshot.children){
+                for (debtSnapshot in snapshot.children) {
                     debt = debtSnapshot.getValue(Debt::class.java)!!
 
                 }
-                spinnerCardEditDebt.setText(debt.nameCard.toString(),false)
+                spinnerCardEditDebt.setText(debt.nameCard.toString(), false)
                 valueBuyEditDebt.setText(debt.valueBuy.toString())
                 installmentsEditDebt.setText(debt.installments.toString())
                 valueInstallmentsEditDebt.setText(debt.valueInstallments.toString())
                 nameBuyerEditDebt.setText(debt.nameBuyer)
                 whatsappEditDebt.setText(debt.whatsapp.toString())
-
 
 
             }
@@ -71,14 +70,14 @@ class Activity_Edit_Debt : AppCompatActivity() {
         debt.valueInstallments = valueInstallmentsEditDebt.text.toString().toDouble()
         debt.nameBuyer = nameBuyerEditDebt.text.toString()
         debt.whatsapp = whatsappEditDebt.text.toString()
-         debt.nameCard = spinnerCardEditDebt.text.toString()
-         debt.valueBuy = valueBuyEditDebt.text.toString().toDouble()
+        debt.nameCard = spinnerCardEditDebt.text.toString()
+        debt.valueBuy = valueBuyEditDebt.text.toString().toDouble()
         debtBusines.editDebt(debt)
-        Toast.makeText(this,"Divida editada",Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Divida editada", Toast.LENGTH_LONG).show()
     }
 
-    private fun removeDebt(){
-      debtBusines.removeDebt(debt.idDebt.toString())
+    private fun removeDebt() {
+        debtBusines.removeDebt(debt.idDebt.toString())
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
