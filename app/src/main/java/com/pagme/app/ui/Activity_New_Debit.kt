@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -20,6 +21,9 @@ import kotlinx.android.synthetic.main.activity_new_debit.*
 import kotlinx.android.synthetic.main.dialog_create_new_card.view.*
 import java.lang.Double
 import java.util.*
+import kotlin.Exception
+import kotlin.String
+import kotlin.toString
 
 
 private var database: DatabaseReference = Firebase.database.reference
@@ -34,42 +38,61 @@ class Activity_New_Debit : AppCompatActivity() {
 
     private var nameCard = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_debit)
         openActivityAddNewCard()
-        createSppiner()
+        createSpinner()
         buttonSaveNewDebtView.setOnClickListener {
             createNewDebit()
 
         }
+
+
+
+        whatsappNewDebtView.addTextChangedListener(
+            Mask.insert(
+                "(##)#####-####",
+                whatsappNewDebtView
+            )
+        )
         validateFields()
 
 
     }
 
     private fun validateFields() {
-        validateEditText(valueBuyNewDebtView)
-        validateEditText(nameBuyerNewDebtView)
-        validateEditText(installmentsNewDebtView)
-        validateEditText(whatsappNewDebtView)
-        spinnerCardNewDebtView.setOnFocusChangeListener { v, hasFocus ->
-            if (!spinnerCardNewDebtView.isSelected) {
-                spinnerCardNewDebtView.error = "Campo obrigatorio"
+        validateEditText(nameBuyerNewDebtView, textFieldNameBuyerNewDebtView)
+        validateEditText(installmentsNewDebtView, textFieldInstallmentsNewDebtView)
+        validateEditText(whatsappNewDebtView, textFieldWhatsappNewDebtView)
+        validateEditText(spinnerCardNewDebtView, textFieldSpinnerCardNewDebtView)
+/*
+        installmentsNewDebtView.setOnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus){
+                val price = valueBuyNewDebtView.text.toString().replace("[^0-9]".toString(), "")
+                valueInstallmentsNewDebtView.setText((price.toDouble() / installmentsNewDebtView.text.toString().toInt()).toString())
             }
+
+
         }
+*/
+        valueBuyNewDebtView.addTextChangedListener(MoneyTextWatcher(valueBuyNewDebtView))
+
+
     }
 
-    private fun validateEditText(editText: EditText) {
+    private fun validateEditText(editText: EditText, textInputLayout: TextInputLayout) {
         editText.setOnFocusChangeListener { v, hasFocus ->
             if (editText.text.toString().isEmpty() && !hasFocus) {
-                editText.error = "Campo Obrigatorio"
+                textInputLayout.error = "Campo Obrigatorio"
+            } else {
+                textInputLayout.error = null
+                textInputLayout.isErrorEnabled = false
             }
         }
     }
 
-    private fun createSppiner() {
+    private fun createSpinner() {
         spinnerCardNewDebtView.setOnItemClickListener { parent, view, position, id ->
             nameCard = parent.getItemAtPosition(position).toString()
         }
@@ -100,7 +123,6 @@ class Activity_New_Debit : AppCompatActivity() {
         debtBussines.newDebt(debt)
 
     }
-
 
     private fun openActivityAddNewCard() {
         btnOpenViewNewDebtView.setOnClickListener {
