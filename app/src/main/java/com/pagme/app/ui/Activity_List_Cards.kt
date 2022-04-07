@@ -4,17 +4,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.*
 import com.pagme.app.R
 import com.pagme.app.adapter.CardAdapter
-import com.pagme.app.business.CardBussines
+import com.pagme.app.business.CardBusiness
 import com.pagme.app.entity.Card
 import kotlinx.android.synthetic.main.activity_list_cards.*
 
 class Activity_List_Cards : AppCompatActivity() {
     private lateinit var cardArrayList: ArrayList<Card>
     private lateinit var cardRecyclerView: RecyclerView
-    private var cardBussines = CardBussines()
+    private var cardBusiness = CardBusiness()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,7 @@ class Activity_List_Cards : AppCompatActivity() {
     }
 
     private fun getCard() {
-        val cardsList = cardBussines.readCards()
+        val cardsList = cardBusiness.readCards()
         cardRecyclerView.adapter = CardAdapter(cardsList)
 
     }

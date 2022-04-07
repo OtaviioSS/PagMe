@@ -2,8 +2,8 @@ package com.pagme.app.adapter
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.pagme.app.business.DebtBusines
-var debtBussines = DebtBusines()
+import com.pagme.app.business.DebtBusiness
+var debtBussines = DebtBusiness()
 
 class SwipeToDeleteDebt(var adapter: DebtAdapter):ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
     override fun onMove(

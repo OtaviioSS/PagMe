@@ -9,6 +9,11 @@
         <item name="actionBarStyle">@style/Solid</item>
 
     </style>
+    <style name="Theme.Dark2.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
 
     <style name="Solid">
         <item name="background">@color/colorAccent</item>
@@ -17,6 +22,14 @@
         <item name="background">@color/readButton</item>
         <item name="android:backgroundTint">@color/readButton</item>
         <item name="cornerRadius">4dp</item>
+
+
+    </style>
+    <style name="btnSec">
+        <item name="cornerRadius">4dp</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="backgroundTint">@color/colorNone</item>
+        <item name="strokeWidth">2dp</item>
 
 
     </style>

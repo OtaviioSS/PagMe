@@ -8,18 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
-import com.pagme.app.business.DebtBusines
+import com.pagme.app.business.DebtBusiness
 import com.pagme.app.database.DatabaseRef
 import com.pagme.app.entity.Debt
 import kotlinx.android.synthetic.main.activity_edit_debt.*
-import kotlinx.android.synthetic.main.activity_new_debit.*
 
 class Activity_Edit_Debt : AppCompatActivity() {
     private var idDebt = ""
-    private var debtBusines = DebtBusines()
+    private var debtBusiness = DebtBusiness()
     private val database = DatabaseRef().initializeDatabaseRefrence()
     var debt = Debt()
 
@@ -72,12 +69,12 @@ class Activity_Edit_Debt : AppCompatActivity() {
         debt.whatsapp = whatsappEditDebt.text.toString()
         debt.nameCard = spinnerCardEditDebt.text.toString()
         debt.valueBuy = valueBuyEditDebt.text.toString().toDouble()
-        debtBusines.editDebt(debt)
+        debtBusiness.editDebt(debt)
         Toast.makeText(this, "Divida editada", Toast.LENGTH_LONG).show()
     }
 
     private fun removeDebt() {
-        debtBusines.removeDebt(debt.idDebt.toString())
+        debtBusiness.removeDebt(debt.idDebt.toString())
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
@@ -86,7 +83,7 @@ class Activity_Edit_Debt : AppCompatActivity() {
         spinnerCardEditDebt.setOnItemClickListener { parent, view, position, id ->
             val nameCard = parent.getItemAtPosition(position).toString()
         }
-        val cardsList = debtBusines.readCardsFromSpinner()
+        val cardsList = debtBusiness.readCardsFromSpinner()
         val cardsAdapter = ArrayAdapter(this, R.layout.dropdown_item, cardsList)
         cardsAdapter.setDropDownViewResource(R.layout.dropdown_item)
         spinnerCardEditDebt.setAdapter(cardsAdapter)

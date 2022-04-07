@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.R
-import com.pagme.app.business.DebtBusines
 import com.pagme.app.entity.Debt
 import com.pagme.app.ui.Activity_Edit_Debt
 import kotlinx.android.synthetic.main.item_debit.view.*

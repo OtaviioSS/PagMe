@@ -12,8 +12,8 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
-import com.pagme.app.business.CardBussines
-import com.pagme.app.business.DebtBusines
+import com.pagme.app.business.CardBusiness
+import com.pagme.app.business.DebtBusiness
 import com.pagme.app.entity.Card
 import com.pagme.app.entity.Debt
 import com.pagme.app.repository.DebtRepository
@@ -26,15 +26,16 @@ import kotlin.String
 import kotlin.toString
 
 
-private var database: DatabaseReference = Firebase.database.reference
-private var debtBussines = DebtBusines()
-private var debtRepository = DebtRepository()
-private var cardBussines = CardBussines()
 
 
-val cards: MutableList<String?> = ArrayList()
+
 
 class Activity_New_Debit : AppCompatActivity() {
+    private var database: DatabaseReference = Firebase.database.reference
+    private var debtBussines = DebtBusiness()
+    private var debtRepository = DebtRepository()
+    private var cardBussines = CardBusiness()
+    private val cards: MutableList<String?> = ArrayList()
 
     private var nameCard = ""
 

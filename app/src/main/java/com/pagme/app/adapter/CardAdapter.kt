@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.R
-import com.pagme.app.business.CardBussines
+import com.pagme.app.business.CardBusiness
 import com.pagme.app.entity.Card
 import kotlinx.android.synthetic.main.item_card.view.*
 
@@ -71,7 +71,7 @@ class CardAdapter(private val cardtList: ArrayList<Card>) :
         val dueDateCard: EditText = itemView.dueDateCardItem
         val btnEdit: Button = itemView.btnEditCardItem
         val btnDelete: ImageButton = itemView.btnDeleteCardItem
-        val cardBussines = CardBussines()
+        val cardBussines = CardBusiness()
 
 
     }

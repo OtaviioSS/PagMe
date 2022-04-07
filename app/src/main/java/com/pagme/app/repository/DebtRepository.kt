@@ -3,7 +3,6 @@ package com.pagme.app.repository
 import com.google.firebase.database.*
 import com.pagme.app.database.DatabaseRef
 import com.pagme.app.entity.Debt
-import com.pagme.app.ui.cards
 import kotlinx.android.synthetic.main.activity_edit_debt.*
 import java.util.ArrayList
 
@@ -11,6 +10,7 @@ class DebtRepository() {
     private val mListDebt: MutableList<Debt> = ArrayList()
     private val user: String = "userOtavio"
     private val database = DatabaseRef().initializeDatabaseRefrence()
+    private val cards: MutableList<String?> = ArrayList()
 
 
     fun getList(): List<Debt> {

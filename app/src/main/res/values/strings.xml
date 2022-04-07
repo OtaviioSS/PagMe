@@ -25,6 +25,14 @@
     <string name="editar">Editar</string>
     <string name="adicionar_novo_debito">Adicionar novo debito</string>
     <string name="bot_o_de_excluir_divida">Botão de excluir divida</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="email">Email</string>
+    <string name="nome_de_usu_rio">Nome de usuário</string>
+    <string name="senha">Senha</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="logomarca">Logomarca</string>
+    <string name="entrar">Entrar</string>
+    <string name="sair">Sair</string>
 
     <string-array name="Languages">
         <item>Java</item>

@@ -3,6 +3,7 @@
 <group>
     <item android:id="@+id/myCardsMenuDrawaerMain" android:title="@string/meus_cart_es"/>
     <item android:id="@+id/myAccountMenuDrawaerMain" android:title="@string/minha_conta"/>
+    <item android:id="@+id/mySingOut" android:title="@string/sair"/>
 
 </group>
 </menu>

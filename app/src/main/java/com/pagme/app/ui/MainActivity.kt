@@ -4,34 +4,38 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
 import com.pagme.app.adapter.DebtAdapter
-import com.pagme.app.adapter.SwipeToDeleteDebt
+import com.pagme.app.business.UserBusiness
 import com.pagme.app.entity.Debt
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var layoutManager: LinearLayoutManager
     private lateinit var database: DatabaseReference
     private lateinit var debtArrayList: ArrayList<Debt>
     private lateinit var debtRecyclerView: RecyclerView
-    lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var toggle: ActionBarDrawerToggle
+    private val userBusiness = UserBusiness()
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        auth = Firebase.auth
 
         fab.setBackgroundResource(R.drawable.fab_background)
-
-
+        
         toggle = ActionBarDrawerToggle(this, main, R.string.open, R.string.close)
         main.addDrawerListener(toggle)
         toggle.syncState()
@@ -42,19 +46,28 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.myCardsMenuDrawaerMain ->
                     startActivity(Intent(applicationContext, Activity_List_Cards::class.java))
+                R.id.mySingOut ->
+                    if(auth.currentUser != null){
+                        userBusiness.logOutUser()
+                        startActivity(Intent(applicationContext,Activity_Login::class.java))
+                        Toast.makeText(this,"Usuario deconectado",Toast.LENGTH_LONG).show()
+                        finish()
+                    }
+
+
+
 
             }
             true
         }
-        layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
-
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
         debtRecyclerView = recyclerDebits
         debtRecyclerView.layoutManager = layoutManager
         debtRecyclerView.setHasFixedSize(true)
         debtArrayList = arrayListOf<Debt>()
 
-        getDabts()
-        mudarTela()
+        getDebts()
+        openActivity()
 
     }
 
@@ -66,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getDabts() {
+    private fun getDebts() {
         var adapter = DebtAdapter(debtArrayList)
         database = FirebaseDatabase.getInstance().getReference("userOtavio")
         database.child("debts").addValueEventListener(object : ValueEventListener {
@@ -84,12 +97,10 @@ class MainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-    /*    val itemTouchHelper = ItemTouchHelper(SwipeToDeleteDebt(adapter))
-        itemTouchHelper.attachToRecyclerView(recyclerDebits)*/
 
     }
 
-    fun mudarTela() {
+    private fun openActivity() {
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
 
