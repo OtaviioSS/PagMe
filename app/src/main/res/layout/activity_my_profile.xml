@@ -75,4 +75,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textFieldUserNameMyProfileView" />
 
+
+        <TextView
+            android:id="@+id/textDeleteMyProfileView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Excluir conta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/buttonSaveMyProfileView"
+            app:layout_constraintEnd_toEndOf="@id/buttonSaveMyProfileView"
+            android:textSize="18sp"
+            android:textColor="#ff0000"
+            app:layout_constraintTop_toBottomOf="@id/buttonSaveMyProfileView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

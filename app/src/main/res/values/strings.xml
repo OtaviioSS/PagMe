@@ -33,6 +33,9 @@
     <string name="logomarca">Logomarca</string>
     <string name="entrar">Entrar</string>
     <string name="sair">Sair</string>
+    <string name="campo_obrigatorio">Campo Obrigatório</string>
+    <string name="msg_reset_password">Enviaremos um e-mail com instruções de como redefinir sua senha.</string>
+    <string name="enviar">Enviar</string>
 
     <string-array name="Languages">
         <item>Java</item>

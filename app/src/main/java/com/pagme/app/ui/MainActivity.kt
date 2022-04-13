@@ -33,9 +33,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
-
+        verifyAuthentication()
         fab.setBackgroundResource(R.drawable.fab_background)
-        
+
         toggle = ActionBarDrawerToggle(this, main, R.string.open, R.string.close)
         main.addDrawerListener(toggle)
         toggle.syncState()
@@ -43,24 +43,24 @@ class MainActivity : AppCompatActivity() {
 
 
         navigationViewMainView.setNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.myCardsMenuDrawaerMain ->
                     startActivity(Intent(applicationContext, Activity_List_Cards::class.java))
+                R.id.myAccountMenuDrawaerMain ->
+                    startActivity(Intent(applicationContext, Activity_My_Profile::class.java))
                 R.id.mySingOut ->
-                    if(auth.currentUser != null){
+                    if (auth.currentUser != null) {
                         userBusiness.logOutUser()
-                        startActivity(Intent(applicationContext,Activity_Login::class.java))
-                        Toast.makeText(this,"Usuario deconectado",Toast.LENGTH_LONG).show()
+                        startActivity(Intent(applicationContext, Activity_Login::class.java))
+                        Toast.makeText(this, "Usuario deconectado", Toast.LENGTH_LONG).show()
                         finish()
                     }
-
-
 
 
             }
             true
         }
-        val layoutManager: LinearLayoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         debtRecyclerView = recyclerDebits
         debtRecyclerView.layoutManager = layoutManager
         debtRecyclerView.setHasFixedSize(true)
@@ -68,6 +68,22 @@ class MainActivity : AppCompatActivity() {
 
         getDebts()
         openActivity()
+
+    }
+
+    private fun verifyAuthentication() {
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            val intent = Intent(this, Activity_Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        verifyAuthentication()
 
     }
 
@@ -80,8 +96,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDebts() {
-        var adapter = DebtAdapter(debtArrayList)
-        database = FirebaseDatabase.getInstance().getReference("userOtavio")
+        database = FirebaseDatabase.getInstance().getReference(auth.currentUser!!.uid)
         database.child("debts").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 debtArrayList.clear()
@@ -90,7 +105,6 @@ class MainActivity : AppCompatActivity() {
                     debtArrayList.add(debt!!)
                 }
                 debtRecyclerView.adapter = DebtAdapter(debtArrayList)
-                adapter = DebtAdapter(debtArrayList)
 
             }
 
@@ -103,7 +117,6 @@ class MainActivity : AppCompatActivity() {
     private fun openActivity() {
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
-
             val intent = Intent(this, Activity_New_Debit::class.java)
             startActivity(intent)
         }

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-
+    android:layout_height="wrap_content">
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -20,14 +17,13 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/dialogNameNewCardView"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:padding="8dp"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_marginVertical="8dp"
             android:hint="@string/nome_do_cart_o"
             android:inputType="textPersonName"
-            android:textColor="@color/innerText" />
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -41,14 +37,14 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/dialogClosingNewCardView"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="140dp"
             android:layout_height="50dp"
-            android:padding="8dp"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_marginVertical="8dp"
             android:hint="@string/fechamento"
             android:inputType="date"
-            android:textColor="@color/innerText" />
+            android:maxLength="2"
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -58,33 +54,31 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/dialogButtonSaveNewCardView"
         app:layout_constraintEnd_toEndOf="@+id/textFieldnameNewCardView"
-        app:layout_constraintTop_toBottomOf="@id/textFieldnameNewCardView"
-        >
+        app:layout_constraintTop_toBottomOf="@id/textFieldnameNewCardView">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/dialogDueDateNewCardView"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="130dp"
             android:layout_height="50dp"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:hint="@string/data_de_vencimento"
-            android:padding="8dp"
             android:layout_marginVertical="8dp"
+            android:hint="@string/data_de_vencimento"
             android:inputType="date"
-            android:textColor="@color/innerText" />
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/dialogButtonSaveNewCardView"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_margin="8dp"
         android:background="@drawable/button_green"
         android:elevation="8dp"
         android:text="@string/salvar"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="15sp"
         android:textStyle="bold"
         android:translationZ="10dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

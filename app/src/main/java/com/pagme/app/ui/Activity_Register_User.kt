@@ -12,25 +12,26 @@ import com.pagme.app.entity.User
 import kotlinx.android.synthetic.main.activity_register_user.*
 
 class Activity_Register_User : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
     private val userBusiness = UserBusiness()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
-        auth = Firebase.auth
 
         buttonSaveNewUser.setOnClickListener {
-        val user = User(
-            emailCreateUserView.text.toString(),
-            userNameCreateUserView.text.toString(),
-            passwordCreateUserView.text.toString()
-        )
-            userBusiness.createNewUser(user,auth).addOnCompleteListener {
-                Toast.makeText(this, "Conta criada com sucesso!", Toast.LENGTH_LONG).show()
-                finish()
-            }.addOnFailureListener { exception ->
-                Toast.makeText(this, exception.localizedMessage, Toast.LENGTH_LONG).show()
+            if (userNameCreateUserView.text.toString().isEmpty()||passwordCreateUserView.text.toString().isEmpty()||emailCreateUserView.text.toString().isEmpty()) {
+                Toast.makeText(this, "Por favor preencha todos os campos", Toast.LENGTH_LONG).show()
+            } else {
+                userBusiness.createNewUser(
+                    emailCreateUserView.text.toString(),
+                    passwordCreateUserView.text.toString(),
+                    userNameCreateUserView.text.toString()
+                ).addOnSuccessListener {
+                    Toast.makeText(this, "Conta criada com sucesso!", Toast.LENGTH_LONG).show()
+                    finish()
+                }.addOnFailureListener { exception ->
+                    Toast.makeText(this, exception.localizedMessage, Toast.LENGTH_LONG).show()
 
+                }
             }
         }
 

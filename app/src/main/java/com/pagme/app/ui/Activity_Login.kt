@@ -1,6 +1,7 @@
 package com.pagme.app.ui
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,13 +9,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
-import com.pagme.app.business.UserBusiness
-import com.pagme.app.entity.User
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Activity_Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private var userBusiness = UserBusiness()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +31,22 @@ class Activity_Login : AppCompatActivity() {
 
                 }
                 else -> {
-                    auth.signInWithEmailAndPassword(emailLoginView.text.toString(),passwordLoginView.text.toString()).addOnCompleteListener { task ->
-                        if(task.isSuccessful){
-                            val intent= Intent(this,MainActivity::class.java)
+                    auth.signInWithEmailAndPassword(
+                        emailLoginView.text.toString(),
+                        passwordLoginView.text.toString()
+                    ).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                             finish()
                         }
                     }.addOnFailureListener { exception ->
-                        Toast.makeText(applicationContext,exception.localizedMessage, Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            applicationContext,
+                            exception.localizedMessage,
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
 
                 }
@@ -52,15 +58,14 @@ class Activity_Login : AppCompatActivity() {
             val intent = Intent(this, Activity_Register_User::class.java)
             startActivity(intent)
         }
-    }
 
-    public override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-
+        textResetPassword.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    Activity_Reset_Password::class.java
+                )
+            )
         }
     }
 

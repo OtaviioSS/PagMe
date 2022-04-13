@@ -1,24 +1,42 @@
 package com.pagme.app.repository
 
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import com.pagme.app.database.DatabaseRef
 import com.pagme.app.entity.Debt
 import kotlinx.android.synthetic.main.activity_edit_debt.*
 import java.util.ArrayList
 
 class DebtRepository() {
-    private val mListDebt: MutableList<Debt> = ArrayList()
-    private val user: String = "userOtavio"
     private val database = DatabaseRef().initializeDatabaseRefrence()
+    private var auth: FirebaseAuth = Firebase.auth
+    private val user = auth.currentUser
     private val cards: MutableList<String?> = ArrayList()
 
 
-    fun getList(): List<Debt> {
-        return mListDebt
+    fun readAllDebts(): ArrayList<Debt> {
+        val debtArrayList = ArrayList<Debt>()
+        database.child(user!!.uid.toString()).child("debts").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                debtArrayList.clear()
+                for (debtSnapshot in snapshot.children) {
+                    val debt = debtSnapshot.getValue(Debt::class.java)
+                    debtArrayList.add(debt!!)
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+        return debtArrayList
     }
 
-    fun readCardsFromSppiner(): MutableList<String?> {
-        database.child(user).child("cards").addValueEventListener(object :
+    fun readCardsFromSpinner(): MutableList<String?> {
+        database.child(user!!.uid).child("cards").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 cards.clear()
@@ -38,15 +56,15 @@ class DebtRepository() {
     }
 
     fun createDebit(debt: Debt) {
-        //        ALTERAR O USEROTAVIO PARA O EMAIL DO USUARIO LOGADO
-        database.child("userOtavio").child("debts").child(debt.idDebt.toString()).setValue(debt)
+        database.child(user!!.uid).child("debts").child(debt.idDebt.toString())
+            .setValue(debt)
 
 
     }
 
     fun updateDebit(debt: Debt): Boolean {
         try {
-            database.child("userOtavio").child("debts").child(debt.idDebt.toString()).setValue(debt)
+            database.child(user!!.uid).child("debts").child(debt.idDebt.toString()).setValue(debt)
                 .addOnSuccessListener {
                 }
         } catch (exception: Exception) {
@@ -58,21 +76,22 @@ class DebtRepository() {
 
     fun getOneDebt(debtID: String): Debt {
         var debt = Debt()
-        database.child(user).child("debts").child(debtID).addValueEventListener(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                debt = snapshot.getValue(Debt::class.java)!!
+        database.child(user!!.uid.toString()).child("debts").child(debtID)
+            .addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    debt = snapshot.getValue(Debt::class.java)!!
 
 
-            }
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
         return debt
     }
 
-    fun deleteDebt(debtID: String){
-        database.child(user).child("debts").child(debtID).setValue(null)
+    fun deleteDebt(debtID: String) {
+        database.child(user!!.uid.toString()).child("debts").child(debtID).setValue(null)
     }
 }

@@ -1,8 +1,10 @@
 package com.pagme.app.business
 
-import com.google.firebase.database.DatabaseReference
+import android.widget.ProgressBar
+import com.google.firebase.database.DataSnapshot
 import com.pagme.app.entity.Debt
 import com.pagme.app.repository.DebtRepository
+import java.util.ArrayList
 
 //CALSSE PARA IMPLEMENTAR REGRAS DE NEGOCIOS
 class DebtBusiness() {
@@ -10,7 +12,7 @@ class DebtBusiness() {
 
 
     fun readCardsFromSpinner(): MutableList<String?> {
-        return debtRepository.readCardsFromSppiner()
+        return debtRepository.readCardsFromSpinner()
     }
 
     fun newDebt(debt: Debt) {
@@ -27,6 +29,10 @@ class DebtBusiness() {
 
     fun readOneDebt(debtID: String): Debt {
         return debtRepository.getOneDebt(debtID)
+    }
+
+    fun readDebts(): ArrayList<Debt> {
+       return debtRepository.readAllDebts()
     }
 
     fun removeDebt(debtID: String) {

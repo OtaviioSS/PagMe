@@ -10,20 +10,28 @@ import com.pagme.app.repository.UserRepository
 class UserBusiness {
     private val userRepository = UserRepository()
 
-    fun createNewUser(user: User,auth: FirebaseAuth): Task<AuthResult> {
-        return userRepository.createUser(user,auth)
+    fun createNewUser(email:String,password:String,userName:String): Task<AuthResult> {
+        return userRepository.createUser(email.trim(),password,userName)
     }
 
-    fun logInUser(user: User, auth: FirebaseAuth,context: Context): Task<AuthResult> {
+    fun logInUser(email: String,password: String, auth: FirebaseAuth,context: Context): Task<AuthResult> {
 
-        return userRepository.loginUser(user.email.toString(), user.passwordUser.toString(), auth,context)
+        return userRepository.loginUser(email,password, auth,context)
     }
 
-    fun getUser(userId:String): User {
-        return userRepository.getUser(userId)
+    fun getUser(): User {
+        return userRepository.getUser()
+    }
+
+    fun updateUser(email: String,name:String): Boolean {
+        return userRepository.updateUser(email,name)
     }
 
     fun logOutUser(){
         userRepository.singOut()
+    }
+
+    fun removeUser(){
+        userRepository.deleteUser()
     }
 }
