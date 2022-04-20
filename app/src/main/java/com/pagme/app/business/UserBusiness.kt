@@ -14,9 +14,9 @@ class UserBusiness {
         return userRepository.createUser(email.trim(),password,userName)
     }
 
-    fun logInUser(email: String,password: String, auth: FirebaseAuth,context: Context): Task<AuthResult> {
+    fun logInUser(email: String,password: String, context: Context): Task<AuthResult> {
 
-        return userRepository.loginUser(email,password, auth,context)
+        return userRepository.loginUser(email,password, context)
     }
 
     fun getUser(): User {

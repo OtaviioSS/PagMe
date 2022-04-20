@@ -25,6 +25,14 @@
 
 
     </style>
+
+    <style name="buttonPaidItem">
+        <item name="background">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="cornerRadius">0dp</item>
+
+
+    </style>
     <style name="btnSec">
         <item name="cornerRadius">4dp</item>
         <item name="strokeColor">@color/colorPrimary</item>

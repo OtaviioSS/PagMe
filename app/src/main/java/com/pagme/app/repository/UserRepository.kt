@@ -21,7 +21,9 @@ class UserRepository {
     private val curUser = auth.currentUser
 
 
+
     fun createUser(email: String, password: String, userName: String): Task<AuthResult> {
+        auth.useAppLanguage()
         return auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
@@ -43,6 +45,7 @@ class UserRepository {
     }
 
     fun updateUser(email: String, name: String): Boolean {
+        auth.useAppLanguage()
         return try {
             curUser!!.updateEmail(email)
                 .addOnCompleteListener { task ->
@@ -62,9 +65,9 @@ class UserRepository {
     fun loginUser(
         email: String,
         password: String,
-        auth: FirebaseAuth,
         context: Context
     ): Task<AuthResult> {
+        auth.useAppLanguage()
         return auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener() {
                 Toast.makeText(context, "Usuario logado", Toast.LENGTH_LONG).show()
@@ -77,6 +80,7 @@ class UserRepository {
     }
 
     fun singOut() {
+        auth.useAppLanguage()
         Firebase.auth.signOut()
 
     }

@@ -1,6 +1,10 @@
 package com.pagme.app.ui
 
 import android.content.Intent
+import android.graphics.PorterDuff
+import android.graphics.drawable.ClipDrawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -32,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         auth = Firebase.auth
         verifyAuthentication()
         fab.setBackgroundResource(R.drawable.fab_background)
@@ -96,21 +101,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDebts() {
-        database = FirebaseDatabase.getInstance().getReference(auth.currentUser!!.uid)
-        database.child("debts").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                debtArrayList.clear()
-                for (debtSnapshot in snapshot.children) {
-                    val debt = debtSnapshot.getValue(Debt::class.java)
-                    debtArrayList.add(debt!!)
+        try {
+            database = FirebaseDatabase.getInstance().getReference(auth.currentUser!!.uid)
+            database.child("debts").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    debtArrayList.clear()
+                    for (debtSnapshot in snapshot.children) {
+                        val debt = debtSnapshot.getValue(Debt::class.java)
+                        debtArrayList.add(debt!!)
+
+                    }
+                    debtRecyclerView.adapter = DebtAdapter(debtArrayList)
+
                 }
-                debtRecyclerView.adapter = DebtAdapter(debtArrayList)
 
-            }
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        }catch (ex:NullPointerException){
+            Toast.makeText(this,"Nenhuma divida encontrada",Toast.LENGTH_LONG).show()
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
 
     }
 

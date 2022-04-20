@@ -1,5 +1,6 @@
 package com.pagme.app.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
@@ -105,6 +106,7 @@ class Activity_New_Debit : AppCompatActivity() {
                 valueInstallmentsNewDebtView.text.toString().toDouble()
             )
         )
+        this.finish()
 
     }
 

@@ -1,12 +1,15 @@
 package com.pagme.app.adapter
 
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.R
+import com.pagme.app.business.DebtBusiness
 import com.pagme.app.entity.Debt
 import com.pagme.app.ui.Activity_Edit_Debt
 import kotlinx.android.synthetic.main.item_debit.view.*
@@ -31,6 +34,13 @@ class DebtAdapter(private val debtList: ArrayList<Debt>) :
         holder.valueOfBuy.text = debt.valueBuy.toString()
         holder.unpaid.text =
             ((holder.remainingPlots.text as String).toDouble() * (holder.valueInstallments.text as String).toDouble()).toString()
+        holder.btnPaid.setOnClickListener {
+            val value = Integer.parseInt(holder.paidInstallments.text.toString())
+            enterPayment(value, debtID)
+            disableButton(holder.remainingPlots.text.toString().toInt(), holder.btnPaid)
+        }
+        disableButton(holder.remainingPlots.text.toString().toInt(), holder.btnPaid)
+
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +55,9 @@ class DebtAdapter(private val debtList: ArrayList<Debt>) :
         val valueInstallments: TextView = itemView.valueInstallmentsItemDebit
         val valueOfBuy: TextView = itemView.valueOfBuyItemDebit
         val unpaid: TextView = itemView.unpaidItemDebit
+        val btnPaid: Button = itemView.btnPaidItemDebt
+        val debtBusiness = DebtBusiness()
+
         init {
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, Activity_Edit_Debt::class.java)
@@ -55,11 +68,26 @@ class DebtAdapter(private val debtList: ArrayList<Debt>) :
         }
     }
 
-    fun deleteItem(pos:Int): String {
+    fun deleteItem(pos: Int): String {
         debtList.removeAt(pos)
         notifyItemRemoved(pos)
         return debtID
 
     }
+
+    private fun enterPayment(currentValue: Int, idDebt: String) {
+        val value = currentValue + 1
+        debtBussines.enterOnePayment(value, idDebt)
+    }
+
+    private fun disableButton(remainingPlots: Int, button: Button) {
+        if (remainingPlots <= 0) {
+            button.isEnabled = false
+            button.setTextColor(Color.parseColor("#ffffff"));
+            button.setBackgroundColor(Color.parseColor("#aaaaaa"))
+        }
+    }
+
+
 }
 

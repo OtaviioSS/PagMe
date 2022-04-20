@@ -12,18 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-<!--
-        <ProgressBar
-            android:id="@+id/progress_MainView"
+
+      <!--  <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:elevation="100dp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:background="@drawable/progressbar_green"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
--->
+            app:layout_constraintTop_toTopOf="parent" />-->
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerDebits"

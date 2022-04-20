@@ -94,4 +94,8 @@ class DebtRepository() {
     fun deleteDebt(debtID: String) {
         database.child(user!!.uid.toString()).child("debts").child(debtID).setValue(null)
     }
+
+    fun insertPayment(value:Int,idDebt:String) {
+        database.child(user!!.uid).child("debts").child(idDebt).child("paidInstallments").setValue(value)
+    }
 }

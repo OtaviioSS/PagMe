@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
 import com.pagme.app.business.DebtBusiness
 import com.pagme.app.database.DatabaseRef
@@ -18,14 +21,14 @@ class Activity_Edit_Debt : AppCompatActivity() {
     private var idDebt = ""
     private var debtBusiness = DebtBusiness()
     private val database = DatabaseRef().initializeDatabaseRefrence()
+    private var auth: FirebaseAuth = Firebase.auth
+    private val user = auth.currentUser
+
     var debt = Debt()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_debt)
-
-
-        getDebt()
         buttonSaveEditDebt.setOnClickListener { updateDebt() }
         buttonDeleteEditDebt.setOnClickListener { removeDebt() }
         val extras = intent.extras
@@ -33,30 +36,29 @@ class Activity_Edit_Debt : AppCompatActivity() {
             idDebt = extras.getString("idDebt").toString()
             nameBuyerEditDebt.setText(idDebt)
         }
+        getDebt()
         createSpinnerEditDebt()
     }
 
     private fun getDebt() {
-        database.child("userOtavio").child("debts").child(idDebt).addValueEventListener(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (debtSnapshot in snapshot.children) {
-                    debt = debtSnapshot.getValue(Debt::class.java)!!
+        database.child(user!!.uid.toString()).child("debts").child(idDebt)
+            .addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    debt = snapshot.getValue(Debt::class.java)!!
+                    spinnerCardEditDebt.setText(debt.nameCard.toString(), false)
+                    valueBuyEditDebt.setText(debt.valueBuy.toString())
+                    installmentsEditDebt.setText(debt.installments.toString())
+                    valueInstallmentsEditDebt.setText(debt.valueInstallments.toString())
+                    nameBuyerEditDebt.setText(debt.nameBuyer)
+                    whatsappEditDebt.setText(debt.whatsapp.toString())
 
                 }
-                spinnerCardEditDebt.setText(debt.nameCard.toString(), false)
-                valueBuyEditDebt.setText(debt.valueBuy.toString())
-                installmentsEditDebt.setText(debt.installments.toString())
-                valueInstallmentsEditDebt.setText(debt.valueInstallments.toString())
-                nameBuyerEditDebt.setText(debt.nameBuyer)
-                whatsappEditDebt.setText(debt.whatsapp.toString())
 
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
 
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
 
     }
 
@@ -75,8 +77,8 @@ class Activity_Edit_Debt : AppCompatActivity() {
 
     private fun removeDebt() {
         debtBusiness.removeDebt(debt.idDebt.toString())
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun createSpinnerEditDebt() {

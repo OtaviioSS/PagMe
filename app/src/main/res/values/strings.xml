@@ -1,7 +1,7 @@
 <resources>
     <string name="open">open</string>
     <string name="close">close</string>
-    <string name="app_name">pagme</string>
+    <string name="app_name">Pagme</string>
     <string name="novo_cart_o">Novo Cartão</string>
     <string name="nome_do_cart_o">Nome do Cartão</string>
     <string name="fechamento">Fechamento</string>
@@ -34,15 +34,6 @@
     <string name="entrar">Entrar</string>
     <string name="sair">Sair</string>
     <string name="campo_obrigatorio">Campo Obrigatório</string>
-    <string name="msg_reset_password">Enviaremos um e-mail com instruções de como redefinir sua senha.</string>
+    <string name="msg_reset_password">Enviaremos um e-mail com instruções de como redefinir sua senha, verifique tambem a caixa de spam.</string>
     <string name="enviar">Enviar</string>
-
-    <string-array name="Languages">
-        <item>Java</item>
-        <item>Kotlin</item>
-        <item>Swift</item>
-        <item>Python</item>
-        <item>Scala</item>
-        <item>Perl</item>
-    </string-array>
 </resources>
