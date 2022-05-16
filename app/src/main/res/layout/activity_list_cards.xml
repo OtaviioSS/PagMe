@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#292929"
-    tools:context=".ui.Activity_List_Cards">
+    tools:context=".ui.card.Activity_List_Cards">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCards"

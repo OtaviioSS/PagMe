@@ -1,10 +1,6 @@
 package com.pagme.app.ui
 
 import android.content.Intent
-import android.graphics.PorterDuff
-import android.graphics.drawable.ClipDrawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -18,9 +14,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.R
-import com.pagme.app.adapter.DebtAdapter
+import com.pagme.app.ui.debt.DebtAdapter
 import com.pagme.app.business.UserBusiness
-import com.pagme.app.entity.Debt
+import com.pagme.app.domain.model.Debt
+import com.pagme.app.ui.card.Activity_List_Cards
+import com.pagme.app.ui.newdebt.Activity_New_Debit
+import com.pagme.app.ui.user.Activity_Login
+import com.pagme.app.ui.user.Activity_My_Profile
 import kotlinx.android.synthetic.main.activity_main.*
 
 

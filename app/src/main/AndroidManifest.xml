@@ -14,28 +14,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dark2">
         <activity
-            android:name=".ui.Activity_Reset_Password"
+            android:name=".ui.user.Activity_Reset_Password"
             android:exported="false" />
 
         <activity
-            android:name=".ui.Activity_My_Profile"
+            android:name=".ui.user.Activity_My_Profile"
             android:exported="false" />
         <activity
-            android:name=".ui.Activity_Login"
+            android:name=".ui.user.Activity_Login"
             android:exported="false"
             android:theme="@style/Theme.Dark2.NoActionBar" />
         <activity
-            android:name=".ui.Activity_Register_User"
+            android:name=".ui.user.Activity_Register_User"
             android:exported="false"
             android:theme="@style/Theme.Dark2.NoActionBar" />
         <activity
-            android:name=".ui.Activity_List_Cards"
+            android:name=".ui.card.Activity_List_Cards"
             android:exported="false" />
         <activity
-            android:name=".ui.Activity_Edit_Debt"
+            android:name=".ui.debt.Activity_Edit_Debt"
             android:exported="false" />
         <activity
-            android:name=".ui.Activity_New_Debit"
+            android:name=".ui.newdebt.Activity_New_Debit"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

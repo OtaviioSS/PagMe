@@ -3,9 +3,8 @@ package com.pagme.app.business
 import android.content.Context
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.pagme.app.entity.User
-import com.pagme.app.repository.UserRepository
+import com.pagme.app.domain.model.User
+import com.pagme.app.data.user.UserRepository
 
 class UserBusiness {
     private val userRepository = UserRepository()

@@ -1,12 +1,10 @@
 package com.pagme.app.business
 
 import android.os.Build
-import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
-import com.google.firebase.database.DataSnapshot
-import com.pagme.app.entity.Debt
-import com.pagme.app.repository.DebtRepository
-import java.text.SimpleDateFormat
+import com.pagme.app.domain.model.Debt
+import com.pagme.app.data.card.CardRepository
+import com.pagme.app.data.debt.DebtRepository
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -14,7 +12,6 @@ import java.util.*
 //CALSSE PARA IMPLEMENTAR REGRAS DE NEGOCIOS
 class DebtBusiness() {
     private val debtRepository = DebtRepository()
-
 
     fun readCardsFromSpinner(): MutableList<String?> {
         return debtRepository.readCardsFromSpinner()
@@ -49,14 +46,19 @@ class DebtBusiness() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun verifyIfCurrentDateIsGreaterThanCloseDate(closeDate:Int,dueDate:Int): String {
+    fun verifyIfCurrentDateIsGreaterThanCloseDate(idCard:String): String {
+
+        val cardRepository = CardRepository().getDueDateCloseDate(idCard)
+
         val status:String
         val currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd"))
+        val closeDate = Integer.parseInt(cardRepository.closingDate.toString())
+        val dueDate = Integer.parseInt(cardRepository.dueDate.toString())
         status = when {
-            currentDate.toInt() < closeDate -> {
+            currentDate.toInt() < 20-> {
                 "Aberto"
             }
-            currentDate.toInt() > dueDate -> {
+            currentDate.toInt() > 15 -> {
                 "Atrasado"
             }
             else -> {
@@ -66,4 +68,6 @@ class DebtBusiness() {
 
         return status
     }
+
+
 }

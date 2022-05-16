@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#292929"
-    tools:context="com.pagme.app.ui.Activity_New_Debit">
+    tools:context="com.pagme.app.ui.newdebt.Activity_New_Debit">
 
 
     <TextView

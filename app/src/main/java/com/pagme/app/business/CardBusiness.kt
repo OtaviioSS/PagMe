@@ -1,14 +1,14 @@
 package com.pagme.app.business
 
-import com.pagme.app.entity.Card
-import com.pagme.app.repository.CardRepository
+import com.pagme.app.domain.model.Card
+import com.pagme.app.data.card.CardRepository
 import java.util.ArrayList
 
 
 class CardBusiness() {
     private val cardRepository = CardRepository()
 
-    fun createCard(card: Card): Boolean {
+    suspend fun createCard(card: Card): Boolean {
         if (card.cardName == "" || card.closingDate == "" || card.dueDate == "") {
             return false
         }

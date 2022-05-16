@@ -45,7 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameBuyerItemDebitView" />
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/paidInstallmentsItemDebitView"
         app:layout_constraintTop_toBottomOf="@id/nameBuyerItemDebitView" />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,18 +92,6 @@
         app:layout_constraintTop_toBottomOf="@id/paidInstallmentsItemDebitView"
 
         />
-
-    <Button
-        android:id="@+id/btnPaidItemDebt"
-        style="@style/buttonPaidItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Pagou"
-        android:layout_margin="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
- />
 
     <TextView
         android:layout_width="wrap_content"
@@ -152,5 +138,30 @@
         app:layout_constraintStart_toStartOf="@id/valueInstallmentsItemDebit"
         app:layout_constraintTop_toBottomOf="@id/valueOfBuyItemDebit" />
 
+    <Button
+        android:id="@+id/btnPaidItemDebt"
+        style="@style/buttonPaidItem"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Pagou"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <TextView
+        android:id="@+id/statusItemDebt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:elevation="10dp"
+        android:textSize="12dp"
+        android:text="Status"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@id/btnPaidItemDebt"
+        android:background="@drawable/background_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
