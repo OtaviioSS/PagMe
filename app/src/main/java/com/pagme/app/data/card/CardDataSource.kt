@@ -7,7 +7,5 @@ interface CardDataSource {
 
     suspend fun createCard(card: Card):Card
 
-    suspend fun updateCard(card: Card):Card
-
     suspend fun deleteCard(idCard: String):Boolean
 }

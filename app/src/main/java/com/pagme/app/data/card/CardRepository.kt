@@ -15,11 +15,9 @@ import kotlin.coroutines.suspendCoroutine
 
 class CardRepository @Inject constructor(private val cardDataSource: CardDataSource) {
 
-    suspend fun getCard():List<@JvmSuppressWildcards Card> = cardDataSource.getCard()
+    suspend fun getCard():List<Card> = cardDataSource.getCard()
 
     suspend fun createCard(card: Card): Card = cardDataSource.createCard(card)
-
-    suspend fun updateCard(card: Card):Card = cardDataSource.updateCard(card)
 
     suspend fun deleteCard(idCard:String): Boolean = cardDataSource.deleteCard(idCard)
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/debtListFragment">
+
+    <fragment
+        android:id="@+id/cardListFragment"
+        android:name="com.pagme.app.ui.card.CardListFragment"
+        android:label="fragment_card_list"
+        tools:layout="@layout/fragment_card_list" />
+
+    <fragment
+        android:id="@+id/debtListFragment"
+        android:name="com.pagme.app.ui.debt.DebtListFragment"
+        android:label="fragment_debt_list"
+        tools:layout="@layout/fragment_debt_list" >
+        <action
+            android:id="@+id/action_debtListFragment_to_addDebtFragment"
+            app:destination="@id/addDebtFragment" />
+        <action
+            android:id="@+id/action_debtListFragment_to_cardListFragment2"
+            app:destination="@id/cardListFragment" />
+        <action
+            android:id="@+id/action_debtListFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_debtListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDebtFragment"
+        android:name="com.pagme.app.ui.adddebt.AddDebtFragment"
+        android:label="fragment_add_debt"
+        tools:layout="@layout/fragment_add_debt" >
+        <action
+            android:id="@+id/action_addDebtFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addCardFragment"
+        android:name="com.pagme.app.ui.addcard.AddCardFragment"
+        android:label="fragment_add_card"
+        tools:layout="@layout/fragment_add_card" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.pagme.app.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.pagme.app.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>

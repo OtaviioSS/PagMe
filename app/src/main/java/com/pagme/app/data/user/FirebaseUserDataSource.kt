@@ -1,9 +1,7 @@
 package com.pagme.app.data.user
 
 import android.content.ContentValues
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -25,9 +23,7 @@ class FirebaseUserDataSource @Inject constructor(
     private val database = databaseRef
     private val currentUser = firebaseAuth.currentUser
 
-    override suspend fun createUser(email: String, password: String, userName: String):
-            Task<AuthResult> {
-        auth.useAppLanguage()
+    override suspend fun createUser(email: String, password: String, userName: String): Task<AuthResult>{
         return auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
@@ -64,15 +60,12 @@ class FirebaseUserDataSource @Inject constructor(
 
     }
 
-    override suspend fun loginUser(email: String, password: String, context: Context):
-            Task<AuthResult> {
+    override suspend fun loginUser(email: String, password: String): Task<AuthResult> {
         return suspendCoroutine { continuation ->
             auth.useAppLanguage()
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener() { task ->
                     continuation.resumeWith(Result.success(task))
-                    Toast.makeText(context, "Usuario logado", Toast.LENGTH_LONG).show()
-
                 }.addOnFailureListener { exception ->
                     continuation.resumeWith(Result.failure(exception))
                 }

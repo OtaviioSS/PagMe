@@ -33,7 +33,10 @@
     <string name="logomarca">Logomarca</string>
     <string name="entrar">Entrar</string>
     <string name="sair">Sair</string>
+    <string name="add_card_field_error">Mandatory field</string>
     <string name="campo_obrigatorio">Campo Obrigatório</string>
     <string name="msg_reset_password">Enviaremos um e-mail com instruções de como redefinir sua senha, verifique tambem a caixa de spam.</string>
     <string name="enviar">Enviar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -25,8 +25,8 @@ class UserRepository @Inject constructor(private val userDataSource: UserDataSou
     suspend fun updateUser(email: String, name: String): Boolean =
         userDataSource.updateUser(email, name)
 
-    suspend fun loginUser(email: String, password: String, context: Context): Task<AuthResult> =
-        userDataSource.loginUser(email, password, context)
+    suspend fun loginUser(email: String, password: String): Task<AuthResult> =
+        userDataSource.loginUser(email, password)
 
     suspend fun singOut() = userDataSource.singOut()
 

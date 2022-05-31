@@ -44,6 +44,28 @@
         <entry key="..\:/Repositorio Remoto/PagMe/app/src/main/res/menu/menu_drawer_main_activity.xml" value="0.2" />
         <entry key="..\:/Users/Otavio/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable/action_bar_background.xml" value="0.1" />
         <entry key="..\:/Users/Otavio/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable/btn_default_holo_dark.xml" value="0.2075" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_edit_debt.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_list_cards.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_my_profile.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_new_debit.xml" value="0.4" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_register_user.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/activity_reset_password.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/app_bar_drawer_main_view.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/dialog_create_new_card.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/drawer_header.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_add_card.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_add_debt.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_card_list.xml" value="0.2" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_debt_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_edit_debt.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_register_user.xml" value="0.25" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/fragment_reset_password.xml" value="0.2359375" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/item_card.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/ootav/StudioProjects/PagMe/app/src/main/res/layout/item_debit.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

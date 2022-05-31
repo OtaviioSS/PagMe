@@ -59,17 +59,6 @@ class FirebaseCardDataSource @Inject constructor(
         return cardArrayList
     }
 
-    override suspend fun updateCard(card: Card): Card {
-        return suspendCoroutine { continuation ->
-            database.child(user!!.uid).child("cards").child(card.cardID.toString()).setValue(card)
-                .addOnSuccessListener {
-                    continuation.resumeWith(Result.success(card))
-                }.addOnFailureListener { exception ->
-                    continuation.resumeWith(Result.failure(exception))
-                }
-
-        }
-    }
 
     override suspend fun deleteCard(cardId: String): Boolean {
         return suspendCoroutine { continuation ->
