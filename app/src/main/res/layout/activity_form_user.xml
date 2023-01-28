@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ocean"
+    tools:context=".ui.FormUserActivity">
+
+
+    <TextView
+        android:id="@+id/textViewTitleActivityFormUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/inscrever_se"
+        android:textColor="#ffffff"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/LayoutInter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutInter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/background_corners_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="33.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintVertical_weight="0.1">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldNameNewUserView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:hint="@string/nome_completo"
+            android:textColorHint="@color/colorPrimary"
+            android:textStyle="bold"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/textFieldEmailNewUserView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameNewUserView"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/cardview_compat_inset_shadow"
+                android:inputType="textPersonName"
+                android:textColor="#333333" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldEmailNewUserView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColorHint="@color/colorPrimary"
+            android:textStyle="bold"
+            app:boxStrokeColor="#333333"
+            app:layout_constraintBottom_toTopOf="@id/textFieldNewUserView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFieldNameNewUserView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailNewUserView"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="#333333" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldNewUserView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/senha"
+            android:textColorHint="@color/colorPrimary"
+            android:textStyle="bold"
+            app:boxStrokeColor="#333333"
+            app:endIconMode="password_toggle"
+            app:endIconTint="#555555"
+            app:layout_constraintBottom_toTopOf="@id/buttonSaveNewUserView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFieldEmailNewUserView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordNewUserView"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="#333333" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonSaveNewUserView"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_green"
+            android:text="@string/save"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFieldNewUserView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="85dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

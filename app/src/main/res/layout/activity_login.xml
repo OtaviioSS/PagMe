@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageLogoLoginView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="0dp"
+        android:src="@drawable/pagmelogo"
+        app:layout_constraintBottom_toTopOf="@id/textFieldEmailLoginView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldEmailLoginView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textFieldPasswordLoginView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageLogoLoginView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailLoginView"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldPasswordLoginView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/senha"
+        android:textStyle="bold"
+        app:endIconMode="password_toggle"
+        app:layout_constraintBottom_toTopOf="@id/buttonSaveLoginView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textFieldEmailLoginView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordLoginView"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonSaveLoginView"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_green"
+        android:text="@string/entrar"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textFieldPasswordLoginView" />
+
+    <TextView
+        android:id="@+id/textRegisterLoginView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:text="@string/cadastrar_se"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:flow_verticalAlign="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSaveLoginView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

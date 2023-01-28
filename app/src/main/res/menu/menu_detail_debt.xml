@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/editMenuDetailDebt"
+            android:icon="@drawable/ic_baseline_edit"
+            android:title="@string/editar"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/deleteMenuDetailDebt"
+            android:icon="@drawable/ic_delete"
+            android:title="@string/excluir"
+            app:showAsAction="ifRoom" />
+
+
+    </group>
+</menu>

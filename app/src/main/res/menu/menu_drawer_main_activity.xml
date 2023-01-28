@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <group>
-    <item android:id="@+id/myCardsMenuDrawaerMain" android:title="@string/meus_cart_es"/>
-    <item android:id="@+id/myAccountMenuDrawaerMain" android:title="@string/minha_conta"/>
-    <item android:id="@+id/mySingOut" android:title="@string/sair"/>
+    <item
+        android:id="@+id/myCardsMenuDrawaerMain"
+        android:icon="@drawable/ic_credit_card"
+        android:title="@string/meus_cart_es"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/myAccountMenuDrawaerMain"
+        android:icon="@drawable/ic_person"
+        android:title="@string/minha_conta"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mySingOut"
+        android:icon="@drawable/ic_exit"
+        android:title="@string/sair"
+        app:showAsAction="ifRoom" />
 
 </group>
 </menu>

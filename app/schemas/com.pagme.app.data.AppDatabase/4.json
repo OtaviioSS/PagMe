@@ -1,0 +1,120 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "84144039638b24cd7d3defca947062ce",
+    "entities": [
+      {
+        "tableName": "Debt",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idDebt` INTEGER NOT NULL, `nameCard` TEXT NOT NULL, `nameBuyer` TEXT NOT NULL, `valueBuy` REAL NOT NULL, `installments` INTEGER NOT NULL, `paidInstallments` INTEGER NOT NULL, `whatsapp` TEXT, `valueInstallments` REAL NOT NULL, `userId` TEXT, PRIMARY KEY(`idDebt`))",
+        "fields": [
+          {
+            "fieldPath": "idDebt",
+            "columnName": "idDebt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameCard",
+            "columnName": "nameCard",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameBuyer",
+            "columnName": "nameBuyer",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueBuy",
+            "columnName": "valueBuy",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installments",
+            "columnName": "installments",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "paidInstallments",
+            "columnName": "paidInstallments",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "whatsapp",
+            "columnName": "whatsapp",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "valueInstallments",
+            "columnName": "valueInstallments",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idDebt"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `email` TEXT NOT NULL, `userName` TEXT, `userPassword` TEXT NOT NULL, PRIMARY KEY(`userId`))",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userName",
+            "columnName": "userName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userPassword",
+            "columnName": "userPassword",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '84144039638b24cd7d3defca947062ce')"
+    ]
+  }
+}
