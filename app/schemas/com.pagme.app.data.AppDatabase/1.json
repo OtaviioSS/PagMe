@@ -2,54 +2,16 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7a45c0d948012b1e5143c70ee7e58106",
+    "identityHash": "9b5df726d91e1c0a822477a2400faf70",
     "entities": [
       {
-        "tableName": "Card",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardID` TEXT NOT NULL, `cardName` TEXT NOT NULL, `closingDate` TEXT NOT NULL, `dueDate` TEXT NOT NULL, PRIMARY KEY(`cardID`))",
-        "fields": [
-          {
-            "fieldPath": "cardID",
-            "columnName": "cardID",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "cardName",
-            "columnName": "cardName",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "closingDate",
-            "columnName": "closingDate",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "dueDate",
-            "columnName": "dueDate",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "cardID"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
         "tableName": "Debt",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idDebt` TEXT NOT NULL, `nameCard` TEXT NOT NULL, `nameBuyer` TEXT NOT NULL, `valueBuy` REAL NOT NULL, `installments` INTEGER NOT NULL, `paidInstallments` INTEGER NOT NULL, `whatsapp` TEXT, `valueInstallments` REAL NOT NULL, `idCard` TEXT, PRIMARY KEY(`idDebt`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idDebt` INTEGER NOT NULL, `nameCard` TEXT NOT NULL, `nameBuyer` TEXT NOT NULL, `valueBuy` REAL NOT NULL, `installments` INTEGER NOT NULL, `paidInstallments` INTEGER NOT NULL, `whatsapp` TEXT, `valueInstallments` REAL NOT NULL, `userId` TEXT, PRIMARY KEY(`idDebt`))",
         "fields": [
           {
             "fieldPath": "idDebt",
             "columnName": "idDebt",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -95,8 +57,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "idCard",
-            "columnName": "idCard",
+            "fieldPath": "userId",
+            "columnName": "userId",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -109,50 +71,12 @@
         },
         "indices": [],
         "foreignKeys": []
-      },
-      {
-        "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `email` TEXT NOT NULL, `userName` TEXT, `userPassword` TEXT NOT NULL, PRIMARY KEY(`userId`))",
-        "fields": [
-          {
-            "fieldPath": "userId",
-            "columnName": "userId",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "email",
-            "columnName": "email",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "userName",
-            "columnName": "userName",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "userPassword",
-            "columnName": "userPassword",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "userId"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7a45c0d948012b1e5143c70ee7e58106')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9b5df726d91e1c0a822477a2400faf70')"
     ]
   }
 }

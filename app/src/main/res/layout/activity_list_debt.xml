@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.ListDebtActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDebits"
         android:layout_width="match_parent"
@@ -28,7 +27,9 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_action_add" />
+        app:srcCompat="@drawable/ic_action_add"
+        android:backgroundTint="@color/colorPrimary"
+        android:contentDescription="@string/criar_nova_divida" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

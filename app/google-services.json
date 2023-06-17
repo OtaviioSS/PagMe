@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "439560545515",
-    "project_id": "pagme-39104",
-    "storage_bucket": "pagme-39104.appspot.com"
+    "project_number": "626661830324",
+    "project_id": "pagme-d6423",
+    "storage_bucket": "pagme-d6423.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:439560545515:android:99c8d0329f3f7934210aae",
+        "mobilesdk_app_id": "1:626661830324:android:3765e6489935f44d9931e1",
         "android_client_info": {
           "package_name": "com.imcub.pagme"
         }
       },
       "oauth_client": [
         {
-          "client_id": "439560545515-q3q7c0j6kc13g3252m9b5usv4g63c419.apps.googleusercontent.com",
+          "client_id": "626661830324-ncbdmftl4cv5evhrvglufud8ae4gv0g1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.imcub.pagme",
+            "certificate_hash": "a4d74250055f3ca3678cd78f406880c228e4290f"
+          }
+        },
+        {
+          "client_id": "626661830324-8pe0b6hrvvsf1roed5ia11vfqu91ndnh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxMHj7pZs5EXzWn5s1BR_h1UkYXL5BBP0"
+          "current_key": "AIzaSyB4YuTGsKVir6Ky6RJaoCghZWGGTG53-wk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "439560545515-q3q7c0j6kc13g3252m9b5usv4g63c419.apps.googleusercontent.com",
+              "client_id": "626661830324-8pe0b6hrvvsf1roed5ia11vfqu91ndnh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

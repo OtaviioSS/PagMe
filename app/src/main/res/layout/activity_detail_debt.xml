@@ -139,12 +139,11 @@
         android:id="@+id/buttonPayDebtView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/button_green"
+        android:background="@drawable/button_primary_background"
         android:text="@string/pagou"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/innerText"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-/>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

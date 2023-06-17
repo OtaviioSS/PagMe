@@ -6,61 +6,70 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.pagme.app.data.AppDatabase
+import com.pagme.app.MyApplication
+import com.pagme.app.data.model.User
 import com.pagme.app.databinding.ActivityProfileUserBinding
-import com.pagme.app.domain.model.User
-import com.pagme.app.repository.UserRepository
-import com.pagme.app.util.USER_KEY_ID
-import kotlinx.coroutines.flow.filterNotNull
+import com.pagme.app.presentation.viewmodel.UserViewModel
 import kotlinx.coroutines.launch
 
 class ProfileUserActivity : UserBaseActivity() {
 
-    private lateinit var userLoagado: User
+
+    private lateinit var userViewModel: UserViewModel
+
 
     private val binding by lazy {
         ActivityProfileUserBinding.inflate(layoutInflater)
     }
 
-    private val repository by lazy {
-        UserRepository(AppDatabase.instance(this).userDao())
-    }
-
-    private var userId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val appComponent = (application as MyApplication).appComponent
+        appComponent.inject(this)
+        val userViewModelFactory = appComponent.provideUserViewModelFactory()
+        userViewModel = ViewModelProvider(this, userViewModelFactory).get(UserViewModel::class.java)
         listeners()
-        tryLoadingDebt()
-        lifecycleScope.launch {
-            launch {
-                tryGetUser()
+
+        userViewModel.getById().observe(this) { user ->
+            if (user != null) {
+                binding.emailProfileUserView.setText(user.email)
+                binding.nameProfileUserView.setText(user.userName.toString())
             }
+
         }
+
 
     }
 
     private fun listeners() {
         binding.buttonSaveProfileUserView.setOnClickListener {
-            lifecycleScope.launch {
-                repository.update(updateUser(userId))
-                Toast.makeText(
-                    this@ProfileUserActivity,
-                    "Dados Atualizados",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                finish()
+            val user = User(
+                email = binding.emailProfileUserView.text.toString().trim(),
+                userName = binding.nameProfileUserView.text.toString().trim()
+            )
+            userViewModel.update(user) { success ->
+                runOnUiThread {
+                    if (!success) {
+                        Toast.makeText(
+                            this,
+                            "Não foi possivel atualizar os dados do usuario",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(this, "Dados de perfil atualizado!", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
+                    }
+
+                }
 
             }
         }
-        binding.textViewAlterPassword.setOnClickListener {
-            binding.textFieldPasswordProfileUserView.visibility = View.VISIBLE
-            binding.passwordProfileUserView.setText("")
-            it.visibility = View.GONE
-        }
+
 
         binding.textViewDeleteUser.setOnClickListener {
             showConfirmDeleteDialog()
@@ -69,58 +78,24 @@ class ProfileUserActivity : UserBaseActivity() {
 
     private fun showConfirmDeleteDialog() {
         AlertDialog.Builder(this)
-            .setMessage("Tem certeza que deseja exluir a contas? Não será possivel recupera-lá")
-            .setTitle("Excluir Conta" + userLoagado.userName)
+            .setMessage("Tem certeza que deseja excluir a contas? Não será possivel recupera-lá e todos os seus dados serão removidos")
+            .setTitle("Excluir Conta")
             .setPositiveButton("Sim", DialogInterface.OnClickListener { dialog, which ->
-                lifecycleScope.launch {
-                    repository.delete(userLoagado)
-
+                userViewModel.delete{ success ->
+                    Toast.makeText(this@ProfileUserActivity, "Conta removida", Toast.LENGTH_LONG)
+                        .show()
+                    startActivity(Intent(this, LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    )
+                    finish()
                 }
-                Toast.makeText(
-                    this@ProfileUserActivity,
-                    "Dados Atualizados",
-                    Toast.LENGTH_LONG
-                ).show()
-                startActivity(Intent(this,LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
+
+            })
+            .setNegativeButton("Não",DialogInterface.OnClickListener{dialog, id ->
+                dialog.cancel()
             })
             .create()
             .show()
     }
 
-    private fun updateUser(userId: String): User {
-        return userId.let { id ->
-            User(
-                userId = userId,
-                email = binding.emailProfileUserView.text.toString(),
-                userName = binding.nameProfileUserView.text.toString(),
-                userPassword = binding.passwordProfileUserView.text.toString()
-            )
-        }
 
-
-    }
-
-
-    private fun tryLoadingDebt() {
-        userId = intent.getStringExtra(USER_KEY_ID).toString()
-    }
-
-
-    private suspend fun tryGetUser() {
-        userId.let { id ->
-            repository.getToId(id)
-                .filterNotNull()
-                .collect { userFound ->
-                    userLoagado = userFound
-                    userId = userFound.userId
-                    binding.emailProfileUserView.setText(userFound.email)
-                    binding.nameProfileUserView.setText(userFound.userName)
-                    binding.passwordProfileUserView.setText(userFound.userPassword)
-
-                }
-
-        }
-
-    }
 }

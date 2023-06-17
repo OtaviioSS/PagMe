@@ -1,148 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.FormDebtActivity">
+    android:fillViewport="true">
 
 
-    <TextView
-        android:id="@+id/titleNewDebitView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/newDebt"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/textFieldValueBuyNewDebtView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".ui.FormDebtActivity">
 
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldValueBuyNewDebtView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:hint="@string/valor_da_compra"
-        app:layout_constraintBottom_toTopOf="@id/textFieldInstallmentsNewDebtView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:prefixText="R$"
-        app:prefixTextColor="#ffffff"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleNewDebitView">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/valueBuyNewDebtView"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="300dp"
+        <TextView
+            android:id="@+id/titleNewDebitView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:shadowColor="#ff0000" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/newDebt"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/layoutSelectCardEditDebtView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldInstallmentsNewDebtView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:hint="@string/Installments"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/textFieldValueInstallmentsNewDebtView"
-        app:layout_constraintStart_toStartOf="@id/textFieldValueBuyNewDebtView"
-        app:layout_constraintTop_toBottomOf="@id/textFieldValueBuyNewDebtView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/installmentsNewDebtView"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="300dp"
+        <LinearLayout
+            android:id="@+id/layoutSelectCardEditDebtView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints="Quantidade de parcelas"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/textFieldValueBuyNewDebtView"
+            app:layout_constraintStart_toStartOf="@id/textFieldValueBuyNewDebtView"
+            app:layout_constraintTop_toBottomOf="@id/titleNewDebitView"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldValueInstallmentsNewDebtView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/valueInstallments"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/textFieldNameBuyerNewDebtView"
-        app:layout_constraintEnd_toEndOf="@id/textFieldValueBuyNewDebtView"
-        app:layout_constraintTop_toBottomOf="@id/textFieldInstallmentsNewDebtView">
+            >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/valueInstallmentsNewDebtView"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="300dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textFieldCardNewDebtView"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/cartao"
+                android:textColorHint="@color/externalText">
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/spinnerCardNewDebtView"
+                    style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:padding="8dp"
+                    tools:ignore="LabelFor" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/buttonOpenNewCardActivity"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@drawable/background_corners_gray"
+                android:contentDescription="@string/bot_o_de_adicionar_novo_car_o"
+                android:src="@drawable/ic_action_add" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldValueBuyNewDebtView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/valor_da_compra"
+            app:prefixText="@string/reais"
+            android:textColorHint="@color/externalText"
+            app:layout_constraintBottom_toTopOf="@id/textFieldInstallmentsNewDebtView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutSelectCardEditDebtView">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldNameBuyerNewDebtView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/buyerName"
-        android:textStyle="bold"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/textFieldWhatsappNewDebtView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldValueInstallmentsNewDebtView">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameBuyerNewDebtView"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="300dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/valueBuyNewDebtView"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:padding="8dp"
+                android:inputType="numberDecimal"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldInstallmentsNewDebtView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/Installments"
+            android:textColorHint="@color/externalText"
+            app:layout_constraintBottom_toTopOf="@id/textFieldWhatsappNewDebtView"
+            app:layout_constraintEnd_toStartOf="@+id/textFieldValueInstallmentsNewDebtView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFieldValueBuyNewDebtView">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/installmentsNewDebtView"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:padding="8dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldWhatsappNewDebtView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/buttonSaveNewDebtView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldNameBuyerNewDebtView">
-
-        <com.vicmikhailau.maskededittext.MaskedEditText
-            android:id="@+id/whatsappNewDebtView"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="300dp"
-            app:mask="## #####-####"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldValueInstallmentsNewDebtView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autofillHints="campo para inserir whatsapp"
+            android:hint="@string/valueInstallments"
+            android:textColorHint="@color/externalText"
+            app:layout_constraintBottom_toTopOf="@id/textFieldWhatsappNewDebtView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:prefixText="@string/reais"
+            app:layout_constraintStart_toEndOf="@+id/textFieldInstallmentsNewDebtView"
+            app:layout_constraintTop_toBottomOf="@id/textFieldValueBuyNewDebtView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/valueInstallmentsNewDebtView"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:enabled="false"
+                android:padding="8dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldWhatsappNewDebtView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="@string/whatsapp"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/externalText"
+            app:layout_constraintBottom_toTopOf="@id/textFieldSpinnerContact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFieldValueInstallmentsNewDebtView">
 
-    <Button
-        android:id="@+id/buttonSaveNewDebtView"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:background="@drawable/button_green"
-        android:text="@string/save"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldWhatsappNewDebtView" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/whatsappNewDebtView"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:padding="8dp"
+                android:enabled="false"
+                android:inputType="numberDecimal"
+         />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldSpinnerContact"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/externalText"
+            app:layout_constraintBottom_toTopOf="@id/buttonSaveNewDebtView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textFieldWhatsappNewDebtView">
+
+            <AutoCompleteTextView
+                android:id="@+id/spinnerContact"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:padding="8dp"
+                android:hint="@string/contato"
+
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/buttonSaveNewDebtView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_primary_background"
+            android:text="@string/save"
+            android:textColor="@color/innerText"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textFieldSpinnerContact" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

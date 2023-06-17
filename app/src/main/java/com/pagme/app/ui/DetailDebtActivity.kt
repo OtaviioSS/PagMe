@@ -3,25 +3,28 @@ package com.pagme.app.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.pagme.app.MyApplication
 import com.pagme.app.R
-import com.pagme.app.data.AppDatabase
 import com.pagme.app.databinding.ActivityDetailDebtBinding
-import com.pagme.app.domain.model.Debt
-import com.pagme.app.extensions.MoneyTextWatcher
+import com.pagme.app.data.model.Card
+import com.pagme.app.data.model.Debt
 import com.pagme.app.extensions.formataParaMoedaBrasileira
-import com.pagme.app.repository.DebtRepository
+import com.pagme.app.data.repository.DebtRepositoryImplementation
+import com.pagme.app.presentation.viewmodel.DebtViewModel
 import com.pagme.app.util.DEBT_KEY_ID
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DetailDebtActivity : AppCompatActivity() {
 
-    private var debtId: Long = 0L
-    private var debt: Debt? = null
+    private lateinit var debtViewModel: DebtViewModel
+
+    private var debtId: String = ""
 
     private var totalPagas = 0
     private val binding by lazy {
@@ -29,52 +32,58 @@ class DetailDebtActivity : AppCompatActivity() {
     }
 
 
-    private val repository by lazy {
-        DebtRepository(
-            AppDatabase.instance(this).debtDao()
-
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val appComponent = (application as MyApplication).appComponent
+        appComponent.inject(this)
+        val viewModelFactory = appComponent.provideDebtViewModelFactory()
+        debtViewModel = ViewModelProvider(this, viewModelFactory)[DebtViewModel::class.java]
         tryLoadDebt()
         listeners()
+
+        if (intent.hasExtra("debtID")) {
+            val idDebt = intent.getStringExtra("debtID")
+            debtViewModel.getDebtById(idDebt.toString()).observe(this) { debt ->
+                if (debt != null) {
+                    Log.d("DadosDebto", "Debt: $debt")
+                    with(binding) {
+                        nameBuyerDetailDebtView.text = debt.nameBuyer.toString()
+                        paidInstallmentsDetailDebtView.text = debt.paidInstallments.toString()
+                        remainingPlotsDetailDebtView.text = (debt.installments - debt.paidInstallments).toString()
+                        valueInstallmentsDetailDebtView.text = debt.valueInstallments.toString()
+                        valueOfBuyDetailDebtView.text = debt.valueBuy.toString()
+                        unpaidDetailDebtView.text = (debt.valueInstallments * remainingPlotsDetailDebtView.text.toString().toInt()).toDouble().toString()
+
+
+                    }
+                } else {
+                    Log.d("DadosDebto", "Debt não encontrado")
+                }
+
+            }
+        }
+
     }
 
     private fun listeners() {
         binding.buttonPayDebtView.setOnClickListener {
-            if (binding.remainingPlotsDetailDebtView.text != "0"){
+            if (binding.remainingPlotsDetailDebtView.text != "0") {
                 val pagas = binding.paidInstallmentsDetailDebtView.text.toString().toInt()
                 totalPagas = pagas + 1
-                val debtAtualizado = updateDebt(debt, totalPagas)
                 lifecycleScope.launch {
-                    repository.update(debtAtualizado)
+                    Toast.makeText(this@DetailDebtActivity, "Pagou!", Toast.LENGTH_LONG).show()
+
+                    // Atualizar os valores exibidos nos TextViews
+                    with(binding) {
+                    }
                 }
-            }else{
-                Toast.makeText(this,"Todas as parcelas pagas",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Todas as parcelas pagas", Toast.LENGTH_LONG).show()
             }
-
         }
     }
 
-    private fun updateDebt(debt: Debt?, paidInstallments: Int): Debt {
-        return debtId.let { id ->
-            Debt(
-                idDebt = debt!!.idDebt,
-                nameCard = "",
-                nameBuyer = debt.nameBuyer,
-                valueBuy = debt.valueBuy,
-                installments = debt.installments,
-                paidInstallments = paidInstallments.toString().toInt(),
-                whatsapp = debt.whatsapp,
-                valueInstallments = debt.valueInstallments,
-                userId = debt.userId
-            )
-        }
-
-    }
 
     override fun onResume() {
         super.onResume()
@@ -83,44 +92,15 @@ class DetailDebtActivity : AppCompatActivity() {
 
     private fun getDebts() {
         lifecycleScope.launch {
-            repository.getToId(debtId).collect() { debtFound ->
-                debt = debtFound
-                debt?.let {
-                    fillFields(it)
-                } ?: finish()
 
-            }
 
         }
     }
-
-    /*
-    * 1 buscar os dados
-    * 2 pegar as  parcelas salvas
-    *
-    *
-    * */
 
     private fun tryLoadDebt() {
-        debtId = intent.getLongExtra(DEBT_KEY_ID, 0L)
+        debtId = intent.getStringExtra(DEBT_KEY_ID).toString()
     }
 
-    fun fillFields(chargedDebt: Debt) {
-        with(binding) {
-            nameBuyerDetailDebtView.text = chargedDebt.nameBuyer
-            paidInstallmentsDetailDebtView.text = chargedDebt.paidInstallments.toString()
-            remainingPlotsDetailDebtView.text =
-                (chargedDebt.installments - chargedDebt.paidInstallments).toString()
-            valueInstallmentsDetailDebtView.text =
-                chargedDebt.valueInstallments.toBigDecimal().formataParaMoedaBrasileira()
-            valueOfBuyDetailDebtView.text =
-                chargedDebt.valueBuy.toBigDecimal().formataParaMoedaBrasileira()
-            unpaidDetailDebtView.text = (binding.remainingPlotsDetailDebtView.text.toString()
-                .toInt() * chargedDebt.valueInstallments).toBigDecimal()
-                .formataParaMoedaBrasileira()
-
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detail_debt, menu)
@@ -130,19 +110,15 @@ class DetailDebtActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.editMenuDetailDebt -> {
-                startActivity(Intent(this, FormDebtActivity::class.java).apply {
-                    putExtra(DEBT_KEY_ID, debtId)
+                startActivity(Intent(this, EditFormDebtActivity::class.java).apply {
+                    putExtra("debtID", debtId)
 
                 })
 
             }
+
             R.id.deleteMenuDetailDebt -> {
-                debt?.let {
-                    lifecycleScope.launch {
-                        repository.deleteDebt(it)
-                        finish()
-                    }
-                }
+
 
             }
         }

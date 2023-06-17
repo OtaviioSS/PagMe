@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "84144039638b24cd7d3defca947062ce",
+    "identityHash": "9b5df726d91e1c0a822477a2400faf70",
     "entities": [
       {
         "tableName": "Debt",
@@ -71,50 +71,12 @@
         },
         "indices": [],
         "foreignKeys": []
-      },
-      {
-        "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `email` TEXT NOT NULL, `userName` TEXT, `userPassword` TEXT NOT NULL, PRIMARY KEY(`userId`))",
-        "fields": [
-          {
-            "fieldPath": "userId",
-            "columnName": "userId",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "email",
-            "columnName": "email",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "userName",
-            "columnName": "userName",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "userPassword",
-            "columnName": "userPassword",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "userId"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '84144039638b24cd7d3defca947062ce')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9b5df726d91e1c0a822477a2400faf70')"
     ]
   }
 }

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.ProfileUserActivity">
 
+    <TextView
+        android:id="@+id/textViewTitleProfileUserView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perfil"
+        android:textColor="#ffffff"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/textFieldNameProfileUserView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldNameProfileUserView"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -17,15 +28,16 @@
         app:layout_constraintBottom_toTopOf="@id/textFieldEmailProfileUserView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:textColorHint="@color/externalText"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleProfileUserView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameProfileUserView"
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/cardview_compat_inset_shadow"
-            android:inputType="textPersonName" />
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,80 +47,47 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/textFieldPasswordProfileUserView"
+        app:layout_constraintBottom_toTopOf="@id/buttonSaveProfileUserView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="@color/externalText"
         app:layout_constraintTop_toBottomOf="@id/textFieldNameProfileUserView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailProfileUserView"
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:layout_height="50dp"
+            android:inputType="textEmailAddress"
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldPasswordProfileUserView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toTopOf="@id/textViewAlterPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldEmailProfileUserView">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordProfileUserView"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="Senha"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewAlterPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
-        android:text="Alterar Senha"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/buttonSaveProfileUserView"
-        app:layout_constraintEnd_toEndOf="@id/textFieldPasswordProfileUserView"
-        app:layout_constraintStart_toStartOf="@id/textFieldPasswordProfileUserView"
-        app:layout_constraintTop_toBottomOf="@id/textFieldPasswordProfileUserView" />
 
     <Button
         android:id="@+id/buttonSaveProfileUserView"
-        android:layout_width="125dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:background="@drawable/button_green"
+        android:background="@drawable/button_primary_background"
         android:text="@string/save"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/innerText"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/textViewDeleteUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewAlterPassword" />
+        app:layout_constraintTop_toBottomOf="@id/textFieldEmailProfileUserView" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <Button
         android:id="@+id/textViewDeleteUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/button_cancel_background"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:text="Excluir Conta"
-        android:textColor="@color/statusRed"
+        android:textColor="@color/externalText"
         android:textStyle="bold"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonSaveProfileUserView"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSaveProfileUserView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

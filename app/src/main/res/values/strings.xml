@@ -3,7 +3,7 @@
     <string name="close">close</string>
     <string name="app_name">Pagme</string>
     <string name="newCard">Novo Cartão</string>
-        <string name="cardName">Nome do Cartão</string>
+    <string name="cardName">Nome do Cartão</string>
     <string name="closure">Fechamento</string>
     <string name="dueDate">Vencimento:</string>
     <string name="save">SALVAR</string>
@@ -48,5 +48,15 @@
     <string name="pagou">Pagou</string>
     <string name="inscrever_se">Inscrever-se</string>
     <string name="nome_completo">Nome Completo</string>
-    <string name="cadastrar_se">Cadastrar-se</string>
+    <string name="facebook_app_id">1154288735274806</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+    <string name="cartao">Selecione um cartão</string>
+    <string name="bot_o_de_adicionar_novo_car_o">Botão de adicionar novo carão</string>
+    <string name="contato">Contato</string>
+    <string name="criar_nova_divida">Criar nova divida</string>
+    <string name="reais">R$</string>
 </resources>

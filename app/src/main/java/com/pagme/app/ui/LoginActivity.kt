@@ -1,19 +1,18 @@
 package com.pagme.app.ui
 
+import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.preferencesOf
-import androidx.lifecycle.lifecycleScope
-import com.pagme.app.R
-import com.pagme.app.data.AppDatabase
-import com.pagme.app.databinding.ActivityListDebtBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.pagme.app.ForgetPasswordActivity
 import com.pagme.app.databinding.ActivityLoginBinding
-import com.pagme.app.preferences.dataStore
-import com.pagme.app.preferences.userLoggedPreferences
-import kotlinx.coroutines.launch
+import java.util.*
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -21,39 +20,60 @@ class LoginActivity : AppCompatActivity() {
         ActivityLoginBinding.inflate(layoutInflater)
     }
 
-    private val dao by lazy {
-        AppDatabase.instance(this).userDao()
-    }
+
+
+    private lateinit var auth: FirebaseAuth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         listeners()
+        auth = Firebase.auth
 
     }
 
     private fun listeners() {
         binding.buttonSaveLoginView.setOnClickListener {
-            val email = binding.emailLoginView.text.toString()
-            val password = binding.passwordLoginView.text.toString()
-            authenticate(email, password)
+            authenticate(binding.emailLoginView.text.toString(), binding.passwordLoginView.text.toString())
         }
 
         binding.textRegisterLoginView.setOnClickListener {
-            startActivity(Intent(this,FormUserActivity::class.java))
+            startActivity(Intent(this, FormUserActivity::class.java))
+        }
+
+        binding.textViewForgetPasswordLoginView.setOnClickListener {
+            startActivity(Intent(this,ForgetPasswordActivity::class.java))
         }
     }
 
     private fun authenticate(email: String, password: String) {
-        lifecycleScope.launch {
-            dao.authenticateUser(email, password)?.let { user ->
-                dataStore.edit { preferences ->
-                    preferences[userLoggedPreferences]= user.userId
+        try{
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this@LoginActivity) { task ->
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "signInWithEmail:success")
+                        val user = auth.currentUser
+                        Log.i("authenticate:", "success" )
+                        startActivity(Intent(this,ListDebtActivity::class.java))
+                        finish()
 
+                    } else {
+                        Log.i("authenticate:", "error "+ Firebase.auth.currentUser!!.uid.toString() )
+                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Toast.makeText(this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                    }
                 }
-                startActivity(Intent(this@LoginActivity,ListDebtActivity::class.java))
-
-            }?: Toast.makeText(this@LoginActivity,"Erro ao autenticar",Toast.LENGTH_LONG).show()
+        }catch (e:Exception){
+            Toast.makeText(this,"Erro ao tentar logar",Toast.LENGTH_LONG).show()
         }
+
+
     }
+
+
+
+
 }

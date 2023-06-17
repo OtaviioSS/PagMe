@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="innerText">#64FF6C</color>
-    <color name="externalText">#000000</color>
+    <color name="innerText">#323432</color>
+    <color name="externalText">#E5E6E5</color>
     <color name="sButtons">#64FF6C</color>
     <color name="colorAccent">#292929</color>
 
 
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorPrimary">#64FF6C</color>
-    <color name="colorPrimaryVariant">#64FF6C</color>
+    <color name="colorPrimaryDark">#10A818</color>
+    <color name="colorPrimary">#60F068</color>
+    <color name="colorPrimaryVariant">#BEF9C1</color>
     <color name="colorOnPrimary">#000000</color>
 
 
@@ -18,7 +18,7 @@
     <color name="readButton">#FF575F</color>
     <color name="backgroundStacked">#00ff00</color>
     <color name="backgroundSplit">#0000ff</color>
-    <color name="statusRed">#99ff0000</color>
+    <color name="statusRed">#FF0D0D</color>
 
     <color name="colorSecondary">#43a047</color>
     <color name="colorSecondaryVariant">#76d275</color>

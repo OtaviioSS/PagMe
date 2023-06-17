@@ -10,7 +10,6 @@
         android:id="@+id/imageLogoLoginView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:padding="0dp"
         android:src="@drawable/pagmelogo"
         app:layout_constraintBottom_toTopOf="@id/textFieldEmailLoginView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/email"
+        android:textColorHint="@color/externalText"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/textFieldPasswordLoginView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,9 @@
             android:id="@+id/emailLoginView"
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:layout_height="50dp"
+            android:inputType="textEmailAddress"
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,8 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/senha"
+        android:textColorHint="@color/externalText"
         android:textStyle="bold"
         app:endIconMode="password_toggle"
+        app:endIconTint="@color/externalText"
         app:layout_constraintBottom_toTopOf="@id/buttonSaveLoginView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,38 +58,46 @@
             android:id="@+id/passwordLoginView"
             style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:layout_height="50dp"
+            android:inputType="textPassword"
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewForgetPasswordLoginView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/externalText"
+        android:text="Esqueci minha senha"
+        app:layout_constraintEnd_toEndOf="@id/textFieldPasswordLoginView"
+        app:layout_constraintTop_toBottomOf="@id/textFieldPasswordLoginView" />
 
     <Button
         android:id="@+id/buttonSaveLoginView"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="48dp"
-        android:background="@drawable/button_green"
+        android:background="@drawable/button_primary_background"
         android:text="@string/entrar"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/innerText"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textRegisterLoginView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textFieldPasswordLoginView" />
 
-    <TextView
+    <Button
         android:id="@+id/textRegisterLoginView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:text="@string/cadastrar_se"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button_primary_background"
+        android:backgroundTint="#10A818"
+        android:text="@string/criar_conta"
+        android:textColor="@color/externalText"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:flow_verticalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonSaveLoginView" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSaveLoginView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

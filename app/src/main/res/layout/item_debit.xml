@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:layout_margin="16dp"
     android:background="@drawable/background_card_debt"
-    android:padding="20dp"
-    android:elevation="10dp">
+    android:elevation="16dp"
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/nameBuyerItemDebitView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nome_do_devedor"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="normal"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toTopOf="@+id/textViewPagas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,22 +26,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pagas"
-        android:textSize="14sp"
+        android:textSize="12sp"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toBottomOf="@id/paidInstallmentsItemDebitView"
-        app:layout_constraintEnd_toStartOf="@id/paidInstallmentsItemDebitView"
         app:layout_constraintStart_toStartOf="@id/nameBuyerItemDebitView"
-        app:layout_constraintTop_toTopOf="@+id/paidInstallmentsItemDebitView"
-         />
+        app:layout_constraintTop_toTopOf="@+id/paidInstallmentsItemDebitView" />
 
     <TextView
         android:id="@+id/paidInstallmentsItemDebitView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="18sp"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="8dp"
         android:textStyle="bold"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toTopOf="@id/valueInstallmentsItemDebit"
-        app:layout_constraintEnd_toStartOf="@id/textViewRestante"
         app:layout_constraintStart_toEndOf="@+id/textViewPagas"
         app:layout_constraintTop_toBottomOf="@id/nameBuyerItemDebitView" />
 
@@ -49,10 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/restantes"
-        android:textSize="14sp"
+        android:textSize="12sp"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toBottomOf="@+id/remainingPlotsItemDebt"
         app:layout_constraintEnd_toStartOf="@+id/remainingPlotsItemDebt"
-        app:layout_constraintStart_toEndOf="@+id/paidInstallmentsItemDebitView"
         app:layout_constraintTop_toTopOf="@+id/remainingPlotsItemDebt" />
 
     <TextView
@@ -60,10 +61,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toTopOf="@id/valueInstallmentsItemDebit"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/externalText"
         app:layout_constraintStart_toEndOf="@id/remainingPlotsItemDebt"
         app:layout_constraintTop_toBottomOf="@id/nameBuyerItemDebitView" />
 
@@ -72,7 +75,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valueInstallments"
-        android:textSize="14sp"
+        android:textSize="12sp"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toBottomOf="@+id/valueInstallmentsItemDebit"
         app:layout_constraintEnd_toStartOf="@+id/valueInstallmentsItemDebit"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,8 +87,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
+        android:layout_marginHorizontal="8dp"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toTopOf="@+id/valueOfBuyItemDebit"
         app:layout_constraintStart_toEndOf="@+id/textViewValorParcela"
         app:layout_constraintTop_toBottomOf="@+id/paidInstallmentsItemDebitView" />
@@ -94,7 +100,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valor_da_compra"
-        android:textSize="14sp"
+        android:textSize="12sp"
+        android:textColor="@color/externalText"
         app:layout_constraintBottom_toBottomOf="@+id/valueOfBuyItemDebit"
         app:layout_constraintEnd_toStartOf="@id/valueOfBuyItemDebit"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,8 +112,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
+        android:textColor="@color/externalText"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toTopOf="@id/unpaidItemDebit"
         app:layout_constraintStart_toEndOf="@+id/textViewValorCompra"
         app:layout_constraintTop_toBottomOf="@id/valueInstallmentsItemDebit" />
@@ -116,7 +125,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_pagar"
-        android:textSize="14sp"
+        android:textColor="@color/externalText"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/unpaidItemDebit"
         app:layout_constraintEnd_toStartOf="@+id/unpaidItemDebit"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,10 +138,12 @@
         android:layout_height="wrap_content"
         android:text="1000"
         android:textSize="18sp"
+        android:textColor="@color/externalText"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/valueOfBuyItemDebit"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewPagar" />
+        app:layout_constraintStart_toEndOf="@+id/textViewPagar"
+        app:layout_constraintTop_toBottomOf="@id/valueOfBuyItemDebit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

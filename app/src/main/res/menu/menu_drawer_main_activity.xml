@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 <group>
     <item
+        android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@drawable/baseline_search_24"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/myCardsMenuDrawaerMain"
         android:icon="@drawable/ic_credit_card"
         android:title="@string/meus_cart_es"
@@ -17,6 +23,8 @@
         android:icon="@drawable/ic_exit"
         android:title="@string/sair"
         app:showAsAction="ifRoom" />
+
+
 
 </group>
 </menu>
