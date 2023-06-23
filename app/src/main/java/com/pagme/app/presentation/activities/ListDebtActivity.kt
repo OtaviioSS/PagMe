@@ -1,4 +1,4 @@
-package com.pagme.app.ui
+package com.pagme.app.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -75,10 +75,7 @@ class ListDebtActivity : UserBaseActivity(), DebtAdapter.OnItemClickListener {
 
         if (auth.currentUser == null) {
             startActivity(
-                Intent(
-                    this,
-                    LoginActivity::class.java
-                ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
             finish()
         } else {
@@ -145,6 +142,12 @@ class ListDebtActivity : UserBaseActivity(), DebtAdapter.OnItemClickListener {
                 }
 
 
+            }
+
+            R.id.myCardsMenuDrawaerMain -> {
+                startActivity(
+                    Intent(this, ListCardActivity::class.java)
+                )
             }
 
         }

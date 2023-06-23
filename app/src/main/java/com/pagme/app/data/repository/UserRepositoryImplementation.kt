@@ -33,8 +33,16 @@ class UserRepositoryImplementation(private val userDataSource: UserDataSource) :
 
     override suspend fun selectById(): User? {
         try {
-            return  userDataSource.getUserById()
+            return userDataSource.getUserById()
 
+        } catch (e: Exception) {
+            throw Exception("Falha ao criar o cartão: ${e.message}")
+        }
+    }
+
+    override suspend fun userVerified(): Boolean {
+        try {
+            return userDataSource.userVerified()
         } catch (e: Exception) {
             throw Exception("Falha ao criar o cartão: ${e.message}")
         }

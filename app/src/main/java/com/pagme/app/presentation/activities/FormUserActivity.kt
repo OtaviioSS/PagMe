@@ -1,11 +1,10 @@
-package com.pagme.app.ui
+package com.pagme.app.presentation.activities
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -62,21 +61,21 @@ class FormUserActivity : AppCompatActivity() {
 
             if (email.isEmpty() || userName.isEmpty() || password.isEmpty()) {
                 Handler(Looper.getMainLooper()).postDelayed({
-                    Toast.makeText(this, "Todos os campos são obrigatorios!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Todos os campos são obrigatorios!", Toast.LENGTH_LONG)
+                        .show()
                     binding.progressBar.visibility = View.GONE
                     overlayView.visibility = View.GONE
                 }, 1500)
 
 
-            }
-            else if (checkBoxTermoUso.isChecked && checkBoxPolTicaPrivacidade.isChecked) {
+            } else if (checkBoxTermoUso.isChecked && checkBoxPolTicaPrivacidade.isChecked) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     val user = User(
                         email = binding.emailNewUserView.text.toString().trim(),
                         userName = binding.nameNewUserView.text.toString().trim(),
                         password = binding.passwordNewUserView.text.toString().trim(),
                         termsUse = true,
-                        privacyPolicy =  true
+                        privacyPolicy = true
 
                     )
                     userViewModel.create(user) { success ->
@@ -95,6 +94,7 @@ class FormUserActivity : AppCompatActivity() {
                                     .show()
                                 binding.progressBar.visibility = View.GONE
                                 overlayView.visibility = View.GONE
+                                startActivity(Intent(this, VerifiedActivity::class.java))
                                 finish()
                             }
 
@@ -102,9 +102,12 @@ class FormUserActivity : AppCompatActivity() {
 
                     }
                 }, 3000)
-            }
-            else {
-                Toast.makeText(this, "Aceite nossos termos de uso e politica de privacidade!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Aceite nossos termos de uso e politica de privacidade!",
+                    Toast.LENGTH_LONG
+                ).show()
                 progressBar.visibility = View.GONE
                 overlayView.visibility = View.GONE
             }

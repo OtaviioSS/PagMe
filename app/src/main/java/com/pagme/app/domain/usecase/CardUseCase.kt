@@ -27,7 +27,7 @@ class CardUseCase(private val cardRepositoryInterface: CardRepositoryInterface) 
         return cardRepositoryInterface.selectById(id)
     }
 
-    suspend fun getAllCards(): List<Card> {
+    suspend fun getAllCards(): MutableList<Card> {
         return cardRepositoryInterface.selectAll()
     }
 }

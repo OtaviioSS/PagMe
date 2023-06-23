@@ -1,4 +1,4 @@
-package com.pagme.app
+package com.pagme.app.presentation.activities
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -12,8 +12,6 @@ import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.databinding.ActivityForgetPasswordBinding
-import com.pagme.app.ui.LoginActivity
-import com.pagme.app.ui.UserBaseActivity
 
 
 class ForgetPasswordActivity : AppCompatActivity() {

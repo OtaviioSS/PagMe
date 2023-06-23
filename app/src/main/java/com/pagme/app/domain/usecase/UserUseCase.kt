@@ -37,4 +37,8 @@ class UserUseCase(private val userRepositoryInterface: UserRepositoryInterface) 
         return userRepositoryInterface.selectById()
     }
 
+    suspend fun userVerified(): Boolean{
+        return userRepositoryInterface.userVerified()
+    }
+
 }

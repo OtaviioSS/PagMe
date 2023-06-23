@@ -1,4 +1,4 @@
-package com.pagme.app.ui
+package com.pagme.app.presentation.activities
 
 import PermissionHandler
 import android.Manifest
@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.R
 import com.pagme.app.MyApplication
-import com.pagme.app.data.model.Contact
 import com.pagme.app.data.model.Debt
 import com.pagme.app.databinding.ActivityFormDebtBinding
 import com.pagme.app.extensions.MoneyTextWatcher
@@ -47,11 +46,7 @@ class FormDebtActivity : UserBaseActivity() {
         setupViews()
         setupListeners()
         setupCardSpinner()
-        permissionHandler = PermissionHandler(
-            this,
-            arrayOf(Manifest.permission.READ_CONTACTS),
-            CONTACTS_PERMISSION_REQUEST_CODE
-        ) { granted ->
+        permissionHandler = PermissionHandler(this, arrayOf(Manifest.permission.READ_CONTACTS), CONTACTS_PERMISSION_REQUEST_CODE) { granted ->
             if (granted) {
                 setupContactSpinner()
             } else {
@@ -62,18 +57,7 @@ class FormDebtActivity : UserBaseActivity() {
 
     }
 
-    private fun setupViewModel() {
-        val appComponent = (application as MyApplication).appComponent
-        appComponent.inject(this)
-        val debtViewModelFactory = appComponent.provideDebtViewModelFactory()
-        val cardtViewModelFactory = appComponent.provideCardViewModelFactory()
-        val contactViewModelFactory = appComponent.provideContactViewModelFactory()
-        debtViewModel = ViewModelProvider(this, debtViewModelFactory).get(DebtViewModel::class.java)
-        cardViewModel =
-            ViewModelProvider(this, cardtViewModelFactory).get(CardViewModel::class.java)
-        contactViewModel =
-            ViewModelProvider(this, contactViewModelFactory).get(ContactViewModel::class.java)
-    }
+
 
     override fun onStart() {
         super.onStart()
@@ -91,6 +75,18 @@ class FormDebtActivity : UserBaseActivity() {
         permissionHandler.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    private fun setupViewModel() {
+        val appComponent = (application as MyApplication).appComponent
+        appComponent.inject(this)
+        val debtViewModelFactory = appComponent.provideDebtViewModelFactory()
+        val cardtViewModelFactory = appComponent.provideCardViewModelFactory()
+        val contactViewModelFactory = appComponent.provideContactViewModelFactory()
+        debtViewModel = ViewModelProvider(this, debtViewModelFactory).get(DebtViewModel::class.java)
+        cardViewModel =
+            ViewModelProvider(this, cardtViewModelFactory).get(CardViewModel::class.java)
+        contactViewModel =
+            ViewModelProvider(this, contactViewModelFactory).get(ContactViewModel::class.java)
+    }
     private fun setupViews() {
         binding.valueBuyNewDebtView.addTextChangedListener(MoneyTextWatcher(binding.valueBuyNewDebtView))
         binding.valueBuyNewDebtView.inputType =

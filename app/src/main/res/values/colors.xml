@@ -15,7 +15,7 @@
 
     <color name="colorNone">#00000000</color>
 
-    <color name="readButton">#FF575F</color>
+    <color name="redButton">#FF575F</color>
     <color name="backgroundStacked">#00ff00</color>
     <color name="backgroundSplit">#0000ff</color>
     <color name="statusRed">#FF0D0D</color>

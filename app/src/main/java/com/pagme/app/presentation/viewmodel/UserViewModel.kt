@@ -48,4 +48,12 @@ class UserViewModel(private val useCase: UserUseCase) : ViewModel() {
         }
         return userLiveData
     }
+
+    fun userVerified(): Boolean {
+        var verified = false
+        viewModelScope.launch {
+            verified = useCase.userVerified()
+        }
+        return verified
+    }
 }

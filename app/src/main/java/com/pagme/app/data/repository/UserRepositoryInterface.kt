@@ -12,5 +12,8 @@ interface UserRepositoryInterface {
     suspend fun delete()
 
     suspend fun selectById(): User?
+    suspend fun userVerified(): Boolean
+
+
 
 }

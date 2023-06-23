@@ -1,5 +1,6 @@
 package com.pagme.app.data.datasource
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,7 +20,7 @@ class CardDataSource {
                 .document(card.idCard)
                 .set(card)
                 .await()
-        }catch (e:Exception){
+        } catch (e: Exception) {
             throw Exception("Falha ao criar o cartão: ${e.message}")
         }
     }
@@ -47,10 +48,16 @@ class CardDataSource {
         return snapshot.toObject(Card::class.java)
     }
 
-    suspend fun getAll(): List<Card> {
-        val snapshot =
-            db.collection("users").document(auth.currentUser!!.uid).collection("cards").get()
-                .await()
-        return snapshot.toObjects(Card::class.java)
+    suspend fun getAll(): MutableList<Card> {
+        try {
+            val snapshot =
+                db.collection("users").document(auth.currentUser!!.uid).collection("cards").get()
+                    .await()
+            return snapshot.toObjects(Card::class.java)
+        } catch (e: Exception) {
+            Log.i("CardDataSource:",e.message.toString())
+            throw Exception("Falha ao buscar o cartões: ${e.message}")
+        }
+
     }
 }

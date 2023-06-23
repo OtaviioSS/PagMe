@@ -2,35 +2,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipeDebts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.activities.ListDebtActivity">
+    tools:context=".presentation.activities.ListCardActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerDebits"
+
+        android:id="@+id/recyclerCards"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_debit" />
-
+        tools:listitem="@layout/item_card" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/activityListDebtFab"
+        android:id="@+id/fabListCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
+        android:contentDescription="@string/criar_nova_divida"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_action_add"
-        android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="@string/criar_nova_divida" />
+        app:srcCompat="@drawable/ic_action_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-

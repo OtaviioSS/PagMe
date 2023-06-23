@@ -8,5 +8,5 @@ interface CardRepositoryInterface {
     suspend fun update(card: Card)
     suspend fun delete(card: Card)
     suspend fun selectById(id: String): Card?
-    suspend fun selectAll(): List<Card>
+    suspend fun selectAll(): MutableList<Card>
 }

@@ -5,14 +5,14 @@
     <string name="newCard">Novo Cartão</string>
     <string name="cardName">Nome do Cartão</string>
     <string name="closure">Fechamento</string>
-    <string name="dueDate">Vencimento:</string>
+    <string name="dueDate">Vencimento</string>
     <string name="save">SALVAR</string>
     <string name="newDebt">Nova Divida</string>
     <string name="whatsapp">Whatsapp</string>
     <string name="card">Cartão</string>
     <string name="TotalPurchaseAmount">Valor total da compra</string>
     <string name="Installments">Parcelas</string>
-    <string name="valueInstallments">Valor Parcelas: </string>
+    <string name="valueInstallments">VALOR DA PARCELA</string>
     <string name="buyerName">Nome do Comprador</string>
     <string name="edit_divide">Editar Divida</string>
     <string name="inserted_card">Cartão Inserido</string>
@@ -39,10 +39,10 @@
     <string name="enviar">Enviar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="valor_da_compra">Valor da Compra: </string>
-    <string name="a_pagar">A pagar: </string>
-    <string name="restantes">Restantes: </string>
-    <string name="pagas">Pagas: </string>
+    <string name="valor_da_compra">VALOR DA COMPRA</string>
+    <string name="a_pagar">VALOR A PAGAR</string>
+    <string name="restantes">PARCELAS RESTANTES</string>
+    <string name="pagas">PARCELAS PAGAS</string>
     <string name="nome_do_devedor">Nome do devedor</string>
     <string name="xx">xx</string>
     <string name="pagou">Pagou</string>
@@ -59,4 +59,8 @@
     <string name="contato">Contato</string>
     <string name="criar_nova_divida">Criar nova divida</string>
     <string name="reais">R$</string>
+    <string name="email_n_o_verificado_verifique_a_sua_caixa_de_entrada_e_spam">Email não verificado verifique a sua caixa de entrada e spam!</string>
+    <string name="ilustra_o_de_verifica_o_de_email">Ilustração de verificação de email</string>
+    <string name="number">NUMBER</string>
+    <string name="parcelas">PARCELAS</string>
 </resources>

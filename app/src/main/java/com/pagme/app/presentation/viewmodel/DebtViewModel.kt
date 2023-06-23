@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pagme.app.data.model.Debt
 import com.pagme.app.domain.usecase.DebtUseCase
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class DebtViewModel(private val debtUseCase: DebtUseCase) : ViewModel() {
@@ -38,14 +39,14 @@ class DebtViewModel(private val debtUseCase: DebtUseCase) : ViewModel() {
         }
     }
 
-    fun delete(debt: Debt) {
+    fun delete(debtID: String) {
         viewModelScope.launch {
-            debtUseCase.deleteDebt(debt)
+            debtUseCase.deleteDebt(debtID)
         }
     }
 
-    fun getDebtById(id: String): LiveData<Debt?> {
-        val debtLiveData = MutableLiveData<Debt?>()
+    fun getDebtById(id: String): LiveData<Flow<Debt?>> {
+        val debtLiveData = MutableLiveData<Flow<Debt?>>()
         viewModelScope.launch {
             val debt = debtUseCase.getDebtById(id)
             debtLiveData.postValue(debt)
@@ -61,5 +62,12 @@ class DebtViewModel(private val debtUseCase: DebtUseCase) : ViewModel() {
         }
     }
 
+    fun pagouParcela(debt: Debt, callback: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            debtUseCase.pagouParcela(debt) { success ->
+                callback(success)
+            }
+        }
+    }
 
 }

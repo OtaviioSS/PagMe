@@ -28,7 +28,7 @@ class CardRepositoryImplementation(private val cardDataSource: CardDataSource) :
         return cardDataSource.getCardById(id)
     }
 
-    override suspend fun selectAll(): List<Card> {
+    override suspend fun selectAll(): MutableList<Card> {
         return cardDataSource.getAll()
     }
 

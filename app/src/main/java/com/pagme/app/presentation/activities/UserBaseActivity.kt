@@ -1,4 +1,4 @@
-package com.pagme.app.ui
+package com.pagme.app.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle

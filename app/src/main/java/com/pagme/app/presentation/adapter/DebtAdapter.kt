@@ -7,12 +7,7 @@ import com.pagme.app.data.model.Debt
 import com.pagme.app.databinding.ItemDebitBinding
 import com.pagme.app.extensions.formataParaMoedaBrasileira
 
-class DebtAdapter(
-    private var debtList: List<Debt>,
-    private var filteredDebtList: List<Debt>
-
-) :
-    RecyclerView.Adapter<DebtAdapter.DebtViewHolder>() {
+class DebtAdapter(private var debtList: List<Debt>, private var filteredDebtList: List<Debt>) : RecyclerView.Adapter<DebtAdapter.DebtViewHolder>() {
 
     fun filterList(query: String) {
         filteredDebtList = debtList.filter { debt ->

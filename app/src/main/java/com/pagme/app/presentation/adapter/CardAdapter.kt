@@ -1,22 +1,16 @@
 package com.pagme.app.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.data.model.Card
 import com.pagme.app.databinding.ItemCardBinding
 import com.pagme.app.databinding.ItemDebitBinding
+import java.util.Collections
 
 
-class CardAdapter(
-    private val cardList: List<Card>,
-    private val onItemClickListener: CardAdapter.OnItemClickListener
-) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
-    var cards: List<Card> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class CardAdapter(private var cardList: MutableList<Card>) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -36,10 +30,12 @@ class CardAdapter(
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val card = cardList[position]
         holder.bind(card)
-        holder.itemView.setOnClickListener {
-            onItemClickListener.onItemClick(card)
-        }
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setCard(cards: MutableList<Card>) {
+        this.cardList = cards
+        notifyDataSetChanged()
     }
 
 
@@ -55,6 +51,20 @@ class CardAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(card: Card)
+    }
+
+    fun onItemMove(fromPosition: Int, toPosition: Int) {
+        Collections.swap(cardList, fromPosition, toPosition)
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    fun deleteItem(position: Int) {
+        cardList.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun getCardAtPosition(position: Int): Card {
+        return cardList[position]
     }
 
 }

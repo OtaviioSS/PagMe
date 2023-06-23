@@ -1,6 +1,7 @@
 package com.pagme.app.presentation.viewmodel
 
 import android.app.Activity
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,8 +13,8 @@ import io.grpc.Context
 import kotlinx.coroutines.launch
 
 class CardViewModel(private val useCase: CardUseCase) : ViewModel() {
-    private val _cards = MutableLiveData<List<Card>>()
-    val cards: LiveData<List<Card>> = _cards
+    private val _cards = MutableLiveData<MutableList<Card>>()
+    val cards: LiveData<MutableList<Card>> = _cards
 
     fun createCard(card: Card, callback: (Boolean) -> Unit) {
         viewModelScope.launch {
@@ -48,6 +49,7 @@ class CardViewModel(private val useCase: CardUseCase) : ViewModel() {
     fun getAllCards() {
         viewModelScope.launch {
             _cards.value = useCase.getAllCards()
+            Log.i("CardViewModel:", _cards.value.toString())
         }
     }
 

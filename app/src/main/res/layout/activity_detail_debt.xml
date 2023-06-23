@@ -4,139 +4,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DetailDebtActivity">
-
+    tools:context=".presentation.activities.DetailDebtActivity">
 
     <TextView
         android:id="@+id/nameBuyerDetailDebtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:text="@string/nome_do_devedor"
-        android:textSize="24sp"
-        android:textStyle="normal"
+        android:textAlignment="center"
+        android:textColor="@color/externalText"
+        android:textSize="26sp"
+        android:layout_margin="8dp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/textViewParcelas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textViewParcelas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parcelas"
+        android:textColor="@color/externalText"
+        android:textSize="14sp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPagas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameBuyerDetailDebtView" />
 
     <TextView
+        android:id="@+id/installmentsDetailDebtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewParcelas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewParcelas" />
+
+    <TextView
+        android:id="@+id/textViewPagas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pagas"
+        android:textColor="@color/externalText"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/paidInstallmentsDetailDebtView"
-        app:layout_constraintEnd_toEndOf="@id/paidInstallmentsDetailDebtView"
-        app:layout_constraintStart_toStartOf="@id/paidInstallmentsDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@+id/nameBuyerDetailDebtView"
-        tools:ignore="SmallSp" />
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRestante"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewParcelas" />
 
     <TextView
         android:id="@+id/paidInstallmentsDetailDebtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/number"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
         android:layout_margin="8dp"
-        android:text="@string/xx"
-        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/valueInstallmentsDetailDebtView"
-        app:layout_constraintEnd_toStartOf="@id/remainingPlotsDetailDebtView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameBuyerDetailDebtView" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPagas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewPagas" />
 
     <TextView
+        android:id="@+id/textViewRestante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/restantes"
+        android:textColor="@color/externalText"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/remainingPlotsDetailDebtView"
-        app:layout_constraintEnd_toEndOf="@id/remainingPlotsDetailDebtView"
-        app:layout_constraintStart_toStartOf="@id/remainingPlotsDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@id/nameBuyerDetailDebtView" />
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewValorParcela"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPagas" />
 
     <TextView
         android:id="@+id/remainingPlotsDetailDebtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/number"
+        android:textColor="@color/redButton"
+        android:textSize="16sp"
         android:layout_margin="8dp"
-        android:text="@string/xx"
-        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/valueOfBuyDetailDebtView"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewRestante"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/paidInstallmentsDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@id/nameBuyerDetailDebtView" />
+        app:layout_constraintTop_toTopOf="@+id/textViewRestante" />
 
     <TextView
+        android:id="@+id/textViewValorParcela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valueInstallments"
+        android:textColor="@color/externalText"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/valueInstallmentsDetailDebtView"
-        app:layout_constraintEnd_toEndOf="@id/valueInstallmentsDetailDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueInstallmentsDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@id/paidInstallmentsDetailDebtView" />
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@id/textViewValorCompra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewRestante" />
 
     <TextView
         android:id="@+id/valueInstallmentsDetailDebtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/number"
+        android:textColor="@color/externalText"
+        android:textSize="16sp"
         android:layout_margin="8dp"
-        android:text="@string/xx"
-        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/unpaidDetailDebtView"
-        app:layout_constraintEnd_toStartOf="@id/valueOfBuyDetailDebtView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/paidInstallmentsDetailDebtView"
-
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewValorParcela"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewValorParcela" />
 
     <TextView
+        android:id="@+id/textViewValorCompra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valor_da_compra"
+        android:textColor="@color/externalText"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/valueOfBuyDetailDebtView"
-        app:layout_constraintEnd_toEndOf="@id/valueOfBuyDetailDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueOfBuyDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@id/remainingPlotsDetailDebtView" />
+        android:layout_marginHorizontal="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPagar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValorParcela" />
 
     <TextView
         android:id="@+id/valueOfBuyDetailDebtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/xx"
-        android:textSize="24sp"
+        android:text="@string/number"
+        android:textColor="@color/externalText"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/unpaidDetailDebtView"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewValorCompra"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/valueInstallmentsDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@id/remainingPlotsDetailDebtView" />
+        app:layout_constraintTop_toTopOf="@+id/textViewValorCompra" />
 
     <TextView
+        android:id="@+id/textViewPagar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
         android:text="@string/a_pagar"
+        android:textColor="@color/externalText"
         android:textSize="14sp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toTopOf="@id/unpaidDetailDebtView"
-        app:layout_constraintEnd_toEndOf="@id/unpaidDetailDebtView"
-        app:layout_constraintStart_toStartOf="@id/unpaidDetailDebtView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValorCompra" />
 
     <TextView
         android:id="@+id/unpaidDetailDebtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/xx"
-        android:textSize="24sp"
+        android:text="@string/number"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/valueOfBuyDetailDebtView"
-        app:layout_constraintStart_toStartOf="@id/valueInstallmentsDetailDebtView"
-        app:layout_constraintTop_toBottomOf="@id/valueOfBuyDetailDebtView" />
+        android:layout_marginHorizontal="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewPagar" />
 
     <Button
-        android:id="@+id/buttonPayDebtView"
+        android:id="@+id/buttonPayDetailDebtView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/button_primary_background"

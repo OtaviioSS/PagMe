@@ -3,13 +3,15 @@ package com.pagme.app.data.repository
 import android.content.Context
 import com.pagme.app.data.model.Contact
 import com.pagme.app.data.model.Debt
+import kotlinx.coroutines.flow.Flow
 
 interface DebtRepositoryInterface {
 
     suspend fun insertDebt(debt: Debt)
 
     suspend fun updateDebt(debt: Debt)
-    suspend fun deleteDebt(debt: Debt)
-    suspend fun selectDebtById(id: String): Debt?
+    suspend fun pagouParcela(debt: Debt)
+    suspend fun deleteDebt(debtId:String)
+    suspend fun selectDebtById(id: String): Flow<Debt?>
     suspend fun selectAllDebts(): List<Debt>
 }

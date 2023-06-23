@@ -1,4 +1,4 @@
-package com.pagme.app.ui
+package com.pagme.app.presentation.activities
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,12 +7,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.pagme.app.MyApplication
 import com.pagme.app.data.model.User
 import com.pagme.app.databinding.ActivityProfileUserBinding
 import com.pagme.app.presentation.viewmodel.UserViewModel
-import kotlinx.coroutines.launch
 
 class ProfileUserActivity : UserBaseActivity() {
 
@@ -42,7 +40,9 @@ class ProfileUserActivity : UserBaseActivity() {
 
         }
 
-
+        if (!userViewModel.userVerified()) {
+            binding.emailVerifiedMessage.visibility = View.VISIBLE
+        }
     }
 
     private fun listeners() {
@@ -81,16 +81,20 @@ class ProfileUserActivity : UserBaseActivity() {
             .setMessage("Tem certeza que deseja excluir a contas? Não será possivel recupera-lá e todos os seus dados serão removidos")
             .setTitle("Excluir Conta")
             .setPositiveButton("Sim", DialogInterface.OnClickListener { dialog, which ->
-                userViewModel.delete{ success ->
+                userViewModel.delete { success ->
                     Toast.makeText(this@ProfileUserActivity, "Conta removida", Toast.LENGTH_LONG)
                         .show()
-                    startActivity(Intent(this, LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(
+                        Intent(
+                            this,
+                            LoginActivity::class.java
+                        ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     )
                     finish()
                 }
 
             })
-            .setNegativeButton("Não",DialogInterface.OnClickListener{dialog, id ->
+            .setNegativeButton("Não", DialogInterface.OnClickListener { dialog, id ->
                 dialog.cancel()
             })
             .create()

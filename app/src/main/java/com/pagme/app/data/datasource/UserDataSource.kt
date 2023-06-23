@@ -16,6 +16,10 @@ class UserDataSource {
         try {
             val authResult = auth.createUserWithEmailAndPassword(user.email, user.password).await()
             user.userId = authResult.user!!.uid
+
+            // Enviar e-mail de verificação
+            authResult.user?.sendEmailVerification()?.await()
+
             if (authResult != null) {
                 user.password = ""
                 db.collection("users").document(auth.currentUser!!.uid).collection("dataUser")
@@ -61,7 +65,10 @@ class UserDataSource {
                                 }
                             }
                     } else {
-                        Log.i("UserDataSource remove:","Falha ao remover dados do usuario: ${dbTask}")
+                        Log.i(
+                            "UserDataSource remove:",
+                            "Falha ao remover dados do usuario: ${dbTask}"
+                        )
                     }
 
                 }.await()
@@ -82,6 +89,10 @@ class UserDataSource {
             throw Exception("Falha ao recuperar dados do usuario: ${e.message}")
         }
 
+    }
+
+    suspend fun userVerified(): Boolean {
+        return auth.currentUser!!.isEmailVerified
     }
 
 }
