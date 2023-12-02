@@ -7,6 +7,6 @@ import com.pagme.app.data.model.Contact
 class ContactRepositoryImplementation(private val contactDataSource: ContactDataSource) :
     ContactRepositoryInterface {
     override suspend fun getContatcs(context: Context): List<Contact> {
-        return contactDataSource.getContatcs(context)
+        return contactDataSource.getContacts(context)
     }
 }

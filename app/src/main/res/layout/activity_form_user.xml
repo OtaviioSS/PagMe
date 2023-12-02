@@ -48,7 +48,6 @@
         android:hint="@string/nome_completo"
         app:layout_constraintBottom_toTopOf="@id/textFieldEmailNewUserView"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColorHint="@color/externalText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitleActivityFormUser">
 
@@ -70,7 +69,6 @@
         app:layout_constraintBottom_toTopOf="@id/textFieldNewUserView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColorHint="@color/externalText"
         app:layout_constraintTop_toBottomOf="@id/textFieldNameNewUserView">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -93,9 +91,7 @@
         app:layout_constraintBottom_toTopOf="@id/checkBoxTermoUso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColorHint="@color/externalText"
         android:hint="@string/senha"
-        app:endIconTint="@color/externalText"
         app:layout_constraintTop_toBottomOf="@id/textFieldEmailNewUserView">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -124,7 +120,7 @@
         android:layout_height="wrap_content"
         android:text="termos de uso"
         android:textSize="12sp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/seed"
         app:layout_constraintBottom_toBottomOf="@id/checkBoxTermoUso"
         app:layout_constraintStart_toEndOf="@+id/checkBoxTermoUso"
         app:layout_constraintTop_toTopOf="@id/checkBoxTermoUso" />
@@ -145,8 +141,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
+        android:textColor="@color/seed"
         android:text="politicas de privacidade"
-        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@id/checkBoxPolíticaPrivacidade"
         app:layout_constraintStart_toEndOf="@+id/checkBoxPolíticaPrivacidade"
         app:layout_constraintTop_toTopOf="@id/checkBoxPolíticaPrivacidade" />
@@ -157,7 +153,6 @@
         android:layout_height="50dp"
         android:background="@drawable/button_primary_background"
         android:text="@string/save"
-        android:textColor="@color/innerText"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

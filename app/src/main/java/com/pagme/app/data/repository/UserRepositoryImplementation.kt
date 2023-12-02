@@ -3,15 +3,15 @@ package com.pagme.app.data.repository
 import com.pagme.app.data.datasource.UserDataSource
 import com.pagme.app.data.model.Card
 import com.pagme.app.data.model.User
+import com.pagme.app.util.CreateUserResult
 
 class UserRepositoryImplementation(private val userDataSource: UserDataSource) :
     UserRepositoryInterface {
-    override suspend fun insert(user: User) {
+    override suspend fun insert(user: User): CreateUserResult {
         try {
-            userDataSource.create(user)
-
+           return userDataSource.create(user)
         } catch (e: Exception) {
-            throw Exception("Falha ao criar o cartão: ${e.message}")
+            throw Exception("Falha ao criar o usuario: ${e.message}")
         }
     }
 
@@ -19,7 +19,7 @@ class UserRepositoryImplementation(private val userDataSource: UserDataSource) :
         try {
             userDataSource.alter(user)
         } catch (e: Exception) {
-            throw Exception("Falha ao criar o cartão: ${e.message}")
+            throw Exception("Falha ao criar o usuario: ${e.message}")
         }
     }
 
@@ -27,7 +27,7 @@ class UserRepositoryImplementation(private val userDataSource: UserDataSource) :
         try {
             userDataSource.remove()
         } catch (e: Exception) {
-            throw Exception("Falha ao criar o cartão: ${e.message}")
+            throw Exception("Falha ao criar o usuario: ${e.message}")
         }
     }
 

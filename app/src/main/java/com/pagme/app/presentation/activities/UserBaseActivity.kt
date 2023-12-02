@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.data.model.User
-import com.pagme.app.extensions.goTo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -29,9 +28,7 @@ abstract class UserBaseActivity : AppCompatActivity() {
 
 
     private fun goToLogin() {
-        goTo(LoginActivity::class.java) {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        }
+        startActivity(Intent(this,LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         finish()
     }
 
@@ -43,8 +40,5 @@ abstract class UserBaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun logoutUser() {
-        Firebase.auth.signOut()
-        goToLogin()
-    }
+
 }

@@ -4,14 +4,20 @@ import android.content.Context
 import android.provider.ContactsContract
 import com.pagme.app.data.model.Contact
 import com.pagme.app.data.model.Debt
+import com.pagme.app.data.model.Payment
 import com.pagme.app.data.repository.DebtRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 
 class DebtUseCase(private val debtRepositoryInterface: DebtRepositoryInterface) {
 
-    suspend fun createDebt(debt: Debt, callback: (Boolean) -> Unit) {
+    suspend fun createDebt(
+        debt: Debt,
+        paymentsList: ArrayList<Payment>,
+        callback: (Boolean) -> Unit
+
+    ) {
         try {
-            debtRepositoryInterface.insertDebt(debt)
+            debtRepositoryInterface.insertDebt(debt, paymentsList)
             callback(true)
         } catch (e: Exception) {
             callback(false)

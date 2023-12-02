@@ -2,14 +2,13 @@ package com.pagme.app.data.datasource
 
 import android.content.Context
 import android.provider.ContactsContract
-import com.pagme.app.data.model.Card
 import com.pagme.app.data.model.Contact
-import kotlinx.coroutines.tasks.await
 
 class ContactDataSource {
 
-    fun getContatcs(context: Context): List<Contact> {
-        val contactsMap = HashMap<String, String>()
+
+    fun getContacts(context: Context): List<Contact> {
+        val contactsMap = HashMap<String, MutableList<String>>()
         val contactsList = mutableListOf<Contact>()
         val cursor = context.contentResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -28,19 +27,21 @@ class ContactDataSource {
                     cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
 
                 if (contactsMap.containsKey(name)) {
-                    contactsMap[name] = "${contactsMap[name]}, $phone"
+                    contactsMap[name]?.add(phone)
                 } else {
-                    contactsMap[name] = phone
+                    contactsMap[name] = mutableListOf(phone)
                 }
             }
             cursor.close()
         }
 
-        for ((name, phone) in contactsMap) {
-            contactsList.add(Contact("", name, phone))
+        for ((name, phones) in contactsMap) {
+            val contact = Contact(name = name, phone = phones)
+            contactsList.add(contact)
         }
 
         return contactsList
     }
+
 
 }

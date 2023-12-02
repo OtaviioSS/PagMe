@@ -12,6 +12,11 @@
             android:icon="@drawable/ic_delete"
             android:title="@string/excluir"
             app:showAsAction="ifRoom" />
+      <item
+            android:id="@+id/noticaMenuDetailDebt"
+            android:icon="@drawable/ic_notifications_24"
+            android:title="@string/excluir"
+            app:showAsAction="ifRoom" />
 
 
     </group>

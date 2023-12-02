@@ -2,17 +2,12 @@ package com.pagme.app.domain.usecase
 
 import com.pagme.app.data.model.User
 import com.pagme.app.data.repository.UserRepositoryInterface
+import com.pagme.app.util.CreateUserResult
 
 class UserUseCase(private val userRepositoryInterface: UserRepositoryInterface) {
 
-    suspend fun create(user: User, callback: (Boolean) -> Unit) {
-        try {
-            userRepositoryInterface.insert(user)
-            callback(true)
-        } catch (e: Exception) {
-            callback(false)
-        }
-
+    suspend fun create(user: User): CreateUserResult {
+            return userRepositoryInterface.insert(user)
     }
 
     suspend fun update(user: User, callback: (Boolean) -> Unit) {
@@ -37,7 +32,7 @@ class UserUseCase(private val userRepositoryInterface: UserRepositoryInterface) 
         return userRepositoryInterface.selectById()
     }
 
-    suspend fun userVerified(): Boolean{
+    suspend fun userVerified(): Boolean {
         return userRepositoryInterface.userVerified()
     }
 

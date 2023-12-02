@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pagme.app.data.model.User
 import com.pagme.app.domain.usecase.UserUseCase
+import com.pagme.app.util.CreateUserResult
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val useCase: UserUseCase) : ViewModel() {
@@ -13,13 +14,20 @@ class UserViewModel(private val useCase: UserUseCase) : ViewModel() {
     private val _users = MutableLiveData<List<User>>()
     val user: LiveData<List<User>> = _users
 
-    fun create(user: User, callback: (Boolean) -> Unit) {
-        viewModelScope.launch {
-            useCase.create(user) { success ->
-                callback(success)
+    private val _createUserResult = MutableLiveData<CreateUserResult>()
+    val createUserResult: LiveData<CreateUserResult> = _createUserResult
 
+    fun create(user: User) {
+        try {
+            viewModelScope.launch {
+                val result = useCase.create(user)
+                _createUserResult.postValue(result)
             }
+        }catch (e:Exception){
+            _createUserResult.postValue(CreateUserResult.Failure("Erro desconhecido: ${e.message}"))
+
         }
+
     }
 
     fun update(user: User, callback: (Boolean) -> Unit) {

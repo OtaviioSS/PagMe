@@ -13,9 +13,9 @@ android {
 
     defaultConfig {
         applicationId "com.imcub.pagme"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 33
-        versionCode 1
+        versionCode 3
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,7 +55,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -72,7 +72,7 @@ dependencies {
     implementation "io.github.vicmikhailau:MaskedEditText:4.0.7"
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
 
-    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    implementation platform('com.google.firebase:firebase-bom:32.1.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth'
     implementation 'com.google.firebase:firebase-firestore-ktx'
@@ -84,4 +84,18 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Dependência principal do Mockito
+    testImplementation 'org.mockito:mockito-core:5.4.0'
+    // Dependência do Mockito para testes no Android
+    androidTestImplementation 'org.mockito:mockito-android:5.4.0'
+    // Dependência do Mockito para ser possível mockar classes e métodos constantes
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
+
+    testImplementation "org.mockito.kotlin:mockito-kotlin:3.2.0"
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
+
+
+
 }

@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.pagme.app.MyApplication
-import com.pagme.app.databinding.ActivityFormUserBinding
 import com.pagme.app.data.model.User
+import com.pagme.app.databinding.ActivityFormUserBinding
 import com.pagme.app.presentation.viewmodel.UserViewModel
+import com.pagme.app.util.CreateUserResult
 
 class FormUserActivity : AppCompatActivity() {
 
@@ -36,80 +37,79 @@ class FormUserActivity : AppCompatActivity() {
 
     private fun listeners() {
         binding.textViewLinkPoliticasPrivacidade.setOnClickListener {
-            val url = "https://www.incub.com.br" // Substitua pelo URL correto
+            val url = "https://incub.com.br/pagme-terms.html" // Substitua pelo URL correto
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
             startActivity(intent)
         }
 
         binding.textViewLinkTermoUso.setOnClickListener {
-            val url = "https://www.incub.com.br" // Substitua pelo URL correto
+            val url = "https://incub.com.br/pagme-terms.html" // Substitua pelo URL correto
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
             startActivity(intent)
         }
+
+
+
         binding.buttonSaveNewUserView.setOnClickListener {
-            val progressBar = binding.progressBar
-            val overlayView = binding.overlayView
-            val email = binding.emailNewUserView.text.toString().trim()
-            val userName = binding.nameNewUserView.text.toString().trim()
-            val password = binding.passwordNewUserView.text.toString().trim()
-            val checkBoxTermoUso = binding.checkBoxTermoUso
-            val checkBoxPolTicaPrivacidade = binding.checkBoxPolTicaPrivacidade
-            binding.progressBar.visibility = View.VISIBLE
-            overlayView.visibility = View.VISIBLE
+            with(binding) {
+                progressBar.visibility = View.VISIBLE
+                overlayView.visibility = View.VISIBLE
 
-            if (email.isEmpty() || userName.isEmpty() || password.isEmpty()) {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    Toast.makeText(this, "Todos os campos são obrigatorios!", Toast.LENGTH_LONG)
-                        .show()
-                    binding.progressBar.visibility = View.GONE
+                if (emailNewUserView.text.toString().trim().isEmpty() ||
+                    nameNewUserView.text.toString().trim().isEmpty() ||
+                    passwordNewUserView.text.toString().trim().isEmpty()
+                ) {
+                    Snackbar.make(root, "Todos os campos são obrigatórios!", Snackbar.LENGTH_LONG).show()
+                    progressBar.visibility = View.GONE
                     overlayView.visibility = View.GONE
-                }, 1500)
-
-
-            } else if (checkBoxTermoUso.isChecked && checkBoxPolTicaPrivacidade.isChecked) {
-                Handler(Looper.getMainLooper()).postDelayed({
+                } else if (checkBoxTermoUso.isChecked && checkBoxPolTicaPrivacidade.isChecked) {
                     val user = User(
-                        email = binding.emailNewUserView.text.toString().trim(),
-                        userName = binding.nameNewUserView.text.toString().trim(),
-                        password = binding.passwordNewUserView.text.toString().trim(),
+                        email = emailNewUserView.text.toString().trim(),
+                        userName = nameNewUserView.text.toString().trim(),
+                        password = passwordNewUserView.text.toString().trim(),
                         termsUse = true,
                         privacyPolicy = true
-
                     )
-                    userViewModel.create(user) { success ->
-                        runOnUiThread {
-                            if (!success) {
-                                Toast.makeText(
-                                    this,
-                                    "Não foi possivel criar o usuario",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                                binding.progressBar.visibility = View.GONE
+
+                    userViewModel.createUserResult.observe(this@FormUserActivity, { result ->
+                        when (result) {
+                            is CreateUserResult.Success -> {
+                                Snackbar.make(root, "Conta criada com sucesso!", Snackbar.LENGTH_LONG).show()
+                                progressBar.visibility = View.GONE
                                 overlayView.visibility = View.GONE
-                            } else {
-                                Toast.makeText(this, "Conta criada com sucesso", Toast.LENGTH_SHORT)
-                                    .show()
-                                binding.progressBar.visibility = View.GONE
-                                overlayView.visibility = View.GONE
-                                startActivity(Intent(this, VerifiedActivity::class.java))
+                                startActivity(Intent(this@FormUserActivity, VerifiedActivity::class.java))
                                 finish()
                             }
+                            is CreateUserResult.EmailExists -> {
+                                Snackbar.make(root, "Email já cadastrado!", Snackbar.LENGTH_LONG).show()
+                                progressBar.visibility = View.GONE
+                                overlayView.visibility = View.GONE
+                            }
+                            is CreateUserResult.WeakPassword -> {
+                                Snackbar.make(root, result.message, Snackbar.LENGTH_LONG).show()
+                                progressBar.visibility = View.GONE
+                                overlayView.visibility = View.GONE
+                            }
+                            is CreateUserResult.Failure -> {
+                                Snackbar.make(root, "Não foi possível criar o usuário!", Snackbar.LENGTH_LONG).show()
+                                progressBar.visibility = View.GONE
+                                overlayView.visibility = View.GONE
+                            }
 
+                            else -> {      Snackbar.make(root, "Erro desconhecido!", Snackbar.LENGTH_LONG).show()
+                                progressBar.visibility = View.GONE
+                                overlayView.visibility = View.GONE}
                         }
+                    })
 
-                    }
-                }, 3000)
-            } else {
-                Toast.makeText(
-                    this,
-                    "Aceite nossos termos de uso e politica de privacidade!",
-                    Toast.LENGTH_LONG
-                ).show()
-                progressBar.visibility = View.GONE
-                overlayView.visibility = View.GONE
+                    userViewModel.create(user)
+                } else {
+                    Snackbar.make(root, "Aceite nossos termos de uso e política de privacidade!", Snackbar.LENGTH_LONG).show()
+                    progressBar.visibility = View.GONE
+                    overlayView.visibility = View.GONE
+                }
             }
         }
     }

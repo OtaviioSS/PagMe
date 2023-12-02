@@ -1,63 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources >
-
-    <style name="Theme.Dark2" parent="Theme.Material3.Dark">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="buttonStyle">@style/butonnRed</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="actionBarStyle">@style/Solid</item>
-
-    </style>
-    <style name="Theme.Dark2.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-
-    </style>
-
-    <style name="Solid">
-        <item name="background">@color/colorAccent</item>
-    </style>
-    <style name="butonnRed">
-        <item name="background">@color/redButton</item>
-        <item name="android:backgroundTint">@color/redButton</item>
-        <item name="cornerRadius">4dp</item>
-
-
-    </style>
-
-    <style name="buttonPaidItem">
-        <item name="background">@color/colorPrimary</item>
-        <item name="android:backgroundTint">@color/colorPrimary</item>
-        <item name="cornerRadius">0dp</item>
-
-
-    </style>
-    <style name="btnSec">
-        <item name="cornerRadius">4dp</item>
-        <item name="strokeColor">@color/colorPrimary</item>
-        <item name="backgroundTint">@color/colorNone</item>
-        <item name="strokeWidth">2dp</item>
-
-
-    </style>
-    <style name="butonnGreen">
-        <item name="background">@color/redButton</item>
-        <item name="android:backgroundTint">@color/colorPrimary</item>
-        <item name="cornerRadius">4dp</item>
-        <item name="height">48dp</item>
-
-    </style>
-
-
+<resources>
 
     <style name="TextInputLayoutNoBorder" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="errorIconDrawable">@null</item>
         <item name="errorIconTint">@null</item>
         <item name="hintEnabled">false</item>
         <item name="boxBackgroundMode">none</item>
-    </style>
 
+    </style>
 
 
 </resources>

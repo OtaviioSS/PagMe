@@ -14,6 +14,7 @@ import com.pagme.app.presentation.activities.FormUserActivity
 import com.pagme.app.presentation.activities.ListCardActivity
 import com.pagme.app.presentation.activities.ListDebtActivity
 import com.pagme.app.presentation.activities.ProfileUserActivity
+import com.pagme.app.presentation.viewmodel.PaymentViewModelFactory
 import dagger.Component
 
 
@@ -34,6 +35,7 @@ interface AppComponent {
     fun provideDebtViewModelFactory(): DebtViewModelFactory
     fun provideContactViewModelFactory(): ContactViewModelFactory
     fun provideUserViewModelFactory(): UserViewModelFactory
+    fun providePaymentViewModelFactory(): PaymentViewModelFactory
 
 }
 

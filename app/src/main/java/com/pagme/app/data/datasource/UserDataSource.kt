@@ -2,48 +2,61 @@ package com.pagme.app.data.datasource
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.data.model.User
+import com.pagme.app.util.CreateUserResult
 import kotlinx.coroutines.tasks.await
+
+
+
 
 class UserDataSource {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var auth: FirebaseAuth = Firebase.auth
 
-    suspend fun create(user: User) {
-        try {
-            val authResult = auth.createUserWithEmailAndPassword(user.email, user.password).await()
-            user.userId = authResult.user!!.uid
 
-            // Enviar e-mail de verificação
-            authResult.user?.sendEmailVerification()?.await()
-
-            if (authResult != null) {
-                user.password = ""
-                db.collection("users").document(auth.currentUser!!.uid).collection("dataUser")
-                    .document("profileData")
-                    .set(user)
-                    .await()
+    suspend fun create(user: User): CreateUserResult {
+        return try {
+            if (this.checkIfEmailExists(user.email)) {
+                CreateUserResult.EmailExists("Email já cadastrado!")
             } else {
-                throw Exception("Falha ao criar usuário")
+                val authResult = auth.createUserWithEmailAndPassword(user.email, user.password).await()
+                user.userId = authResult.user!!.uid
+                authResult.user?.sendEmailVerification()?.await()
+                if (authResult != null) {
+                    user.password = ""
+                    db.collection("users").document(auth.currentUser!!.uid).collection("dataUser")
+                        .document("profileData")
+                        .set(user)
+                        .await()
+                    CreateUserResult.Success("Usuário criado com sucesso!")
+                } else {
+                    CreateUserResult.Failure("Falha ao criar usuário")
+                }
             }
+        } catch (e: FirebaseAuthWeakPasswordException) {
+            CreateUserResult.WeakPassword("A senha fornecida é fraca.")
         } catch (e: Exception) {
-            throw Exception("Falha ao salvar dados: ${e.message}")
+            CreateUserResult.Failure("Falha ao salvar dados: ${e.message}")
+        }
+    }
+
+    suspend fun checkIfEmailExists(email: String): Boolean {
+        try {
+            val result = auth.fetchSignInMethodsForEmail(email).await()
+            return result.signInMethods?.isNotEmpty() == true
+        } catch (e: Exception) {
+            throw Exception("Falha ao verificar email: ${e.message}")
         }
     }
 
 
     suspend fun alter(user: User) {
         try {
-            db.collection("users").document(auth.currentUser!!.uid).collection("dataUser")
-                .document("profileData").update(
-                    mapOf(
-                        "email" to user.email,
-                        "userName" to user.userName,
-                    )
-                ).await()
+            db.collection("users").document(auth.currentUser!!.uid).collection("dataUser").document("profileData").update(mapOf("email" to user.email, "userName" to user.userName)).await()
         } catch (e: Exception) {
             throw Exception("Falha ao atualizar dados: ${e.message}")
         }

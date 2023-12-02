@@ -4,6 +4,7 @@ package com.pagme.app.data.model
 data class Debt(
     var idDebt: String = "",
     var nameCard: String = "",
+    var cardID:String = "",
     var nameBuyer: String = "",
     var valueBuy: Double = 0.0,
     var installments: Int = 0,
@@ -11,5 +12,5 @@ data class Debt(
     var whatsapp: String? = null,
     val disabled: Boolean = false,
     var valueInstallments: Double = 0.0,
-    var userId: String = ""
+    var userId: String = "",
 )

@@ -1,4 +1,4 @@
-package com.pagme.app.extensions
+package com.pagme.app.util.extensions
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,7 +25,6 @@ class MoneyTextWatcher(editText: EditText?) : TextWatcher {
         editText.removeTextChangedListener(this)
         val parsed: BigDecimal = parseToBigDecimal(editable.toString())
         val formatted: String = NumberFormat.getCurrencyInstance(locale).format(parsed)
-        //Remove o símbolo da moeda e espaçamento pra evitar bug
         val replaceable = String.format("[%s\\s]", currencySymbol)
         val cleanString = formatted.replace(replaceable.toRegex(), "")
         editText.setText(cleanString)
@@ -41,36 +40,18 @@ class MoneyTextWatcher(editText: EditText?) : TextWatcher {
                 2, BigDecimal.ROUND_FLOOR
             ).divide(BigDecimal(100), BigDecimal.ROUND_FLOOR)
         } catch (e: NumberFormatException) {
-            //ao apagar todos valores de uma só vez dava erro
-            //Com a exception o valor retornado é 0.00
             BigDecimal(0)
         }
     }
 
     companion object {
         fun formatPrice(price: String?): String {
-            //Ex - price = 2222
-            //retorno = 2222.00
             val df = DecimalFormat("0.00")
             return java.lang.String.valueOf(df.format(java.lang.Double.valueOf(price)))
         }
 
-        fun formatTextPrice(price: String?): String {
-            //Ex - price = 3333.30
-            //retorna formato monetário em Br = 3.333,30
-            //retorna formato monetário EUA: 3,333.30
-            //retornar formato monetário de alguns países europeu: 3 333,30
-            val bD = BigDecimal(formatPriceSave(formatPrice(price)))
-            val newFormat: String = java.lang.String.valueOf(
-                NumberFormat.getCurrencyInstance(Locale.getDefault()).format(bD)
-            )
-            val replaceable = String.format("[%s]", currencySymbol)
-            return newFormat.replace(replaceable.toRegex(), "")
-        }
 
         fun formatPriceSave(price: String): String {
-            //Ex - price = $ 5555555
-            //return = 55555.55 para salvar no banco de dados
             val replaceable = String.format("[%s,.\\s]", currencySymbol)
             val cleanString = price.replace(replaceable.toRegex(), "")
             val stringBuilder = StringBuilder(cleanString.replace(" ".toRegex(), ""))
@@ -78,6 +59,6 @@ class MoneyTextWatcher(editText: EditText?) : TextWatcher {
         }
 
         val currencySymbol: String
-            get() = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol()
+            get() = NumberFormat.getCurrencyInstance(Locale.getDefault()).currency!!.symbol
     }
 }

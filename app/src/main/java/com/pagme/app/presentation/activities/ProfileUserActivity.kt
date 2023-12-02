@@ -3,10 +3,13 @@ package com.pagme.app.presentation.activities
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.pagme.app.MyApplication
 import com.pagme.app.data.model.User
 import com.pagme.app.databinding.ActivityProfileUserBinding
@@ -60,9 +63,13 @@ class ProfileUserActivity : UserBaseActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        Toast.makeText(this, "Dados de perfil atualizado!", Toast.LENGTH_SHORT)
-                            .show()
-                        finish()
+
+
+                        Snackbar.make(binding.root,"Dados de perfil atualizado!", Snackbar.LENGTH_LONG).show()
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            finish()
+                        }, 3000)
+
                     }
 
                 }

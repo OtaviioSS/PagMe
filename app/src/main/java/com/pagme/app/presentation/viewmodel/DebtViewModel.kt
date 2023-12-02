@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pagme.app.data.model.Debt
+import com.pagme.app.data.model.Payment
 import com.pagme.app.domain.usecase.DebtUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -23,10 +24,11 @@ class DebtViewModel(private val debtUseCase: DebtUseCase) : ViewModel() {
         _debts.value = filteredDebtsList
     }
 
-    fun createDebt(debt: Debt, callback: (Boolean) -> Unit) {
+    fun createDebt(debt: Debt, paymentsList:ArrayList<Payment>, callback: (Boolean) -> Unit) {
         viewModelScope.launch {
-            debtUseCase.createDebt(debt) { success ->
+            debtUseCase.createDebt(debt,paymentsList) { success ->
                 callback(success)
+
             }
         }
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.pagme.app.data.datasource.CardDataSource
 import com.pagme.app.data.datasource.ContactDataSource
 import com.pagme.app.data.datasource.DebtDataSource
+import com.pagme.app.data.datasource.PaymentDataSource
 import com.pagme.app.data.datasource.UserDataSource
 import com.pagme.app.data.repository.CardRepositoryImplementation
 import com.pagme.app.data.repository.CardRepositoryInterface
@@ -11,15 +12,19 @@ import com.pagme.app.data.repository.ContactRepositoryImplementation
 import com.pagme.app.data.repository.ContactRepositoryInterface
 import com.pagme.app.data.repository.DebtRepositoryImplementation
 import com.pagme.app.data.repository.DebtRepositoryInterface
+import com.pagme.app.data.repository.PaymentRepositoryImplementation
+import com.pagme.app.data.repository.PaymentRepositoryInterface
 import com.pagme.app.data.repository.UserRepositoryImplementation
 import com.pagme.app.data.repository.UserRepositoryInterface
 import com.pagme.app.domain.usecase.CardUseCase
 import com.pagme.app.domain.usecase.ContactUseCase
 import com.pagme.app.domain.usecase.DebtUseCase
+import com.pagme.app.domain.usecase.PaymentUseCase
 import com.pagme.app.domain.usecase.UserUseCase
 import com.pagme.app.presentation.viewmodel.CardViewModelFactory
 import com.pagme.app.presentation.viewmodel.ContactViewModelFactory
 import com.pagme.app.presentation.viewmodel.DebtViewModelFactory
+import com.pagme.app.presentation.viewmodel.PaymentViewModelFactory
 import com.pagme.app.presentation.viewmodel.UserViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -114,5 +119,24 @@ class AppModule {
     fun provideUserViewModelFactory(useCase: UserUseCase): ViewModelProvider.Factory {
         return UserViewModelFactory(useCase)
     }
+    @Provides
+    fun providePaymentDataSource(): PaymentDataSource {
+        return PaymentDataSource( )
+    }
+
+    @Provides
+    fun providePaymentRepository(dataSource: PaymentDataSource): PaymentRepositoryInterface {
+        return PaymentRepositoryImplementation(dataSource)
+    }
+
+    @Provides
+    fun providePaymentUseCase(repository: PaymentRepositoryInterface): PaymentUseCase {
+        return PaymentUseCase(repository)
+    }
+    @Provides
+    fun providePaymentViewModelFactory(useCase: PaymentUseCase): ViewModelProvider.Factory {
+        return PaymentViewModelFactory(useCase)
+    }
+
 
 }

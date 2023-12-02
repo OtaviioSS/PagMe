@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pagme.app.data.model.Debt
 import com.pagme.app.databinding.ItemDebitBinding
-import com.pagme.app.extensions.formataParaMoedaBrasileira
+import com.pagme.app.util.extensions.formataParaMoedaBrasileira
 
 class DebtAdapter(private var debtList: List<Debt>, private var filteredDebtList: List<Debt>) : RecyclerView.Adapter<DebtAdapter.DebtViewHolder>() {
 
@@ -59,14 +59,10 @@ class DebtAdapter(private var debtList: List<Debt>, private var filteredDebtList
         fun bind(debt: Debt) {
             binding.nameBuyerItemDebitView.text = debt.nameBuyer
             binding.paidInstallmentsItemDebitView.text = debt.paidInstallments.toString()
-            binding.remainingPlotsItemDebt.text =
-                (debt.installments - debt.paidInstallments).toString()
-            binding.valueInstallmentsItemDebit.text =
-                debt.valueInstallments.toBigDecimal().formataParaMoedaBrasileira().toString()
-            binding.valueOfBuyItemDebit.text =
-                debt.valueBuy.toBigDecimal().formataParaMoedaBrasileira()
-            binding.unpaidItemDebit.text = (binding.remainingPlotsItemDebt.text.toString()
-                .toInt() * debt.valueInstallments).toBigDecimal().formataParaMoedaBrasileira()
+            binding.remainingPlotsItemDebt.text = (debt.installments - debt.paidInstallments).toString()
+            binding.valueInstallmentsItemDebit.text = debt.valueInstallments.toBigDecimal().formataParaMoedaBrasileira().toString()
+            binding.valueOfBuyItemDebit.text = debt.valueBuy.toBigDecimal().formataParaMoedaBrasileira()
+            binding.unpaidItemDebit.text = (binding.remainingPlotsItemDebt.text.toString().toInt() * debt.valueInstallments).toBigDecimal().formataParaMoedaBrasileira()
         }
 
     }

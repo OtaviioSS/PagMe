@@ -2,13 +2,13 @@ package com.pagme.app.presentation.activities
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.pagme.app.databinding.ActivityForgetPasswordBinding
@@ -30,35 +30,37 @@ class ForgetPasswordActivity : AppCompatActivity() {
     }
 
     private fun sendEmail() {
-        val emailAddress = binding.emailForgetPasswordView.text.toString()
+        val emailAddress = binding.emailForgetPasswordView.text.toString().trim()
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        val progressBar = binding.progressBar
-        progressBar.visibility = View.VISIBLE
+
         if (emailAddress.isEmpty()) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                Toast.makeText(this, "Digite um email", Toast.LENGTH_LONG).show()
-                progressBar.visibility = View.GONE
-            }, 3000)
+            showSnackbar("Digite um email")
         } else if (!emailAddress.matches(emailPattern.toRegex())) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                Toast.makeText(this, "Digite um email valido!", Toast.LENGTH_LONG).show()
-                progressBar.visibility = View.GONE
-            }, 3000)
-
+            showSnackbar("Digite um email válido!")
         } else {
-            Handler(Looper.getMainLooper()).postDelayed({
-                Firebase.auth.sendPasswordResetEmail(emailAddress)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d(TAG, "Email sent.")
-                            Toast.makeText(this, "Email enviado", Toast.LENGTH_LONG).show()
-                        }
+            val progressBar = binding.progressBar
+            progressBar.visibility = View.VISIBLE
+
+            Firebase.auth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener { task ->
+                    Snackbar.make(binding.root, "Email enviado!", Snackbar.LENGTH_LONG).show()
+
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "Email sent.")
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            binding.progressBar.visibility = View.GONE
+                        }, 3000)
                     }
-                progressBar.visibility = View.GONE
-                startActivity(Intent(this, LoginActivity::class.java))
-            }, 3000)
-
+                }
         }
-
     }
+
+    private fun showSnackbar(message: String) {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+            binding.progressBar.visibility = View.GONE
+        }, 3000)
+    }
+
 }

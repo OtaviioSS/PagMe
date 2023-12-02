@@ -5,7 +5,7 @@ import java.util.*
 data class Contact(
     var id: String = UUID.randomUUID().toString(),
     var name: String,
-    var phone: String
+    var phone: List<String>
 ) {
     fun r(): String {
         return name

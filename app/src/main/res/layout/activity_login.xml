@@ -6,16 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".presentation.activities.LoginActivity">
 
-    <ImageView
+
+    <View
         android:id="@+id/imageLogoLoginView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/pagmelogo"
-        app:layout_constraintBottom_toTopOf="@id/textFieldEmailLoginView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/view_logo_login"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textViewTitleLoginActivity"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="Login"
+        android:textColor="#ffffff"
+        android:textSize="38sp"
+        app:layout_constraintBottom_toTopOf="@id/textFieldEmailLoginView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageLogoLoginView" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldEmailLoginView"
@@ -23,12 +36,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/email"
-        android:textColorHint="@color/externalText"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/textFieldPasswordLoginView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageLogoLoginView">
+        app:layout_constraintTop_toBottomOf="@id/textViewTitleLoginActivity">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailLoginView"
@@ -45,11 +57,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/senha"
-        android:textColorHint="@color/externalText"
         android:textStyle="bold"
         app:endIconMode="password_toggle"
-        app:endIconTint="@color/externalText"
-        app:layout_constraintBottom_toTopOf="@id/buttonSaveLoginView"
+        app:layout_constraintBottom_toTopOf="@id/textViewForgetPasswordLoginView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textFieldEmailLoginView">
@@ -65,39 +75,73 @@
 
     <TextView
         android:id="@+id/textViewForgetPasswordLoginView"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/externalText"
+        android:gravity="end"
         android:text="Esqueci minha senha"
+        app:layout_constraintBottom_toTopOf="@id/buttonSaveLoginView"
         app:layout_constraintEnd_toEndOf="@id/textFieldPasswordLoginView"
         app:layout_constraintTop_toBottomOf="@id/textFieldPasswordLoginView" />
 
     <Button
         android:id="@+id/buttonSaveLoginView"
         android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:background="@drawable/button_primary_background"
         android:text="@string/entrar"
-        android:textColor="@color/innerText"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textRegisterLoginView"
+        app:layout_constraintBottom_toTopOf="@+id/toggleButtonSocial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldPasswordLoginView" />
+        app:layout_constraintTop_toBottomOf="@id/textViewForgetPasswordLoginView" />
 
-    <Button
-        android:id="@+id/textRegisterLoginView"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:background="@drawable/button_primary_background"
-        android:backgroundTint="#10A818"
-        android:text="@string/criar_conta"
-        android:textColor="@color/externalText"
-        android:textSize="14sp"
-        android:textStyle="bold"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButtonSocial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textCreateNewUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSaveLoginView">
+
+        <Button
+            android:id="@+id/buttonGoogleLogin"
+            style="@style/Widget.Material3.Button.IconButton.Outlined"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            app:icon="@drawable/ic_google_24" />
+
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <LinearLayout
+        android:id="@+id/textCreateNewUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSaveLoginView" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButtonSocial">
+
+        <TextView
+            android:id="@+id/textViewNaoTemConta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/n_o_tem_conta"
+            android:textSize="14sp" />
+
+
+        <Button
+            android:id="@+id/textRegisterLoginView"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/criar_conta"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
